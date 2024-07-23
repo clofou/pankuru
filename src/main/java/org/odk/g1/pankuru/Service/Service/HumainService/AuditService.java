@@ -31,8 +31,8 @@ public class AuditService implements CrudService<Audit, Long> {
     }
 
     @Override
-    public Audit misAJour(Long aLong, Audit entity) {
-        Optional<Audit> audit = auditRepo.findById(aLong);
+    public Audit misAJour(Audit entity) {
+        Optional<Audit> audit = auditRepo.findById(entity.getId());
         Audit audit1;
         if (audit.isEmpty()){
             throw new RuntimeException("L'audit recherché est introuvable");
@@ -50,6 +50,6 @@ public class AuditService implements CrudService<Audit, Long> {
 
     @Override
     public void supprimer(Long aLong) {
-
+        auditRepo.deleteById(aLong);
     }
 }

@@ -7,6 +7,6 @@ public interface CrudService<T, ID> {
     T ajout(T entity);
     List<T> liste();
     Optional<T> trouverParId(ID id);
-    T misAJour(ID id, T entity);
+    T misAJour(T entity);
     void supprimer(ID id);
 }

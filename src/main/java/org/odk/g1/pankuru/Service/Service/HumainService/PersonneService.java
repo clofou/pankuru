@@ -10,10 +10,10 @@ import org.springframework.stereotype.Service;
 @AllArgsConstructor
 public class PersonneService {
     private PasswordEncoder passwordEncoder;
-     private PersonneRepo personneRepo;
+    private PersonneRepo personneRepo;
 
 
-    Personne seConnecter(String email, String motDePasse){
+    public Personne seConnecter(String email, String motDePasse){
         String motDePasseEncode = passwordEncoder.encode(motDePasse);
         return personneRepo.findPersonneByEmailAndMotDePasse(email, motDePasseEncode);
     }
