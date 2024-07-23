@@ -6,6 +6,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import lombok.*;
+import org.odk.g1.pankuru.Entity.Compagnie.Compagnie;
 
 import java.util.List;
 
@@ -22,7 +23,7 @@ public class AdminCompagnie extends Personne {
     private Compagnie compagnie;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "admincompagnie")
+    @OneToMany
     private List<Rapport> rapportList;
 
 

@@ -5,6 +5,7 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
 import lombok.*;
+import org.odk.g1.pankuru.Entity.ReservationDeVol.Reservation;
 
 import java.util.Date;
 import java.util.List;
@@ -21,6 +22,6 @@ public class Utilisateur extends Personne {
     private String numeroDeVisa;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "utilisateur")
+    @OneToMany
     private List<Reservation> reservationList;
 }
