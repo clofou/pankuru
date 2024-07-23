@@ -33,7 +33,7 @@ public class Personne {
     // private Role role;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "personne")
+    @OneToMany
     private List<Audit> auditList;
 
 

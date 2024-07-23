@@ -22,7 +22,7 @@ public class Adresse {
     private String pays;
 
     @JsonIgnore
-    @OneToOne(mappedBy = "adresse")
+    @OneToOne
     private Personne personne;
 
 }

@@ -30,6 +30,8 @@ public class ContratService implements CrudService<Contrat, Long>{
         return contratRepository.findById(id);
     }
 
+    
+
     @Override
     public Contrat misAJour(Contrat contrat) {
         // Vérifiez si le contrat existe en base

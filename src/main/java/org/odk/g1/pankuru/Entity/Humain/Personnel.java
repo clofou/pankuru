@@ -4,6 +4,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import lombok.*;
+import org.odk.g1.pankuru.Entity.Compagnie.Compagnie;
 
 import java.util.Date;
 
