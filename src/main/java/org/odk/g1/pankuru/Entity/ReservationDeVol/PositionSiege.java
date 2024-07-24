@@ -14,11 +14,13 @@ import java.util.Set;
 @Entity
 public class PositionSiege {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String nom;
 
     @ManyToOne
     private ClasseSiege classe;
+    
     @JsonIgnore
     @OneToMany(mappedBy = "positionSiege",cascade = CascadeType.ALL)
     private Set<Siege>siege;

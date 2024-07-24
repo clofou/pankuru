@@ -1,22 +1,41 @@
 package org.odk.g1.pankuru.Controller;
 
-// import org.hibernate.mapping.List;
+import lombok.AllArgsConstructor;
+// import org.odk.g1.pankuru.Entity.ReservationDeVol.Bagage;
 import org.odk.g1.pankuru.Entity.ReservationDeVol.ClasseSiege;
 import org.odk.g1.pankuru.Service.Service.ClasseSiegeService;
-// import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.Optional;
 
 @RestController
-@RequestMapping("/classe")
+@AllArgsConstructor
+@RequestMapping("/Classe")
 public class ClasseSiegeControleur {
-   private ClasseSiegeService classeSiegeService;
-   @PostMapping("/ajout")
-   public ClasseSiege ajouterClasseSiege( ClasseSiege classeSiege) {
-    return classeSiegeService.ajout(classeSiege);
+    private ClasseSiegeService classeSiegeService;
+    @PostMapping("/ajout")
+    public ClasseSiege supprimerClasse(ClasseSiege classeSiege){
+        return classeSiegeService.ajout(classeSiege);
+    }
+
+    @GetMapping("/liste")
+    public List<ClasseSiege> lire(){
+        return classeSiegeService.liste();
+    }
+
+    @GetMapping("/liste/{id}")
+    public Optional<ClasseSiege> parId(@PathVariable Integer id){
+        return classeSiegeService.trouverParId(id);
+    }
+
+    @PutMapping("/modif")
+    public ClasseSiege modif(ClasseSiege classeSiege ){
+        return classeSiegeService.misAJour(classeSiege);
+    }
+    @DeleteMapping("/supprimer/{id}")
+    public void supprimer(@PathVariable Integer id){
+        classeSiegeService.supprimer(id);
+    }
 
 }
-}
-
-

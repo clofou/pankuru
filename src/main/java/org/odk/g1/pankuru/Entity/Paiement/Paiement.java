@@ -19,6 +19,7 @@ public class Paiement {
 
     @OneToOne
     private Reservation reservation;
+    
     @ManyToOne
     private ModePaiement modePaiement;
 }
