@@ -1,6 +1,6 @@
 package org.odk.g1.pankuru.Service.Paiement;
 
-import org.odk.g1.pankuru.Entity.Paiement.CarteBancaire;
+// import org.odk.g1.pankuru.Entity.Paiement.CarteBancaire;
 import org.odk.g1.pankuru.Entity.Paiement.MobileMoney;
 import org.odk.g1.pankuru.Repository.Paiement.MobileMoneyRepository;
 import org.odk.g1.pankuru.Service.Interface.CrudService;
@@ -32,8 +32,8 @@ public abstract class MobileMoneyService implements CrudService<MobileMoney, Str
     }
 
     @Override
-    public MobileMoney misAJour(MobileMoney newInfoMobileMoney, String mobileMoneyId) {
-        MobileMoney mobileMoneyBD = mobileMoneyRepository.getReferenceById(mobileMoneyId);
+    public MobileMoney misAJour(MobileMoney newInfoMobileMoney) {
+        MobileMoney mobileMoneyBD = mobileMoneyRepository.getReferenceById(newInfoMobileMoney.getId());
 
         if (newInfoMobileMoney.getNumeroDeTelephone() != null &&
                 !newInfoMobileMoney.getNumeroDeTelephone().isEmpty() &&

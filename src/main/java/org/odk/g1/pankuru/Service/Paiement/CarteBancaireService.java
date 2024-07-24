@@ -32,8 +32,8 @@ public abstract class CarteBancaireService implements CrudService<CarteBancaire,
 
 
     @Override
-    public CarteBancaire misAJour(CarteBancaire newInfoCarteBancaire, String Id) {
-        CarteBancaire carteBancaireBD = carteBancaireRepository.getReferenceById(Id);
+    public CarteBancaire misAJour(CarteBancaire newInfoCarteBancaire) {
+        CarteBancaire carteBancaireBD = carteBancaireRepository.getReferenceById(newInfoCarteBancaire.getId());
 
         if (newInfoCarteBancaire.getNumeroDeCarte() != null &&
                 !newInfoCarteBancaire.getNumeroDeCarte().isEmpty() &&

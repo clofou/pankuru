@@ -18,7 +18,7 @@ public class RoleController {
 
     @ResponseStatus(HttpStatus.OK)
     @GetMapping
-    public List getAllRole(){
+    public List<Role> getAllRole(){
         return roleService.getAllRole();
     }
 

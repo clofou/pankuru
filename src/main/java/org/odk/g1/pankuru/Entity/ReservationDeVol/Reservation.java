@@ -2,11 +2,13 @@ package org.odk.g1.pankuru.Entity.ReservationDeVol;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.odk.g1.pankuru.Entity.Enum.Statut;
+import org.odk.g1.pankuru.Entity.Humain.Utilisateur;
 
 import java.time.LocalDate;
 
@@ -22,7 +24,12 @@ public class Reservation {
     private Statut statut;
     private LocalDate dateAnnulation;
     private String raisonAnnulation;
+
     @ManyToOne()
     private Vol vol;
+
+    @ManyToOne
+    @JoinColumn(name = "utilisateur_id")
+    private Utilisateur utilisateur;
 
 }
