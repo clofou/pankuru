@@ -1,7 +1,7 @@
 package org.odk.g1.pankuru.Service.Paiement;
 
 import org.odk.g1.pankuru.Entity.Paiement.CarteBancaire;
-import org.odk.g1.pankuru.Entity.Paiement.MobileMoney;
+
 import org.odk.g1.pankuru.Repository.Paiement.CarteBancaireRepository;
 import org.odk.g1.pankuru.Service.Interface.CrudService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,10 +31,6 @@ public class CarteBancaireService implements CrudService<CarteBancaire, String> 
         return carteBancaireRepository.findById(carteBancaireId);
     }
 
-    @Override
-    public CarteBancaire misAJour(CarteBancaire entity, Long Id) {
-        return null;
-    }
 
 
     @Override
@@ -72,11 +68,6 @@ public class CarteBancaireService implements CrudService<CarteBancaire, String> 
         }
 
         return carteBancaireBD;
-    }
-
-    @Override
-    public MobileMoney misAJour(MobileMoney newInfoMobileMoney, String mobileMoneyId) {
-        return null;
     }
 
     @Override

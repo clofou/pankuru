@@ -1,13 +1,12 @@
 package org.odk.g1.pankuru.Service.Paiement;
-import org.odk.g1.pankuru.Entity.Paiement.CarteBancaire;
-import org.odk.g1.pankuru.Entity.Paiement.MobileMoney;
+// import org.odk.g1.pankuru.Entity.Paiement.CarteBancaire;
+// import org.odk.g1.pankuru.Entity.Paiement.MobileMoney;
 import org.odk.g1.pankuru.Entity.Paiement.Paiement;
 import org.odk.g1.pankuru.Repository.Paiement.PaiementRepository;
 import org.odk.g1.pankuru.Service.Interface.CrudService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -41,16 +40,8 @@ public class PaiementService implements CrudService<Paiement, Long>{
         return paiementBD;
     }
 
-    @Override
-    public CarteBancaire misAJour(CarteBancaire newInfoCarteBancaire, String Id) {
-        return null;
-    }
 
-    @Override
-    public MobileMoney misAJour(MobileMoney newInfoMobileMoney, String mobileMoneyId) {
-        return null;
-    }
-
+    
     @Override
     public void supprimer(Long paiementId) {
         paiementRepository.deleteById(paiementId);
