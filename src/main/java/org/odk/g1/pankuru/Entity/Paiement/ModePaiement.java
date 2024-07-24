@@ -11,7 +11,7 @@ import java.util.List;
 @Entity
 @Data
 @NoArgsConstructor
-public class ModePaiement {
+public abstract class ModePaiement {
     @Id
     private String id;
     @OneToMany

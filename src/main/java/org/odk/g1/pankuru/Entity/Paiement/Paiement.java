@@ -3,7 +3,7 @@ package org.odk.g1.pankuru.Entity.Paiement;
 import jakarta.persistence.*;
 import lombok.Data;
 import org.odk.g1.pankuru.Entity.ReservationDeVol.Reservation;
-import org.springframework.boot.Banner;
+
 
 import java.util.Date;
 

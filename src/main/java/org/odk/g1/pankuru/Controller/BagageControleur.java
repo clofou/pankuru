@@ -23,4 +23,10 @@ public class BagageControleur {
         return null;
     }
 
+@DeleteMapping("/supprimer/{id}")
+public void supprimerBagage(@PathVariable Long id){
+    bagageService.supprimer(id);
+
+
+}
 }

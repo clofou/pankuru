@@ -10,11 +10,11 @@ public interface CrudService<T, ID> {
     T ajout(T entity);
     List<T> liste();
     Optional<T> trouverParId(ID id);
-    //T misAJour(T entity);
+    T misAJour(T entity);
 
-    T misAJour(T entity, Long Id);
+    // T misAJour(T entity, Long Id);
 
-    CarteBancaire misAJour(CarteBancaire newInfoCarteBancaire, String Id);
+    // CarteBancaire misAJour(CarteBancaire newInfoCarteBancaire, String Id);
 
     void supprimer(ID id);
 }

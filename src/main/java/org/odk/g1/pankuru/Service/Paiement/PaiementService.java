@@ -29,8 +29,8 @@ public abstract class PaiementService implements CrudService<Paiement, Long>{
     }
 
     @Override
-    public Paiement misAJour(Paiement newInfoPaiement,Long paiementId) {
-        Paiement paiementBD = paiementRepository.findById(paiementId).
+    public Paiement misAJour(Paiement newInfoPaiement) {
+        Paiement paiementBD = paiementRepository.findById(newInfoPaiement.getId()).
                 orElseThrow(() -> new RuntimeException("paiement non trouvé"));
         paiementBD.setMontant(newInfoPaiement.getMontant());
         paiementBD.setDatePaiement(newInfoPaiement.getDatePaiement());
