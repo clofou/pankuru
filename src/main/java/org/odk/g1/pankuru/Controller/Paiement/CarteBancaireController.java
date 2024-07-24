@@ -3,15 +3,17 @@ package org.odk.g1.pankuru.Controller.Paiement;
 import org.odk.g1.pankuru.Entity.Paiement.CarteBancaire;
 // import org.odk.g1.pankuru.Entity.Paiement.Paiement;
 import org.odk.g1.pankuru.Service.Paiement.CarteBancaireService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import lombok.AllArgsConstructor;
 
 import java.util.List;
 
 @RestController("/carteBancaire")
+@AllArgsConstructor
 public class CarteBancaireController {
-    @Autowired
+    
     CarteBancaireService carteBancaireService;
 
     @PostMapping("/ajoutCarteBancaire")
