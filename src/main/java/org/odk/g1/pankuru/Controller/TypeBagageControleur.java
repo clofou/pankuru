@@ -32,7 +32,7 @@ public class TypeBagageControleur {
         return typeBagageService.misAJour(typeBagage);
     }
 
-    @DeleteMapping("/supprimer")
+    @DeleteMapping("/supprimer/{id}")
     public void supp(@PathVariable Integer id){
         typeBagageService.supprimer(id);
     }

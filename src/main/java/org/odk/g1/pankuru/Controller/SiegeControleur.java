@@ -31,7 +31,7 @@ public class SiegeControleur {
     public Siege modi(@RequestBody Siege siege){
         return siegeService.misAJour(siege);
     }
-    @DeleteMapping("/supprimer")
+    @DeleteMapping("/supprimer/{id}")
     public void supp(@PathVariable Long id){
         siegeService.supprimer(id);
     }
