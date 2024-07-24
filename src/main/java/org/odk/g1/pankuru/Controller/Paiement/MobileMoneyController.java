@@ -7,8 +7,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
-@RestController("/mobileMoney")
+@RestController
+@RequestMapping("/mobileMoney")
 public class MobileMoneyController {
     @Autowired
     MobileMoneyService mobileMoneyService;
@@ -30,9 +32,11 @@ public class MobileMoneyController {
         return mobileMoneyService.liste();
     }
 
-    @GetMapping("/afficherUnMobileMoney/{{id}}")
-    public MobileMoney afficherUnMobileMoney(@PathVariable String id) {
-        return mobileMoneyService.trouverParId(id)
-                .orElseThrow(() -> new RuntimeException("Mobile Money non trouvé"));
+    @GetMapping("/afficherUnMobileMoney/{id}")
+    public ResponseEntity<MobileMoney> afficherUnMobileMoney(@PathVariable String id) {
+        Optional<MobileMoney> mobileMoney = mobileMoneyService.trouverParId(id);
+        return mobileMoney.map(ResponseEntity::ok)
+                .orElseGet(() -> ResponseEntity.notFound().build());
     }
+
 }

@@ -1,15 +1,16 @@
 package org.odk.g1.pankuru.Controller.Paiement;
 
 import org.odk.g1.pankuru.Entity.Paiement.CarteBancaire;
-import org.odk.g1.pankuru.Entity.Paiement.Paiement;
 import org.odk.g1.pankuru.Service.Paiement.CarteBancaireService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
-@RestController("/carteBancaire")
+@RestController
+@RequestMapping("/carteBancaire")
 public class CarteBancaireController {
     @Autowired
     CarteBancaireService carteBancaireService;
@@ -31,9 +32,11 @@ public class CarteBancaireController {
         return carteBancaireService.liste();
     }
 
-    @GetMapping("/afficherUneCarteBancaire/{{id}}")
-    public CarteBancaire afficherUneCarteBancaire(@PathVariable String id) {
-        return carteBancaireService.trouverParId(id)
-                .orElseThrow(() -> new RuntimeException("Carte bancaire non trouvé"));
+    @GetMapping("/afficherCarteBancaire/{id}")
+    public ResponseEntity<CarteBancaire> afficherUneCarteBancaire(@PathVariable String id) {
+        Optional<CarteBancaire> carteBancaire = carteBancaireService.trouverParId(id);
+
+        return carteBancaire.map(ResponseEntity::ok)
+                .orElseGet(() -> ResponseEntity.notFound().build());
     }
 }

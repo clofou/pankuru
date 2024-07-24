@@ -12,7 +12,7 @@ import java.util.Objects;
 import java.util.Optional;
 
 @Service
-public abstract class MobileMoneyService implements CrudService<MobileMoney, String> {
+public class MobileMoneyService implements CrudService<MobileMoney, String> {
     @Autowired
     MobileMoneyRepository mobileMoneyRepository;
     
@@ -29,6 +29,16 @@ public abstract class MobileMoneyService implements CrudService<MobileMoney, Str
     @Override
     public Optional<MobileMoney> trouverParId(String mobileMoneyId) {
         return mobileMoneyRepository.findById(mobileMoneyId);
+    }
+
+    @Override
+    public MobileMoney misAJour(MobileMoney entity, Long Id) {
+        return null;
+    }
+
+    @Override
+    public CarteBancaire misAJour(CarteBancaire newInfoCarteBancaire, String Id) {
+        return null;
     }
 
     @Override
