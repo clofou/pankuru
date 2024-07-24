@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.odk.g1.pankuru.Entity.Humain.SuperAdmin;
 import org.odk.g1.pankuru.Repository.HumainRepo.SuperAdminRepo;
 import org.odk.g1.pankuru.Service.Interface.CrudService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import lombok.AllArgsConstructor;
@@ -15,8 +16,25 @@ import lombok.AllArgsConstructor;
 public class SuperAdminService implements CrudService<SuperAdmin, Long>{
 
     private final SuperAdminRepo superAdminRepo;
+    private final BCryptPasswordEncoder bCryptPasswordEncoder;
     @Override
     public SuperAdmin ajout(SuperAdmin entity) {
+
+        if(!entity.getEmail().contains("@")) {
+            throw  new RuntimeException("Votre mail invalide");
+        }
+        if(!entity.getEmail().contains(".")) {
+            throw  new RuntimeException("Votre mail invalide");
+        }
+
+        Optional<SuperAdmin> superAdmin = this.superAdminRepo.findByEmail(entity.getEmail());
+        if(superAdmin.isPresent()) {
+            throw  new RuntimeException("Votre mail est déjà utilisé");
+        }
+
+        String encodePassword = bCryptPasswordEncoder.encode(entity.getPassword());
+        entity.setPassword(encodePassword);
+
         return superAdminRepo.save(entity);
     }
 
@@ -38,7 +56,7 @@ public class SuperAdminService implements CrudService<SuperAdmin, Long>{
             superAdminAModifier.setNom(superAdmin.getNom());
             superAdminAModifier.setPrenom(superAdmin.getPrenom());
             superAdminAModifier.setEmail(superAdmin.getEmail());
-            superAdminAModifier.setMotDePasse(superAdmin.getMotDePasse());
+            superAdminAModifier.setPassword(superAdmin.getPassword());
             superAdminAModifier.setNumeroDeTelephone(superAdmin.getNumeroDeTelephone());
             superAdminAModifier.setPseudo(superAdmin.getPseudo());
             return superAdminRepo.save(superAdminAModifier);
@@ -51,5 +69,5 @@ public class SuperAdminService implements CrudService<SuperAdmin, Long>{
     public void supprimer(Long id) {
         superAdminRepo.deleteById(id);
     }
-    
+
 }

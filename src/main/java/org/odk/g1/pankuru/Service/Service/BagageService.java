@@ -1,12 +1,16 @@
 package org.odk.g1.pankuru.Service.Service;
 
+import lombok.AllArgsConstructor;
 import org.odk.g1.pankuru.Entity.ReservationDeVol.Bagage;
 import org.odk.g1.pankuru.Repository.BagageRepository;
 import org.odk.g1.pankuru.Service.Interface.CrudService;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+@Service
+@AllArgsConstructor
 public class BagageService implements CrudService<Bagage,Long> {
     private BagageRepository bagageRepository;
     @Override

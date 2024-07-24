@@ -3,10 +3,10 @@ package org.odk.g1.pankuru.Service.Service.HumainService;
 import java.util.List;
 import java.util.Optional;
 
-
 import org.odk.g1.pankuru.Entity.Humain.Utilisateur;
 import org.odk.g1.pankuru.Repository.HumainRepo.UtilisateurRepo;
 import org.odk.g1.pankuru.Service.Interface.CrudService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import lombok.AllArgsConstructor;
@@ -16,8 +16,26 @@ import lombok.AllArgsConstructor;
 public class UtilisateurService implements CrudService<Utilisateur, Long>{
 
     private final UtilisateurRepo utilisateurRepo;
+    private final BCryptPasswordEncoder bCryptPasswordEncoder;
+
     @Override
     public Utilisateur ajout(Utilisateur entity) {
+
+        if(!entity.getEmail().contains("@")) {
+            throw  new RuntimeException("Votre mail invalide");
+        }
+        if(!entity.getEmail().contains(".")) {
+            throw  new RuntimeException("Votre mail invalide");
+        }
+
+        Optional<Utilisateur> utilisateur = this.utilisateurRepo.findByEmail(entity.getEmail());
+        if(utilisateur.isPresent()) {
+            throw  new RuntimeException("Votre mail est déjà utilisé");
+        }
+
+        String encodePassword = bCryptPasswordEncoder.encode(entity.getPassword());
+        entity.setPassword(encodePassword);
+
         return utilisateurRepo.save(entity);
     }
 
@@ -39,7 +57,7 @@ public class UtilisateurService implements CrudService<Utilisateur, Long>{
             utilisateurAModifier.setNom(entity.getNom());
             utilisateurAModifier.setPrenom(entity.getPrenom());
             utilisateurAModifier.setEmail(entity.getEmail());
-            utilisateurAModifier.setMotDePasse(entity.getMotDePasse());
+            utilisateurAModifier.setPassword(entity.getPassword());
             utilisateurAModifier.setNumeroDeTelephone(entity.getNumeroDeTelephone());
             utilisateurAModifier.setPointDeFideliter(entity.getPointDeFideliter());
             utilisateurAModifier.setDateDeNaissance(entity.getDateDeNaissance());
@@ -55,5 +73,5 @@ public class UtilisateurService implements CrudService<Utilisateur, Long>{
     public void supprimer(Long id) {
         utilisateurRepo.deleteById(id);
     }
-    
+
 }

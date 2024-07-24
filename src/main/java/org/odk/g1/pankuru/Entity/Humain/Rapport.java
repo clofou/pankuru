@@ -21,7 +21,7 @@ public class Rapport {
     private String commentaires;
 
     @ManyToOne
-    @JoinColumn(name = "admincompagnie_id")
+    @JoinColumn(name = "admin_compagnie_id")
     private AdminCompagnie adminCompagnie;
 
 }
