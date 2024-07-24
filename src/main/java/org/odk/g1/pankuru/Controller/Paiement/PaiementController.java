@@ -7,8 +7,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
-@RestController("/paiement")
+@RestController
+@RequestMapping("/paiement")
 public class PaiementController {
     @Autowired
     PaiementService paiementService;
@@ -29,9 +31,10 @@ public class PaiementController {
         return paiementService.liste();
     }
 
-    @GetMapping("/afficherUnPaiement/{{id}}")
-    public Paiement afficherUnPaiement(@PathVariable Long id) {
-        return paiementService.trouverParId(id)
-                .orElseThrow(() -> new RuntimeException("paiement non trouvé"));
+    @GetMapping("/afficherUnPaiement/{id}")
+    public ResponseEntity<Paiement> afficherUnPaiement(@PathVariable Long id) {
+        Optional<Paiement> paiement = paiementService.trouverParId(id);
+        return paiement.map(ResponseEntity::ok)
+                .orElseGet(() -> ResponseEntity.notFound().build());
     }
 }

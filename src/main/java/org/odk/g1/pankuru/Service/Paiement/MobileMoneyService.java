@@ -12,7 +12,7 @@ import java.util.Objects;
 import java.util.Optional;
 
 @Service
-public abstract class MobileMoneyService implements CrudService<MobileMoney, String> {
+public class MobileMoneyService implements CrudService<MobileMoney, String> {
     @Autowired
     MobileMoneyRepository mobileMoneyRepository;
     
