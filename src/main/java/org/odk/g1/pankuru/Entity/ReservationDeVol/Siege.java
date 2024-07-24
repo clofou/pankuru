@@ -15,6 +15,7 @@ import java.util.Set;
 @Entity
 public class Siege {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String numero;
     private Boolean disponibilite;

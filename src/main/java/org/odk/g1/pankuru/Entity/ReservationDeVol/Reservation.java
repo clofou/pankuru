@@ -1,8 +1,6 @@
 package org.odk.g1.pankuru.Entity.ReservationDeVol;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.Null;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -17,6 +15,7 @@ import java.time.LocalDate;
 @Entity
 public class Reservation {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private LocalDate dateReservation;
     private int nombreDepassager;
