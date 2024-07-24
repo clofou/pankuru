@@ -34,7 +34,7 @@ public class ReservationControleur {
         return reservationService.misAJour(reservation);
     }
 
-    @DeleteMapping("/supprimer")
+    @DeleteMapping("/supprimer/{id}")
     public void supp(@PathVariable Long id){
         reservationService.supprimer(id);
     }

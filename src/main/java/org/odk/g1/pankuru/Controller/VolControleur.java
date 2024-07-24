@@ -32,7 +32,7 @@ public class VolControleur {
         return volService.misAJour(vol);
     }
 
-    @DeleteMapping("/supprimer")
+    @DeleteMapping("/supprimer/{id}")
     public void supp(@PathVariable Long id){
         volService.supprimer(id);
 
