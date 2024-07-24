@@ -11,5 +11,5 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class MobileMoney extends ModePaiement{
-    private double numeroDeTelephone;
+    private String numeroDeTelephone;
 }
