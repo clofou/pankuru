@@ -24,7 +24,7 @@ public class AdminCompagnie extends Personne {
     private Compagnie compagnie;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "admincompagnie")
+    @OneToMany
     private List<Rapport> rapportList;
 
 
