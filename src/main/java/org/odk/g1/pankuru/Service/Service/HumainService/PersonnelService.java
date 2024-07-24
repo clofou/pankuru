@@ -38,7 +38,7 @@ public class PersonnelService implements CrudService<Personnel, Long>{
             personnelAModifier.setNom(entity.getNom());
             personnelAModifier.setPrenom(entity.getPrenom());
             personnelAModifier.setEmail(entity.getEmail());
-            personnelAModifier.setMotDePasse(entity.getMotDePasse());
+            personnelAModifier.setPassword(entity.getPassword());
             personnelAModifier.setNumeroDeTelephone(entity.getNumeroDeTelephone());
             personnelAModifier.setDateEmbauche(entity.getDateEmbauche());
             personnelAModifier.setPoste(entity.getPoste());
@@ -53,5 +53,5 @@ public class PersonnelService implements CrudService<Personnel, Long>{
     public void supprimer(Long id) {
         personnelRepo.deleteById(id);
     }
-    
+
 }
