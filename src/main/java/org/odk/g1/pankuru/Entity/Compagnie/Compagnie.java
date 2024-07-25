@@ -45,6 +45,9 @@ public class Compagnie {
     @OneToMany(mappedBy = "compagnie", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Contrat> contrats;
 
+    @OneToMany(mappedBy = "compagnie", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Faq> faqs;
+
     @JsonIgnore
     @OneToMany
     @JoinColumn(name = "personnel_id")
