@@ -10,6 +10,8 @@ import org.odk.g1.pankuru.Entity.Compagnie.Compagnie;
 
 import java.util.List;
 
+import org.odk.g1.pankuru.Entity.Compagnie.Compagnie;
+
 @Entity
 @Getter
 @Setter

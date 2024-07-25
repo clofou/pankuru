@@ -30,7 +30,7 @@ public class ContratService implements CrudService<Contrat, Long>{
         return contratRepository.findById(id);
     }
 
-    @Override
+
     public Contrat misAJour(Long aLong, Contrat entity) {
         return null;
     }
