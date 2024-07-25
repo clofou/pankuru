@@ -29,11 +29,12 @@ public class ContratService implements CrudService<Contrat, Long>{
     public Optional<Contrat> trouverParId(Long id) {
         return contratRepository.findById(id);
     }
-
+    
 
     public Contrat misAJour(Long aLong, Contrat entity) {
         return null;
     }
+
 
     @Override
     public Contrat misAJour(Contrat contrat) {

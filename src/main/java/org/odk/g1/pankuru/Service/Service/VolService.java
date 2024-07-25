@@ -1,12 +1,16 @@
 package org.odk.g1.pankuru.Service.Service;
 
+import lombok.AllArgsConstructor;
 import org.odk.g1.pankuru.Entity.ReservationDeVol.Vol;
 import org.odk.g1.pankuru.Repository.VolRepository;
 import org.odk.g1.pankuru.Service.Interface.CrudService;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+@Service
+@AllArgsConstructor
 public class VolService implements CrudService<Vol,Long> {
     private VolRepository volRepository;
     @Override

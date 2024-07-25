@@ -1,12 +1,15 @@
 package org.odk.g1.pankuru.Service.Service;
 
+import lombok.AllArgsConstructor;
 import org.odk.g1.pankuru.Entity.ReservationDeVol.ClasseSiege;
 import org.odk.g1.pankuru.Repository.ClasseSiegeRepository;
 import org.odk.g1.pankuru.Service.Interface.CrudService;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-
+@Service
+@AllArgsConstructor
 public class ClasseSiegeService implements CrudService<ClasseSiege,Integer> {
      private  ClasseSiegeRepository classeSiegeRepository;
     @Override

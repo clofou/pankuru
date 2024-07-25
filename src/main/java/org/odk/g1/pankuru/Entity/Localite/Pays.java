@@ -2,6 +2,7 @@ package org.odk.g1.pankuru.Entity.Localite;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -22,6 +23,7 @@ public class Pays {
     private Integer id;
     private String nom;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "pays", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Ville> villes;
 }
