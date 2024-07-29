@@ -19,19 +19,19 @@ public class ClasseSiegeControleur {
         return classeSiegeService.ajout(classeSiege);
     }
 
-    @GetMapping("/liste")
+    @GetMapping("/afficher")
     public List<ClasseSiege> lire(){
         return classeSiegeService.liste();
     }
 
-    @GetMapping("/liste/{id}")
+    @GetMapping("/afficher/{id}")
     public Optional<ClasseSiege> parId(@PathVariable Integer id){
         return classeSiegeService.trouverParId(id);
     }
 
-    @PutMapping("/modif")
-    public ClasseSiege modif(ClasseSiege classeSiege ){
-        return classeSiegeService.misAJour(classeSiege);
+    @PutMapping("/modifier/{id}")
+    public ClasseSiege modif(@PathVariable Integer id,ClasseSiege classeSiege ){
+        return classeSiegeService.misAJour(classeSiege, id);
     }
     @DeleteMapping("/supprimer/{id}")
     public void supprimer(@PathVariable Integer id){

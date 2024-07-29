@@ -32,8 +32,8 @@ public class AuditController {
     } 
 
     @PutMapping("/modifier/{id}")
-    public Audit modifier(@RequestBody Audit audit){
-        return auditService.misAJour(audit);
+    public Audit modifier(@PathVariable Long id,@RequestBody Audit audit){
+        return auditService.misAJour(audit, id);
     }
 
     @DeleteMapping("/supprimer/{id}")

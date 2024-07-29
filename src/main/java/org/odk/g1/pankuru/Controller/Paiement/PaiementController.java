@@ -1,7 +1,7 @@
 package org.odk.g1.pankuru.Controller.Paiement;
 
 import org.odk.g1.pankuru.Entity.Paiement.Paiement;
-import org.odk.g1.pankuru.Service.Paiement.PaiementService;
+import org.odk.g1.pankuru.Service.Service.Paiement.PaiementService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

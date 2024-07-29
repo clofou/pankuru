@@ -33,8 +33,8 @@ public class SuperAdminController {
     } 
 
     @PutMapping("/modifier/{id}")
-    public SuperAdmin modifier(@RequestBody SuperAdmin superAdmin){
-        return superAdminService.misAJour(superAdmin);
+    public SuperAdmin modifier(@PathVariable Long id,@RequestBody SuperAdmin superAdmin){
+        return superAdminService.misAJour(superAdmin, id);
     }
 
     @DeleteMapping("/supprimer/{id}")

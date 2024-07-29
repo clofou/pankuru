@@ -33,8 +33,8 @@ public class AvionController {
     } 
 
     @PutMapping("/modifier/{id}")
-    public Avion modifier(@RequestBody Avion avion){
-        return avionService.misAJour(avion);
+    public Avion modifier(@PathVariable Integer id,@RequestBody Avion avion){
+        return avionService.misAJour(avion, id);
     }
 
     @DeleteMapping("/supprimer/{id}")

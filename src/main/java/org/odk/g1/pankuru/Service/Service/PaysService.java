@@ -33,8 +33,8 @@ public class PaysService implements CrudService<Pays, Integer>{
     }
 
     @Override
-    public Pays misAJour(Pays pays) {
-        Optional<Pays> paysExistant = paysRepository.findById(pays.getId());
+    public Pays misAJour(Pays pays, Integer Id) {
+        Optional<Pays> paysExistant = paysRepository.findById(Id);
         if (paysExistant.isPresent()) {
             Pays paysAModifier = paysExistant.get();
             paysAModifier.setNom(pays.getNom());

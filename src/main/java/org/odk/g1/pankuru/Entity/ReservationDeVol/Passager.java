@@ -1,10 +1,12 @@
 package org.odk.g1.pankuru.Entity.ReservationDeVol;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
 import java.util.Set;
 @Data
 @AllArgsConstructor
@@ -18,12 +20,16 @@ public class Passager {
     private String prenom;
     private String numeroDePassPort;
     private String numeroDeVisa;
+
     @ManyToOne
+    @JoinColumn(name = "siege_id")
     private Siege siege;
 
     @ManyToOne
+    @JoinColumn(name = "reservation_id")
     private Reservation reservation;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "passager")
-    private Set<Bagage> bagage;
+    private List<Bagage> bagageList;
 }

@@ -31,6 +31,6 @@ public class Ville {
     private Pays pays;
 
     @JsonIgnore
-    @OneToMany
-    private List<Aeroport> aeroports;
+    @OneToMany(mappedBy = "ville")
+    private List<Aeroport> aeroportList;
 }

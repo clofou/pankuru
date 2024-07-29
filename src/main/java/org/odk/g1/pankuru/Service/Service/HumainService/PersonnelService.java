@@ -31,8 +31,8 @@ public class PersonnelService implements CrudService<Personnel, Long>{
     }
 
     @Override
-    public Personnel misAJour(Personnel entity) {
-        Optional<Personnel> personnelExistant = personnelRepo.findById(entity.getId());
+    public Personnel misAJour(Personnel entity, Long Id) {
+        Optional<Personnel> personnelExistant = personnelRepo.findById(Id);
         if (personnelExistant.isPresent()) {
             Personnel personnelAModifier = personnelExistant.get();
             personnelAModifier.setNom(entity.getNom());

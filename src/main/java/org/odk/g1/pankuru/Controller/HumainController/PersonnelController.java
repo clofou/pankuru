@@ -33,8 +33,8 @@ public class PersonnelController {
     } 
 
     @PutMapping("/modifier/{id}")
-    public Personnel modifier(@RequestBody Personnel personnel){
-        return personnelService.misAJour(personnel);
+    public Personnel modifier(@PathVariable Long id,@RequestBody Personnel personnel){
+        return personnelService.misAJour(personnel, id);
     }
 
     @DeleteMapping("/supprimer/{id}")

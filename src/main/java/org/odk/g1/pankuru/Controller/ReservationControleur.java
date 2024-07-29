@@ -14,24 +14,24 @@ import java.util.Optional;
 @RequestMapping("/reservation")
 public class ReservationControleur {
     private ReservationService reservationService;
-    @PostMapping("/reservation")
+    @PostMapping("/ajout")
     public Reservation ajouter(Reservation reservation){
         return reservationService.ajout(reservation);
     }
 
-    @GetMapping("/Liste")
+    @GetMapping("/afficher")
     public List<Reservation> lire(){
         return reservationService.liste();
     }
 
-    @GetMapping("/liste/{id}")
+    @GetMapping("/afficher/{id}")
     public Optional<Reservation> parId(@PathVariable Long id){
         return reservationService.trouverParId(id);
     }
 
-    @PutMapping("/modifier")
-    public Reservation modif(@RequestBody Reservation reservation){
-        return reservationService.misAJour(reservation);
+    @PutMapping("/modifier/{id}")
+    public Reservation modif(@PathVariable Long id,@RequestBody Reservation reservation){
+        return reservationService.misAJour(reservation, id);
     }
 
     @DeleteMapping("/supprimer/{id}")

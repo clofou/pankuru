@@ -29,8 +29,8 @@ public class TypeBagageService implements CrudService<TypeBagage,Integer> {
     }
 
     @Override
-    public TypeBagage misAJour(TypeBagage typeBagage) {
-        return bagageRepository.findById(typeBagage.getId())
+    public TypeBagage misAJour(TypeBagage typeBagage, Integer Id) {
+        return bagageRepository.findById(Id)
                 .map((t)->{
                     t.setBagage(t.getBagage());
                     t.setNom(t.getNom());

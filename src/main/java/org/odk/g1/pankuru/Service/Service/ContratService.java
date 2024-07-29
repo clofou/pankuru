@@ -29,17 +29,11 @@ public class ContratService implements CrudService<Contrat, Long>{
     public Optional<Contrat> trouverParId(Long id) {
         return contratRepository.findById(id);
     }
-    
-
-    public Contrat misAJour(Long aLong, Contrat entity) {
-        return null;
-    }
-
 
     @Override
-    public Contrat misAJour(Contrat contrat) {
+    public Contrat misAJour(Contrat contrat, Long Id) {
         // Vérifiez si le contrat existe en base
-        Optional<Contrat> contratExistant = contratRepository.findById(contrat.getId());
+        Optional<Contrat> contratExistant = contratRepository.findById(Id);
         if (contratExistant.isPresent()) {
             Contrat contratAModifier = contratExistant.get();
             contratAModifier.setType(contrat.getType());

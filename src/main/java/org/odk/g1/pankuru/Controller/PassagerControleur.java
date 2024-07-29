@@ -17,17 +17,17 @@ public class PassagerControleur {
     public Passager ajouter(@RequestBody Passager passager){
         return passagerService.ajout(passager);
     }
-    @GetMapping("/liste")
+    @GetMapping("/afficher")
     public List<Passager>lire(){
         return passagerService.liste();
     }
-    @GetMapping("/liste/{id}")
+    @GetMapping("/afficher/{id}")
     public Optional<Passager> parId(@PathVariable Long id){
         return passagerService.trouverParId(id);
     }
-    @PutMapping("/modifier")
-    public Passager modif(@RequestBody Passager passager){
-        return passagerService.misAJour(passager);
+    @PutMapping("/modifier/{id}")
+    public Passager modif(@PathVariable Long id,@RequestBody Passager passager){
+        return passagerService.misAJour(passager, id);
     }
     @DeleteMapping("/supprimer/{id}")
     public void supprimer(@PathVariable Long id){

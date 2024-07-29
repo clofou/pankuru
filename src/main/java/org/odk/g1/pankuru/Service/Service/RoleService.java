@@ -20,12 +20,12 @@ public class RoleService {
         return roleRepository.findAll();
     }
 
-    public Optional<Role> getRoleById(int id) {
-        return roleRepository.findById(id);
+    public Optional<Role> getRoleById(String nom) {
+        return roleRepository.findByNom(nom);
     }
 
-    public Role createRole(Role role) {
-        return roleRepository.save(role);
+    public void createRole(Role role) {
+        roleRepository.save(role);
     }
 
     public Role updateRole(int id, Role role) {

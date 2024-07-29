@@ -1,6 +1,7 @@
-package org.odk.g1.pankuru.Service.Paiement;
+package org.odk.g1.pankuru.Service.Service.Paiement;
 
 // import org.odk.g1.pankuru.Entity.Paiement.CarteBancaire;
+import lombok.AllArgsConstructor;
 import org.odk.g1.pankuru.Entity.Paiement.MobileMoney;
 import org.odk.g1.pankuru.Repository.Paiement.MobileMoneyRepository;
 import org.odk.g1.pankuru.Service.Interface.CrudService;
@@ -12,8 +13,8 @@ import java.util.Objects;
 import java.util.Optional;
 
 @Service
+@AllArgsConstructor
 public class MobileMoneyService implements CrudService<MobileMoney, String> {
-    @Autowired
     MobileMoneyRepository mobileMoneyRepository;
     
     @Override
@@ -32,18 +33,18 @@ public class MobileMoneyService implements CrudService<MobileMoney, String> {
     }
 
     @Override
-    public MobileMoney misAJour(MobileMoney newInfoMobileMoney) {
-        MobileMoney mobileMoneyBD = mobileMoneyRepository.getReferenceById(newInfoMobileMoney.getId());
+    public MobileMoney misAJour(MobileMoney newInfoMobileMoney, String Id) {
+        MobileMoney mobileMoneyBD = mobileMoneyRepository.getReferenceById(Id);
 
         if (newInfoMobileMoney.getNumeroDeTelephone() != null &&
                 !newInfoMobileMoney.getNumeroDeTelephone().isEmpty() &&
                 !Objects.equals(newInfoMobileMoney.getNumeroDeTelephone(), mobileMoneyBD.getNumeroDeTelephone())) {
             mobileMoneyBD.setNumeroDeTelephone(newInfoMobileMoney.getNumeroDeTelephone());
         }
-        if (newInfoMobileMoney.getPaiements() != null &&
-                !newInfoMobileMoney.getPaiements().isEmpty() &&
-                !Objects.equals(newInfoMobileMoney.getPaiements(), mobileMoneyBD.getPaiements())) {
-            mobileMoneyBD.setPaiements(newInfoMobileMoney.getPaiements());
+        if (newInfoMobileMoney.getPaiementList() != null &&
+                !newInfoMobileMoney.getPaiementList().isEmpty() &&
+                !Objects.equals(newInfoMobileMoney.getPaiementList(), mobileMoneyBD.getPaiementList())) {
+            mobileMoneyBD.setPaiementList(newInfoMobileMoney.getPaiementList());
         }
         return null;
     }

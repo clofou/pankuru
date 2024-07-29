@@ -24,8 +24,11 @@ public class AdminCompagnie extends Personne {
     private Compagnie compagnie;
 
     @JsonIgnore
-    @OneToMany
+    @OneToMany(mappedBy = "adminCompagnie")
     private List<Rapport> rapportList;
 
+    @JsonIgnore
+    @OneToMany(mappedBy = "adminCompagnie")
+    private List<Faq> faqList;
 
 }

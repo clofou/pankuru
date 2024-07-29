@@ -33,8 +33,8 @@ public class AdresseController {
     } 
 
     @PutMapping("/modifier/{id}")
-    public Adresse modifier(@RequestBody Adresse adresse){
-        return adresseService.misAJour(adresse);
+    public Adresse modifier(@PathVariable Long id, @RequestBody Adresse adresse){
+        return adresseService.misAJour(adresse, id);
     }
 
     @DeleteMapping("/supprimer/{id}")

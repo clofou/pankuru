@@ -7,23 +7,25 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 // import org.springframework.security.access.method.P;
 
+import java.util.List;
 import java.util.Set;
 
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
 @Entity
 public class Siege {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(nullable = false)
     private String numero;
-    private Boolean disponibilite;
+    private Boolean disponibilite = true;
+
     @ManyToOne
+    @JoinColumn(nullable = false, name = "positionSiege_id")
     private PositionSiege positionSiege;
     
     @JsonIgnore
     @OneToMany(mappedBy = "siege",cascade = CascadeType.ALL)
-    private Set<Passager>passager;
+    private List<Passager> passagerList;
 
 }

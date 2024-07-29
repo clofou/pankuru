@@ -31,11 +31,11 @@ public class CompagnieService implements CrudService<Compagnie, Integer>{
     }
 
     @Override
-    public Compagnie misAJour(Compagnie compagnie) {
-        if (compagnie.getId() == null) {
+    public Compagnie misAJour(Compagnie compagnie, Integer Id) {
+        if (Id == null) {
             throw new IllegalArgumentException("L'identifiant de la compagnie ne doit pas être nul.");
         }
-        Optional<Compagnie> compagnieExistant = compagnieRepository.findById(compagnie.getId());
+        Optional<Compagnie> compagnieExistant = compagnieRepository.findById(Id);
         if (compagnieExistant.isPresent()) {
             Compagnie compagnieAModifier = compagnieExistant.get();
             compagnieAModifier.setMatricule(compagnie.getMatricule());

@@ -35,12 +35,12 @@ public class Personne implements UserDetails {
     @JoinColumn(name = "adresse_id")
     private Adresse adresse;
 
-     @ManyToOne
-     @JoinColumn(name = "role_id")
-     private Role role;
+    @ManyToOne
+    @JoinColumn(name = "role_id")
+    private Role role;
 
     @JsonIgnore
-    @OneToMany
+    @OneToMany(mappedBy = "personne")
     private List<Audit> auditList;
 
 

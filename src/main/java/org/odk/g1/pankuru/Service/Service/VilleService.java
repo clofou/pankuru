@@ -30,8 +30,8 @@ public class VilleService implements CrudService<Ville, Integer>{
     }
 
     @Override
-    public Ville misAJour(Ville ville) {
-        Optional<Ville> villeExistant = villeRepository.findById(ville.getId());
+    public Ville misAJour(Ville ville, Integer Id) {
+        Optional<Ville> villeExistant = villeRepository.findById(Id);
         if (villeExistant.isPresent()) {
             Ville villeAModifier = villeExistant.get();
             villeAModifier.setNom(ville.getNom());

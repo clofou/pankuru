@@ -32,8 +32,8 @@ public class RapportService implements CrudService<Rapport, Long>{
     }
 
     @Override
-    public Rapport misAJour(Rapport entity) {
-        Optional<Rapport> rapportExistant = rapportRepo.findById(entity.getId());
+    public Rapport misAJour(Rapport entity, Long Id) {
+        Optional<Rapport> rapportExistant = rapportRepo.findById(Id);
         if (rapportExistant.isPresent()) {
             Rapport rapportAModifier = rapportExistant.get();
             rapportAModifier.setTitre(entity.getTitre());

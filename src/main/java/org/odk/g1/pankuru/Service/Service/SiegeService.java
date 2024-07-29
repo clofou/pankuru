@@ -29,12 +29,11 @@ public class SiegeService implements CrudService<Siege,Long> {
     }
 
     @Override
-    public Siege misAJour(Siege siege) {
-        return siegeRepository.findById(siege.getId())
+    public Siege misAJour(Siege siege, Long Id) {
+        return siegeRepository.findById(Id)
                 .map((s)->{
                     s.setDisponibilite(s.getDisponibilite());
                     s.setNumero(s.getNumero());
-                    s.setPassager(s.getPassager());
                     s.setPositionSiege(s.getPositionSiege());
                     return siegeRepository.save(s);
                 }).orElseThrow(()->new RuntimeException("Siege introuvable"));

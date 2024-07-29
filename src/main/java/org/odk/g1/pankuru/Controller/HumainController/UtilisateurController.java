@@ -33,8 +33,8 @@ public class UtilisateurController {
     } 
 
     @PutMapping("/modifier/{id}")
-    public Utilisateur modifier(@RequestBody Utilisateur utilisateur){
-        return utilisateurService.misAJour(utilisateur);
+    public Utilisateur modifier(@PathVariable Long id,@RequestBody Utilisateur utilisateur){
+        return utilisateurService.misAJour(utilisateur, id);
     }
 
     @DeleteMapping("/supprimer/{id}")

@@ -33,8 +33,8 @@ public class RapportController {
     } 
 
     @PutMapping("/modifier/{id}")
-    public Rapport modifier(@RequestBody Rapport rapport){
-        return rapportService.misAJour(rapport);
+    public Rapport modifier(@PathVariable Long id,@RequestBody Rapport rapport){
+        return rapportService.misAJour(rapport, id);
     }
 
     @DeleteMapping("/supprimer/{id}")

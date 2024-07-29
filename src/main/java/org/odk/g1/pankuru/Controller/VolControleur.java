@@ -17,19 +17,19 @@ public class VolControleur {
     public Vol ajout(@RequestBody Vol vol){
         return volService.ajout(vol);
     }
-    @GetMapping("/liste")
+    @GetMapping("/afficher")
     public List<Vol>lire(){
         return volService.liste();
     }
 
-    @GetMapping("/liste/{id}")
+    @GetMapping("/afficher/{id}")
     public Optional<Vol> parId(@PathVariable Long id){
         return volService.trouverParId(id);
     }
 
-    @PutMapping("/modifier")
-   public Vol modif(@RequestBody Vol vol){
-        return volService.misAJour(vol);
+    @PutMapping("/modifier/{id}")
+   public Vol modif(@PathVariable Long id,@RequestBody Vol vol){
+        return volService.misAJour(vol, id);
     }
 
     @DeleteMapping("/supprimer/{id}")

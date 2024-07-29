@@ -1,4 +1,4 @@
-package org.odk.g1.pankuru.Service.Paiement;
+package org.odk.g1.pankuru.Service.Service.Paiement;
 // import org.odk.g1.pankuru.Entity.Paiement.CarteBancaire;
 // import org.odk.g1.pankuru.Entity.Paiement.MobileMoney;
 import org.odk.g1.pankuru.Entity.Paiement.Paiement;
@@ -31,16 +31,14 @@ public class PaiementService implements CrudService<Paiement, Long>{
     }
 
     @Override
-    public Paiement misAJour(Paiement newInfoPaiement) {
-        Paiement paiementBD = paiementRepository.findById(newInfoPaiement.getId()).
+    public Paiement misAJour(Paiement newInfoPaiement, Long Id) {
+        Paiement paiementBD = paiementRepository.findById(Id).
                 orElseThrow(() -> new RuntimeException("paiement non trouvé"));
         paiementBD.setMontant(newInfoPaiement.getMontant());
         paiementBD.setDatePaiement(newInfoPaiement.getDatePaiement());
         paiementBD.setReservation(newInfoPaiement.getReservation());
         return paiementBD;
     }
-
-
     
     @Override
     public void supprimer(Long paiementId) {

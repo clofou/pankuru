@@ -13,6 +13,7 @@ import org.odk.g1.pankuru.Entity.Localite.Aeroport;
 
 import java.time.LocalDate;
 // import java.util.List;
+import java.util.List;
 import java.util.Set;
 
 @Data
@@ -23,26 +24,31 @@ public class Vol {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private  String numeroDeVol;
+    private String numeroDeVol;
+    @Column(nullable = false)
     private String aeroportDepart;
-    private String aeroportArriverString;
+    @Column(nullable = false)
+    private String aeroportDArrivee;
     private LocalDate dateEtHeureArrivee;
+    @Column(nullable = false)
     private LocalDate dateEtHeureDepart;
-    private StatutVol satut;
+    @Enumerated(EnumType.STRING)
+    private StatutVol satut = StatutVol.EN_COURS;
 
     @JsonIgnore
     @OneToMany(mappedBy = "vol",cascade = CascadeType.ALL)
-    private Set<Reservation> reservation;
+    private List<Reservation> reservationList;
 
     @ManyToMany
     @JoinTable(name = "vol_avion", 
            joinColumns = @JoinColumn(name = "vol_id"), 
            inverseJoinColumns = @JoinColumn(name = "avion_id"))
-    private Set<Avion> avions;
+    private List<Avion> avionList;
 
     @ManyToMany
     @JoinTable(name = "vol_aeroport", 
            joinColumns = @JoinColumn(name = "vol_id"), 
            inverseJoinColumns = @JoinColumn(name = "aeroport_id"))
-    private Set<Aeroport> aeroports;
+    private List<Aeroport> aeroportList;
+
 }

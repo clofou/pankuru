@@ -17,19 +17,19 @@ public class SiegeControleur {
     public Siege ajouter(@RequestBody Siege siege){
         return siegeService.ajout(siege);
     }
-    @GetMapping("/liste")
+    @GetMapping("/afficher")
     public List<Siege>lire(){
         return siegeService.liste();
     }
 
-    @GetMapping("/liste/{id}")
+    @GetMapping("/afficher/{id}")
     public Optional<Siege> parId(@PathVariable Long id){
         return siegeService.trouverParId(id);
     }
 
-    @PutMapping("/modifier")
-    public Siege modi(@RequestBody Siege siege){
-        return siegeService.misAJour(siege);
+    @PutMapping("/modifier/{id}")
+    public Siege modi(@PathVariable Long id,@RequestBody Siege siege){
+        return siegeService.misAJour(siege, id);
     }
     @DeleteMapping("/supprimer/{id}")
     public void supp(@PathVariable Long id){

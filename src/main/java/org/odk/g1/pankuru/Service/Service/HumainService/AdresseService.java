@@ -30,8 +30,8 @@ public class AdresseService implements CrudService<Adresse, Long> {
     }
 
     @Override
-    public Adresse misAJour(Adresse entity) {
-        Optional<Adresse> adresse = adresseRepo.findById(entity.getId());
+    public Adresse misAJour(Adresse entity, Long Id) {
+        Optional<Adresse> adresse = adresseRepo.findById(Id);
         Adresse adresse1;
         if (adresse.isEmpty()){
             throw new RuntimeException("L'adresse recherché est introuvable");

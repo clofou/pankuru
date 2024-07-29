@@ -32,8 +32,8 @@ public class AeroportService implements CrudService<Aeroport, Long>{
     }
 
     @Override
-    public Aeroport misAJour(Aeroport aeroport) {
-        Optional<Aeroport> aeroportExistant = aeroportRepository.findById(aeroport.getId());
+    public Aeroport misAJour(Aeroport aeroport, Long Id) {
+        Optional<Aeroport> aeroportExistant = aeroportRepository.findById(Id);
         if (aeroportExistant.isPresent()) {
             Aeroport aeroportAModifier = aeroportExistant.get();
             aeroportAModifier.setNom(aeroport.getNom());
@@ -43,7 +43,7 @@ public class AeroportService implements CrudService<Aeroport, Long>{
             aeroportAModifier.setAltitude(aeroport.getAltitude());
             aeroportAModifier.setCapaciteParking(aeroport.getCapaciteParking());
             aeroportAModifier.setNombreDePistes(aeroport.getNombreDePistes());
-            
+
             return aeroportRepository.save(aeroportAModifier);
         } else {
             throw new IllegalArgumentException("L'aeroport avec l'ID " + aeroport.getId() + "n'existe pas.");

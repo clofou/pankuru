@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.odk.g1.pankuru.Entity.Humain.AdminCompagnie;
 import org.odk.g1.pankuru.Repository.HumainRepo.AdminCompagnieRepo;
 import org.odk.g1.pankuru.Service.Interface.CrudService;
+import org.odk.g1.pankuru.Utils.UtilService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -22,11 +23,8 @@ public class AdminCompagnieService implements CrudService<AdminCompagnie, Long>{
     @Override
     public AdminCompagnie ajout(AdminCompagnie entity) {
 
-        if(!entity.getEmail().contains("@")) {
-            throw  new RuntimeException("Votre mail invalide");
-        }
-        if(!entity.getEmail().contains(".")) {
-            throw  new RuntimeException("Votre mail invalide");
+        if(UtilService.isValidEmail(entity.getEmail())) {
+            throw new RuntimeException("Votre mail est invalide");
         }
 
         Optional<AdminCompagnie> adminCompagnie = this.adminCompagnieRepo.findByEmail(entity.getEmail());
@@ -51,8 +49,8 @@ public class AdminCompagnieService implements CrudService<AdminCompagnie, Long>{
     }
 
     @Override
-    public AdminCompagnie misAJour(AdminCompagnie entity) {
-        Optional<AdminCompagnie> adminCompagnieExistant = adminCompagnieRepo.findById(entity.getId());
+    public AdminCompagnie misAJour(AdminCompagnie entity, Long Id) {
+        Optional<AdminCompagnie> adminCompagnieExistant = adminCompagnieRepo.findById(Id);
         if (adminCompagnieExistant.isPresent()) {
             AdminCompagnie adminCompagnieAModifier = adminCompagnieExistant.get();
             adminCompagnieAModifier.setNom(entity.getNom());
@@ -66,6 +64,7 @@ public class AdminCompagnieService implements CrudService<AdminCompagnie, Long>{
             throw new IllegalArgumentException("L'admin de la compagnie avec l'ID " + entity.getId() + "n'existe pas.");
         }
     }
+
 
     @Override
     public void supprimer(Long id) {

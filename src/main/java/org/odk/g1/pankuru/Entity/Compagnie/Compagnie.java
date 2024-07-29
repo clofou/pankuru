@@ -42,18 +42,19 @@ public class Compagnie {
     @JoinColumn(name = "superAdmin_id")
     private SuperAdmin superAdmin;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "compagnie", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Contrat> contrats;
+    private List<Contrat> contratList;
 
     @JsonIgnore
     @OneToMany(mappedBy = "compagnie")
-    private List<Personnel> personnels;
+    private List<Personnel> personnelList;
 
     @JsonIgnore
     @OneToMany(mappedBy = "compagnie")
-    private List<Avion> avions;
+    private List<Avion> avionList;
 
     @JsonIgnore
     @OneToMany(mappedBy = "compagnie")
-    private List<AdminCompagnie> adminCompagnies;
+    private List<AdminCompagnie> adminCompagnieList;
 }

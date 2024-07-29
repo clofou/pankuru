@@ -29,17 +29,15 @@ public class BagageService implements CrudService<Bagage,Long> {
     }
 
     @Override
-    public Bagage misAJour(Bagage bagage) {
-        return bagageRepository.findById(bagage.getId())
+    public Bagage misAJour(Bagage bagage, Long Id) {
+        return bagageRepository.findById(Id)
                 .map((b)->{
                     b.setPoids(bagage.getPoids());
                     b.setDimension(b.getDimension());
                     b.setTypeBagage(b.getTypeBagage());
                     b.setPassager(b.getPassager());
                     return bagageRepository.save(b);
-                }).orElseThrow(()->{new RuntimeException("Bagage inexistant");
-                    return null;
-                });
+                }).orElseThrow(()-> new RuntimeException("Bagage inexistant"));
     }
 
     @Override

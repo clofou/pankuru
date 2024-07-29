@@ -33,8 +33,8 @@ public class VilleController {
     } 
 
     @PutMapping("/modifier/{id}")
-    public Ville modifier(@RequestBody Ville ville){
-        return villeService.misAJour(ville);
+    public Ville modifier(@PathVariable Integer id,@RequestBody Ville ville){
+        return villeService.misAJour(ville, id);
     }
 
     @DeleteMapping("/supprimer/{id}")

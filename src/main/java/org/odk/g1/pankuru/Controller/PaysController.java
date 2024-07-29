@@ -33,8 +33,8 @@ public class PaysController {
     } 
 
     @PutMapping("/modifier/{id}")
-    public Pays modifier(@RequestBody Pays pays){
-        return paysService.misAJour(pays);
+    public Pays modifier(@PathVariable Integer id,@RequestBody Pays pays){
+        return paysService.misAJour(pays, id);
     }
 
     @DeleteMapping("/supprimer/{id}")

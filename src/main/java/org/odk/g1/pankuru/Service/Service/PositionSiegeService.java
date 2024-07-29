@@ -28,12 +28,11 @@ public class PositionSiegeService implements CrudService<PositionSiege,Integer> 
     }
 
     @Override
-    public PositionSiege misAJour(PositionSiege positionSiege) {
-        return positionSiegeRepository.findById(positionSiege.getId())
+    public PositionSiege misAJour(PositionSiege positionSiege, Integer Id) {
+        return positionSiegeRepository.findById(Id)
                 .map((p)->{
                     p.setSiege(p.getSiege());
                     p.setNom(p.getNom());
-                    p.setClasse(p.getClasse());
                     return positionSiegeRepository.save(p);
                 }).orElseThrow(()->new RuntimeException("Position introuvable"));
     }

@@ -1,4 +1,4 @@
-package org.odk.g1.pankuru.Service.Paiement;
+package org.odk.g1.pankuru.Service.Service.Paiement;
 
 import org.odk.g1.pankuru.Entity.Paiement.CarteBancaire;
 
@@ -31,11 +31,9 @@ public class CarteBancaireService implements CrudService<CarteBancaire, String> 
         return carteBancaireRepository.findById(carteBancaireId);
     }
 
-
-
     @Override
-    public CarteBancaire misAJour(CarteBancaire newInfoCarteBancaire) {
-        CarteBancaire carteBancaireBD = carteBancaireRepository.getReferenceById(newInfoCarteBancaire.getId());
+    public CarteBancaire misAJour(CarteBancaire newInfoCarteBancaire, String Id) {
+        CarteBancaire carteBancaireBD = carteBancaireRepository.getReferenceById(Id);
 
         if (newInfoCarteBancaire.getNumeroDeCarte() != null &&
                 !newInfoCarteBancaire.getNumeroDeCarte().isEmpty() &&

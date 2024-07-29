@@ -28,15 +28,13 @@ public class ClasseSiegeService implements CrudService<ClasseSiege,Integer> {
     }
 
     @Override
-    public ClasseSiege misAJour(ClasseSiege classeSiege) {
-        return classeSiegeRepository.findById(classeSiege.getId())
+    public ClasseSiege misAJour(ClasseSiege classeSiege, Integer Id) {
+        return classeSiegeRepository.findById(Id)
                 .map((c)->{
                     c.setNom(c.getNom());
                     c.setPositionSiege(c.getPositionSiege());
                     return classeSiegeRepository.save(c);
-                }).orElseThrow(()->{new RuntimeException("Classe introuvable");
-                return null;
-                });
+                }).orElseThrow(()-> new RuntimeException("Classe introuvable"));
     }
 
     @Override

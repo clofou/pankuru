@@ -29,10 +29,10 @@ public class VolService implements CrudService<Vol,Long> {
     }
 
     @Override
-    public Vol misAJour(Vol vol) {
-        return volRepository.findById(vol.getId())
+    public Vol misAJour(Vol vol, Long Id) {
+        return volRepository.findById(Id)
                 .map((v)->{
-                    v.setReservation(v.getReservation());
+                    v.setReservationList(v.getReservationList());
                     v.setSatut(v.getSatut());
                     v.setAeroportDepart(v.getAeroportDepart());
                     v.setDateEtHeureDepart(v.getDateEtHeureDepart());

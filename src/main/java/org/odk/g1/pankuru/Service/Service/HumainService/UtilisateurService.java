@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.odk.g1.pankuru.Entity.Humain.Utilisateur;
 import org.odk.g1.pankuru.Repository.HumainRepo.UtilisateurRepo;
 import org.odk.g1.pankuru.Service.Interface.CrudService;
+import org.odk.g1.pankuru.Utils.UtilService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -21,16 +22,13 @@ public class UtilisateurService implements CrudService<Utilisateur, Long>{
     @Override
     public Utilisateur ajout(Utilisateur entity) {
 
-        if(!entity.getEmail().contains("@")) {
-            throw  new RuntimeException("Votre mail invalide");
-        }
-        if(!entity.getEmail().contains(".")) {
-            throw  new RuntimeException("Votre mail invalide");
+        if(UtilService.isValidEmail(entity.getEmail())) {
+            throw new RuntimeException("Votre mail est invalide");
         }
 
         Optional<Utilisateur> utilisateur = this.utilisateurRepo.findByEmail(entity.getEmail());
         if(utilisateur.isPresent()) {
-            throw  new RuntimeException("Votre mail est déjà utilisé");
+            throw new RuntimeException("Votre mail est déjà utilisé");
         }
 
         String encodePassword = bCryptPasswordEncoder.encode(entity.getPassword());
@@ -50,8 +48,8 @@ public class UtilisateurService implements CrudService<Utilisateur, Long>{
     }
 
     @Override
-    public Utilisateur misAJour(Utilisateur entity) {
-        Optional<Utilisateur> utilisateurExistant = utilisateurRepo.findById(entity.getId());
+    public Utilisateur misAJour(Utilisateur entity, Long Id) {
+        Optional<Utilisateur> utilisateurExistant = utilisateurRepo.findById(Id);
         if (utilisateurExistant.isPresent()) {
             Utilisateur utilisateurAModifier = utilisateurExistant.get();
             utilisateurAModifier.setNom(entity.getNom());

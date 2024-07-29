@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
 import java.util.Set;
 
 @Data
@@ -17,11 +18,13 @@ public class PositionSiege {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String nom;
+    private double tarif;
 
     @ManyToOne
-    private ClasseSiege classe;
+    @JoinColumn(name = "classeSiege_id")
+    private ClasseSiege classeSiege;
     
     @JsonIgnore
     @OneToMany(mappedBy = "positionSiege",cascade = CascadeType.ALL)
-    private Set<Siege>siege;
+    private List<Siege> siege;
 }

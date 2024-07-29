@@ -32,8 +32,8 @@ public class AdminCompagnieController {
     } 
 
     @PutMapping("/modifier/{id}")
-    public AdminCompagnie modifier(@RequestBody AdminCompagnie adminCompagnie){
-        return adminCompagnieService.misAJour(adminCompagnie);
+    public AdminCompagnie modifier(@PathVariable Long id,@RequestBody AdminCompagnie adminCompagnie){
+        return adminCompagnieService.misAJour(adminCompagnie, id);
     }
 
     @DeleteMapping("/supprimer/{id}")

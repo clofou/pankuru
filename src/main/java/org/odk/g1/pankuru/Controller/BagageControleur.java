@@ -15,17 +15,17 @@ public class BagageControleur {
     public Bagage ajoutBagage( Bagage bagage){
         return bagageService.ajout(bagage);
     }
-    @GetMapping("/Liste")
+    @GetMapping("/afficher")
     public List<Bagage> ListBagage(){
         return bagageService.liste();
     }
-    @GetMapping("/List/{id}")
+    @GetMapping("/afficher/{id}")
     public Optional<Bagage> listParId(@PathVariable Long id){
         return bagageService.trouverParId(id);
     }
-    @PutMapping("/modifier")
-    public Bagage modif(Bagage bagage){
-        return bagageService.misAJour(bagage);
+    @PutMapping("/modifier/{id}")
+    public Bagage modif(@PathVariable Long id,Bagage bagage){
+        return bagageService.misAJour(bagage, id);
     }
 
 

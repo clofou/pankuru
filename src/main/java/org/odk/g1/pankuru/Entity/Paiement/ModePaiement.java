@@ -10,9 +10,10 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @Inheritance(strategy = InheritanceType.JOINED)
-public abstract class ModePaiement {
+public class ModePaiement {
     @Id
     private String id;
-    @OneToMany
-    private List<Paiement> paiements;
+
+    @OneToMany(mappedBy = "modePaiement")
+    private List<Paiement> paiementList;
 }

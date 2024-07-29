@@ -2,6 +2,7 @@ package org.odk.g1.pankuru.Entity.Compagnie;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import org.odk.g1.pankuru.Entity.Enum.StatutAvion;
 import org.odk.g1.pankuru.Entity.ReservationDeVol.Vol;
@@ -27,6 +28,7 @@ public class Avion {
     @JoinColumn(name = "compagnie_id")
     private Compagnie compagnie;
 
-    @ManyToMany
+    @JsonIgnore
+    @ManyToMany(mappedBy = "avionList")
     private List<Vol> vol;
 }

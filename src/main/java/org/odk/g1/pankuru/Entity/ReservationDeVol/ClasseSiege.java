@@ -16,9 +16,10 @@ public class ClasseSiege {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    @Column(nullable = false, unique = true)
     private String nom;
     
     @JsonIgnore
-    @OneToMany(mappedBy = "classe", cascade = CascadeType.ALL)
-   private Set<PositionSiege>positionSiege;
+    @OneToMany(mappedBy = "classeSiege", cascade = CascadeType.ALL)
+    private Set<PositionSiege>positionSiege;
 }

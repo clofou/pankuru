@@ -10,8 +10,10 @@ public class Audit {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(nullable = false)
     private String nomClasse;
     private String idDuChamp;
+    @Enumerated(EnumType.STRING)
     private EnumAction typeAction;
     @Column(length = 4000)
     private String ancienneValeur;

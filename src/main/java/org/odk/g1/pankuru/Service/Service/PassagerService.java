@@ -28,15 +28,14 @@ public class PassagerService implements CrudService<Passager,Long> {
     }
 
     @Override
-    public Passager misAJour(Passager passager) {
-        return passagerRepository.findById(passager.getId())
+    public Passager misAJour(Passager passager, Long Id) {
+        return passagerRepository.findById(Id)
                 .map((p)->{
                     p.setNom(p.getNom());
                     p.setPrenom(p.getPrenom());
                     p.setNumeroDeVisa(p.getNumeroDeVisa());
                     p.setNumeroDePassPort(p.getNumeroDePassPort());
                     p.setSiege(p.getSiege());
-                    p.setBagage(p.getBagage());
                     return passagerRepository.save(p);
                 }).orElseThrow(()->new RuntimeException("Passager introuvable"));
     }

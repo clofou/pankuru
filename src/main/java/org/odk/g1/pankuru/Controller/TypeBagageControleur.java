@@ -18,18 +18,18 @@ public class TypeBagageControleur {
     public TypeBagage ajouter(@RequestBody TypeBagage typeBagage){
         return typeBagageService.ajout(typeBagage);
     }
-    @GetMapping("/liste")
+    @GetMapping("/afficher")
     public List<TypeBagage>lire(){
         return typeBagageService.liste();
     }
-    @GetMapping("/liste/{id}")
+    @GetMapping("/afficher/{id}")
     public Optional<TypeBagage> parId(@PathVariable Integer id){
         return typeBagageService.trouverParId(id);
     }
 
-    @PutMapping("/modifier")
-    public TypeBagage modif(@RequestBody TypeBagage typeBagage){
-        return typeBagageService.misAJour(typeBagage);
+    @PutMapping("/modifier/{id}")
+    public TypeBagage modif(@PathVariable Integer id,@RequestBody TypeBagage typeBagage){
+        return typeBagageService.misAJour(typeBagage, id);
     }
 
     @DeleteMapping("/supprimer/{id}")

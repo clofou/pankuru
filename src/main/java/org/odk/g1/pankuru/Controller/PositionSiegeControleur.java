@@ -17,22 +17,22 @@ public class PositionSiegeControleur {
     public PositionSiege ajouter(PositionSiege positionSiege){
         return positionSiegeService.ajout(positionSiege);
     }
-    @GetMapping("/liste")
+    @GetMapping("/afficher")
     public List<PositionSiege> lire(){
         return positionSiegeService.liste();
 
 
     }
-    @GetMapping("/liste/{id}")
+    @GetMapping("/afficher/{id}")
     public Optional<PositionSiege> parId(@PathVariable Integer id){
         return positionSiegeService.trouverParId(id);
     }
-    @PutMapping("/modifier")
-    public PositionSiege modif(@RequestBody PositionSiege positionSiege){
-        return positionSiegeService.misAJour(positionSiege);
+    @PutMapping("/modifier/{id}")
+    public PositionSiege modif(@PathVariable Integer id,@RequestBody PositionSiege positionSiege){
+        return positionSiegeService.misAJour(positionSiege, id);
     }
 
-    @DeleteMapping("/supprimer")
+    @DeleteMapping("/supprimer/{id}")
     public void supprimer(@PathVariable Integer id){
         positionSiegeService.supprimer(id);
     }

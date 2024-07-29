@@ -28,8 +28,8 @@ public class ReservationService implements CrudService<Reservation,Long> {
     }
 
     @Override
-    public Reservation misAJour(Reservation reservation) {
-        return reservationRepository.findById(reservation.getId())
+    public Reservation misAJour(Reservation reservation, Long Id) {
+        return reservationRepository.findById(Id)
                 .map((r)->{
                     r.setStatut(r.getStatut());
                     r.setVol(r.getVol());

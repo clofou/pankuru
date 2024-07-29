@@ -32,8 +32,8 @@ public class AeroportController {
     } 
 
     @PutMapping("/modifier/{id}")
-    public Aeroport modifier(@RequestBody Aeroport aeroport){
-        return aeroportService.misAJour(aeroport);
+    public Aeroport modifier(@PathVariable Long id,@RequestBody Aeroport aeroport){
+        return aeroportService.misAJour(aeroport, id);
     }
 
     @DeleteMapping("/supprimer/{id}")

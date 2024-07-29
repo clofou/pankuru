@@ -49,8 +49,8 @@ public class SuperAdminService implements CrudService<SuperAdmin, Long>{
     }
 
     @Override
-    public SuperAdmin misAJour(SuperAdmin superAdmin) {
-        Optional<SuperAdmin> superAdminExistant = superAdminRepo.findById(superAdmin.getId());
+    public SuperAdmin misAJour(SuperAdmin superAdmin, Long Id) {
+        Optional<SuperAdmin> superAdminExistant = superAdminRepo.findById(Id);
         if (superAdminExistant.isPresent()) {
             SuperAdmin superAdminAModifier = superAdminExistant.get();
             superAdminAModifier.setNom(superAdmin.getNom());

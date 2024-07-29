@@ -13,13 +13,14 @@ public class Paiement {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    double montant;
-    Date datePaiement;
+    private double montant;
+    private Date datePaiement;
 
     @OneToOne
+    @JoinColumn(name = "reservation_id")
     private Reservation reservation;
     
     @ManyToOne
+    @JoinColumn(name = "modePaiement_id")
     private ModePaiement modePaiement;
 }

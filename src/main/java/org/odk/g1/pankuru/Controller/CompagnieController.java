@@ -33,8 +33,8 @@ public class CompagnieController {
     } 
 
     @PutMapping("/modifier/{id}")
-    public Compagnie modifier(@RequestBody Compagnie compagnie){
-        return compagnieService.misAJour(compagnie);
+    public Compagnie modifier(@PathVariable Integer id,@RequestBody Compagnie compagnie){
+        return compagnieService.misAJour(compagnie, id);
     }
 
     @DeleteMapping("/supprimer/{id}")

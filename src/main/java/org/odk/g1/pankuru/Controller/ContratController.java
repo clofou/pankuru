@@ -32,8 +32,8 @@ public class ContratController {
     } 
 
     @PutMapping("/modifier/{id}")
-    public Contrat modifier(@RequestBody Contrat contrat){
-        return contratService.misAJour(contrat);
+    public Contrat modifier(@PathVariable Long id,@RequestBody Contrat contrat){
+        return contratService.misAJour(contrat, id);
     }
 
     @DeleteMapping("/supprimer/{id}")

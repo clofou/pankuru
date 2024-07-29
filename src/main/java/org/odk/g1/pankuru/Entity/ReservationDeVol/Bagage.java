@@ -15,8 +15,12 @@ public class Bagage {
     private Long id;
     private Float poids;
     private String dimension;
+
     @ManyToOne
+    @JoinColumn(name = "passager_id")
     private Passager passager;
+
     @ManyToOne
+    @JoinColumn(name = "typeBagage_id")
     private TypeBagage typeBagage;
 }
