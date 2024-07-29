@@ -9,6 +9,11 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.Base64;
+import java.util.UUID;
+
 @Service
 @AllArgsConstructor
 public class PersonneService implements UserDetailsService {
@@ -30,5 +35,19 @@ public class PersonneService implements UserDetailsService {
                 .findByEmail(username)
                 .orElseThrow(() -> new  UsernameNotFoundException("Aucun utilisateur ne corespond à cet identifiant")
         );
+    }
+    public String generateToken(Personne personne) {
+        try {
+            String tokenData = personne.getEmail() + ":" + personne.getPassword() + ":" + System.currentTimeMillis();
+            MessageDigest digest = MessageDigest.getInstance("SHA-256");
+            byte[] hash = digest.digest(tokenData.getBytes());
+            return Base64.getEncoder().encodeToString(hash);
+        } catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException("Error generating token", e);
+        }
+    }
+
+    public String generateSessionId() {
+        return UUID.randomUUID().toString();
     }
 }

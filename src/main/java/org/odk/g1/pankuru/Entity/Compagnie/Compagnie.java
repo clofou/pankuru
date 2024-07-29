@@ -40,17 +40,20 @@ public class Compagnie {
 
     @ManyToOne
     @JoinColumn(name = "superAdmin_id")
+    @JsonIgnore
     private SuperAdmin superAdmin;
 
     @OneToMany(mappedBy = "compagnie", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
     private List<Contrat> contrats;
 
-    @JsonIgnore
+
     @OneToMany(mappedBy = "compagnie")
+    @JsonIgnore
     private List<Personnel> personnels;
 
-    @JsonIgnore
     @OneToMany(mappedBy = "compagnie")
+    @JsonIgnore
     private List<Avion> avions;
 
     @JsonIgnore

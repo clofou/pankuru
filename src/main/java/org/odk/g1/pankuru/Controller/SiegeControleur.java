@@ -11,13 +11,15 @@ import java.util.Optional;
 @RestController
 @AllArgsConstructor
 @RequestMapping("/siege")
+@CrossOrigin("http://localhost:4200")
+
 public class SiegeControleur {
     private SiegeService siegeService;
     @PostMapping("/ajout")
     public Siege ajouter(@RequestBody Siege siege){
         return siegeService.ajout(siege);
     }
-    @GetMapping("/liste")
+    @GetMapping("/afficher")
     public List<Siege>lire(){
         return siegeService.liste();
     }
@@ -27,7 +29,7 @@ public class SiegeControleur {
         return siegeService.trouverParId(id);
     }
 
-    @PutMapping("/modifier")
+    @PutMapping("/modifier/{id}")
     public Siege modi(@RequestBody Siege siege){
         return siegeService.misAJour(siege);
     }

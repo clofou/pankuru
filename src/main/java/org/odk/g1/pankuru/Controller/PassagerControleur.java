@@ -11,13 +11,15 @@ import java.util.Optional;
 @RestController
 @AllArgsConstructor
 @RequestMapping("/passager")
+@CrossOrigin("http://localhost:4200")
+
 public class PassagerControleur {
     private PassagerService passagerService;
     @PostMapping("/ajout")
     public Passager ajouter(@RequestBody Passager passager){
         return passagerService.ajout(passager);
     }
-    @GetMapping("/liste")
+    @GetMapping("/afficher")
     public List<Passager>lire(){
         return passagerService.liste();
     }
@@ -25,7 +27,7 @@ public class PassagerControleur {
     public Optional<Passager> parId(@PathVariable Long id){
         return passagerService.trouverParId(id);
     }
-    @PutMapping("/modifier")
+    @PutMapping("/modifier/{id}")
     public Passager modif(@RequestBody Passager passager){
         return passagerService.misAJour(passager);
     }

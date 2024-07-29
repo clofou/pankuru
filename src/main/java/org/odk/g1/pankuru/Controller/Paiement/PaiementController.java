@@ -11,6 +11,8 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/paiement")
+@CrossOrigin("http://localhost:4200")
+
 public class PaiementController {
     @Autowired
     PaiementService paiementService;

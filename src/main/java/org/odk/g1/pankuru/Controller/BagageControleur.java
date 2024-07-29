@@ -9,6 +9,8 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/bagage")
+@CrossOrigin("http://localhost:4200")
+
 public class BagageControleur {
     private BagageService bagageService;
     @PostMapping("/ajout")

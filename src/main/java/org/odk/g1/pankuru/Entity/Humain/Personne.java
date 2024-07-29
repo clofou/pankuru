@@ -43,7 +43,7 @@ public class Personne implements UserDetails {
     @OneToMany
     private List<Audit> auditList;
 
-
+    @JsonIgnore
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return Collections.singletonList(new SimpleGrantedAuthority("ROLE_"+this.role.getNom()));

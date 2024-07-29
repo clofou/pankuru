@@ -11,13 +11,15 @@ import java.util.Optional;
 @RestController
 @AllArgsConstructor
 @RequestMapping("vol")
+@CrossOrigin("http://localhost:4200")
+
 public class VolControleur {
     private VolService volService;
     @PostMapping("/ajout")
     public Vol ajout(@RequestBody Vol vol){
         return volService.ajout(vol);
     }
-    @GetMapping("/liste")
+    @GetMapping("/afficher")
     public List<Vol>lire(){
         return volService.liste();
     }
@@ -27,7 +29,7 @@ public class VolControleur {
         return volService.trouverParId(id);
     }
 
-    @PutMapping("/modifier")
+    @PutMapping("/modifier/{id}")
    public Vol modif(@RequestBody Vol vol){
         return volService.misAJour(vol);
     }
@@ -35,6 +37,5 @@ public class VolControleur {
     @DeleteMapping("/supprimer/{id}")
     public void supp(@PathVariable Long id){
         volService.supprimer(id);
-
     }
 }

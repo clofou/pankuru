@@ -31,12 +31,12 @@ public class PassagerService implements CrudService<Passager,Long> {
     public Passager misAJour(Passager passager) {
         return passagerRepository.findById(passager.getId())
                 .map((p)->{
-                    p.setNom(p.getNom());
-                    p.setPrenom(p.getPrenom());
-                    p.setNumeroDeVisa(p.getNumeroDeVisa());
-                    p.setNumeroDePassPort(p.getNumeroDePassPort());
-                    p.setSiege(p.getSiege());
-                    p.setBagage(p.getBagage());
+                    p.setNom(passager.getNom());
+                    p.setPrenom(passager.getPrenom());
+                    p.setNumeroDeVisa(passager.getNumeroDeVisa());
+                    p.setNumeroDePassPort(passager.getNumeroDePassPort());
+                    p.setSiege(passager.getSiege());
+                    p.setBagage(passager.getBagage());
                     return passagerRepository.save(p);
                 }).orElseThrow(()->new RuntimeException("Passager introuvable"));
     }

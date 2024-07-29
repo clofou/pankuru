@@ -32,10 +32,10 @@ public class SiegeService implements CrudService<Siege,Long> {
     public Siege misAJour(Siege siege) {
         return siegeRepository.findById(siege.getId())
                 .map((s)->{
-                    s.setDisponibilite(s.getDisponibilite());
-                    s.setNumero(s.getNumero());
-                    s.setPassager(s.getPassager());
-                    s.setPositionSiege(s.getPositionSiege());
+                    s.setDisponibilite(siege.getDisponibilite());
+                    s.setNumero(siege.getNumero());
+                    s.setPassager(siege.getPassager());
+                    s.setPositionSiege(siege.getPositionSiege());
                     return siegeRepository.save(s);
                 }).orElseThrow(()->new RuntimeException("Siege introuvable"));
     }

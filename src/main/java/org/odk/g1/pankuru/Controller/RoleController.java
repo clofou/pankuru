@@ -12,6 +12,8 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/role")
 @AllArgsConstructor
+@CrossOrigin("http://localhost:4200")
+
 public class RoleController {
 
     private final RoleService roleService;

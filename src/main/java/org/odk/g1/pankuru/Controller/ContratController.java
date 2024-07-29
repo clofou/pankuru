@@ -3,20 +3,15 @@ package org.odk.g1.pankuru.Controller;
 import java.util.*;
 import org.odk.g1.pankuru.Entity.Compagnie.Contrat;
 import org.odk.g1.pankuru.Service.Service.ContratService;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import lombok.AllArgsConstructor;
 
 @RestController
 @RequestMapping("/contrat")
 @AllArgsConstructor
+@CrossOrigin("http://localhost:4200")
+
 public class ContratController {
 
     private final ContratService contratService;

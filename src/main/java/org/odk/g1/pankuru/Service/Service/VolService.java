@@ -32,18 +32,18 @@ public class VolService implements CrudService<Vol,Long> {
     public Vol misAJour(Vol vol) {
         return volRepository.findById(vol.getId())
                 .map((v)->{
-                    v.setReservation(v.getReservation());
-                    v.setSatut(v.getSatut());
-                    v.setAeroportDepart(v.getAeroportDepart());
-                    v.setDateEtHeureDepart(v.getDateEtHeureDepart());
-                    v.setDateEtHeureArrivee(v.getDateEtHeureArrivee());
-                    v.setNumeroDeVol(v.getNumeroDeVol());
+                    v.setReservation(vol.getReservation());
+                    v.setSatut(vol.getSatut());
+                    v.setAeroportDepart(vol.getAeroportDepart());
+                    v.setDateEtHeureDepart(vol.getDateEtHeureDepart());
+                    v.setDateEtHeureArrivee(vol.getDateEtHeureArrivee());
+                    v.setNumeroDeVol(vol.getNumeroDeVol());
                     return volRepository.save(v);
                 }).orElseThrow(()->new RuntimeException("Vol introuvable"));
     }
 
     @Override
-    public void supprimer(Long aLong) {
-
+    public void supprimer(Long id) {
+        volRepository.deleteById(id);
     }
 }
