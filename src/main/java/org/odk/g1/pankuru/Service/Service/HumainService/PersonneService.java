@@ -3,47 +3,38 @@ package org.odk.g1.pankuru.Service.Service.HumainService;
 import lombok.AllArgsConstructor;
 import org.odk.g1.pankuru.Entity.Humain.Personne;
 import org.odk.g1.pankuru.Repository.HumainRepo.PersonneRepo;
-import org.odk.g1.pankuru.Service.Interface.CrudService;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Base64;
-import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
 @Service
 @AllArgsConstructor
-public class PersonneService implements CrudService<Personne, Long> {
+public class PersonneService implements UserDetailsService {
+    private final BCryptPasswordEncoder bCryptPasswordEncoder;
     private PersonneRepo personneRepo;
-    
 
-    @Override
-    public Personne ajout(Personne entity) {
-        return null;
+    public void save(Personne personne) {
+
+        String mdpCrypte = this.bCryptPasswordEncoder.encode(personne.getPassword());
+        personne.setPassword(mdpCrypte);
+
+        personneRepo.save(personne);
     }
 
-    @Override
-    public List<Personne> liste() {
-        return personneRepo.findAll();
-    }
 
     @Override
-    public Optional<Personne> trouverParId(Long aLong) {
-        return personneRepo.findById(aLong);
-    }
-
-    @Override
-    public Personne misAJour(Personne entity, Long Id) {
-        return null;
-    }
-
-    @Override
-    public void supprimer(Long aLong) {
-        personneRepo.deleteById(aLong);
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        return this.personneRepo
+                .findByEmail(username)
+                .orElseThrow(() -> new  UsernameNotFoundException("Aucun utilisateur ne corespond à cet identifiant")
+                );
     }
     public String generateToken(Personne personne) {
         try {
