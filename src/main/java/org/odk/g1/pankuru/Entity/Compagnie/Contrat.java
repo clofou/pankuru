@@ -2,6 +2,7 @@ package org.odk.g1.pankuru.Entity.Compagnie;
 
 import java.time.LocalDate;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -30,5 +31,6 @@ public class Contrat {
 
     @ManyToOne
     @JoinColumn(name = "compagnie_id")
+    @JsonIgnore
     private Compagnie compagnie;
 }

@@ -11,6 +11,8 @@ import java.util.Optional;
 @RestController
 @AllArgsConstructor
 @RequestMapping("/siege")
+@CrossOrigin("http://localhost:4200")
+
 public class SiegeControleur {
     private SiegeService siegeService;
     @PostMapping("/ajout")

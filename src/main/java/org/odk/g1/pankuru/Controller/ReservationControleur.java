@@ -12,6 +12,8 @@ import java.util.Optional;
 @RestController
 @AllArgsConstructor
 @RequestMapping("/reservation")
+@CrossOrigin("http://localhost:4200")
+
 public class ReservationControleur {
     private ReservationService reservationService;
     @PostMapping("/ajout")

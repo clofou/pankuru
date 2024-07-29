@@ -36,6 +36,7 @@ public class PassagerService implements CrudService<Passager,Long> {
                     p.setNumeroDeVisa(p.getNumeroDeVisa());
                     p.setNumeroDePassPort(p.getNumeroDePassPort());
                     p.setSiege(p.getSiege());
+
                     return passagerRepository.save(p);
                 }).orElseThrow(()->new RuntimeException("Passager introuvable"));
     }

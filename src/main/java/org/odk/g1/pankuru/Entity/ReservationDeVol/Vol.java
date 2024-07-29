@@ -20,6 +20,7 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+
 public class Vol {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

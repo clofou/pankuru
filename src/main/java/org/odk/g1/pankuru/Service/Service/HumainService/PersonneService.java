@@ -2,23 +2,22 @@ package org.odk.g1.pankuru.Service.Service.HumainService;
 
 import lombok.AllArgsConstructor;
 import org.odk.g1.pankuru.Entity.Humain.Personne;
-import org.odk.g1.pankuru.Entity.Humain.Utilisateur;
 import org.odk.g1.pankuru.Repository.HumainRepo.PersonneRepo;
 import org.odk.g1.pankuru.Service.Interface.CrudService;
-import org.odk.g1.pankuru.Utils.UtilService;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.Base64;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 @AllArgsConstructor
 public class PersonneService implements CrudService<Personne, Long> {
-    private final BCryptPasswordEncoder bCryptPasswordEncoder;
     private PersonneRepo personneRepo;
     
 
@@ -45,5 +44,19 @@ public class PersonneService implements CrudService<Personne, Long> {
     @Override
     public void supprimer(Long aLong) {
         personneRepo.deleteById(aLong);
+    }
+    public String generateToken(Personne personne) {
+        try {
+            String tokenData = personne.getEmail() + ":" + personne.getPassword() + ":" + System.currentTimeMillis();
+            MessageDigest digest = MessageDigest.getInstance("SHA-256");
+            byte[] hash = digest.digest(tokenData.getBytes());
+            return Base64.getEncoder().encodeToString(hash);
+        } catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException("Error generating token", e);
+        }
+    }
+
+    public String generateSessionId() {
+        return UUID.randomUUID().toString();
     }
 }

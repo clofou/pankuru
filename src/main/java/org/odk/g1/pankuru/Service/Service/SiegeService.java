@@ -35,6 +35,7 @@ public class SiegeService implements CrudService<Siege,Long> {
                     s.setDisponibilite(s.getDisponibilite());
                     s.setNumero(s.getNumero());
                     s.setPositionSiege(s.getPositionSiege());
+
                     return siegeRepository.save(s);
                 }).orElseThrow(()->new RuntimeException("Siege introuvable"));
     }

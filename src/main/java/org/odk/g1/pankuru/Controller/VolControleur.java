@@ -11,6 +11,8 @@ import java.util.Optional;
 @RestController
 @AllArgsConstructor
 @RequestMapping("vol")
+@CrossOrigin("http://localhost:4200")
+
 public class VolControleur {
     private VolService volService;
     @PostMapping("/ajout")
@@ -28,13 +30,12 @@ public class VolControleur {
     }
 
     @PutMapping("/modifier/{id}")
-   public Vol modif(@PathVariable Long id,@RequestBody Vol vol){
+    public Vol modif(@PathVariable Long id,@RequestBody Vol vol){
         return volService.misAJour(vol, id);
     }
 
     @DeleteMapping("/supprimer/{id}")
     public void supp(@PathVariable Long id){
         volService.supprimer(id);
-
     }
 }

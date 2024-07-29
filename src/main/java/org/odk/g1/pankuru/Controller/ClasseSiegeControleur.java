@@ -12,6 +12,8 @@ import java.util.Optional;
 @RestController
 @AllArgsConstructor
 @RequestMapping("/Classe")
+@CrossOrigin("http://localhost:4200")
+
 public class ClasseSiegeControleur {
     private ClasseSiegeService classeSiegeService;
     @PostMapping("/ajout")

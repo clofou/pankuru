@@ -38,12 +38,13 @@ public class VolService implements CrudService<Vol,Long> {
                     v.setDateEtHeureDepart(v.getDateEtHeureDepart());
                     v.setDateEtHeureArrivee(v.getDateEtHeureArrivee());
                     v.setNumeroDeVol(v.getNumeroDeVol());
+
                     return volRepository.save(v);
                 }).orElseThrow(()->new RuntimeException("Vol introuvable"));
     }
 
     @Override
-    public void supprimer(Long aLong) {
-
+    public void supprimer(Long id) {
+        volRepository.deleteById(id);
     }
 }

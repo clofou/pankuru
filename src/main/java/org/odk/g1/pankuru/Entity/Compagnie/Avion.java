@@ -26,6 +26,7 @@ public class Avion {
 
     @ManyToOne
     @JoinColumn(name = "compagnie_id")
+    @JsonIgnore
     private Compagnie compagnie;
 
     @JsonIgnore
