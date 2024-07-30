@@ -33,9 +33,9 @@ public class BagageService implements CrudService<Bagage,Long> {
         return bagageRepository.findById(Id)
                 .map((b)->{
                     b.setPoids(bagage.getPoids());
-                    b.setDimension(b.getDimension());
-                    b.setTypeBagage(b.getTypeBagage());
-                    b.setPassager(b.getPassager());
+                    b.setDimension(bagage.getDimension());
+                    b.setTypeBagage(bagage.getTypeBagage());
+                    b.setPassager(bagage.getPassager());
                     return bagageRepository.save(b);
                 }).orElseThrow(()-> new RuntimeException("Bagage inexistant"));
     }

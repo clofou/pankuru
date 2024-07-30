@@ -31,12 +31,12 @@ public class ReservationService implements CrudService<Reservation,Long> {
     public Reservation misAJour(Reservation reservation, Long Id) {
         return reservationRepository.findById(Id)
                 .map((r)->{
-                    r.setStatut(r.getStatut());
-                    r.setVol(r.getVol());
-                    r.setDateReservation(r.getDateReservation());
-                    r.setDateAnnulation(r.getDateAnnulation());
-                    r.setNombreDepassager(r.getNombreDepassager());
-                    r.setRaisonAnnulation(r.getRaisonAnnulation());
+                    r.setStatut(reservation.getStatut());
+                    r.setVol(reservation.getVol());
+                    r.setDateReservation(reservation.getDateReservation());
+                    r.setDateAnnulation(reservation.getDateAnnulation());
+                    r.setNombreDepassager(reservation.getNombreDepassager());
+                    r.setRaisonAnnulation(reservation.getRaisonAnnulation());
                     return reservationRepository.save(r);
                 }).orElseThrow(() -> new RuntimeException("Reservation introuvable"));
     }

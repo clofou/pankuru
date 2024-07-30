@@ -31,10 +31,10 @@ public class PassagerService implements CrudService<Passager,Long> {
     public Passager misAJour(Passager passager, Long Id) {
         return passagerRepository.findById(Id)
                 .map((p)->{
-                    p.setNom(p.getNom());
-                    p.setPrenom(p.getPrenom());
-                    p.setNumeroDeVisa(p.getNumeroDeVisa());
-                    p.setNumeroDePassPort(p.getNumeroDePassPort());
+                    p.setNom(passager.getNom());
+                    p.setPrenom(passager.getPrenom());
+                    p.setNumeroDeVisa(passager.getNumeroDeVisa());
+                    p.setNumeroDePassPort(passager.getNumeroDePassPort());
                     p.setSiege(p.getSiege());
 
                     return passagerRepository.save(p);

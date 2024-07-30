@@ -11,6 +11,7 @@ import org.odk.g1.pankuru.Entity.Humain.Utilisateur;
 import org.odk.g1.pankuru.Entity.Paiement.Paiement;
 
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
@@ -22,11 +23,11 @@ public class Reservation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private LocalDate dateReservation;
+    private Date dateReservation;
     private int nombreDepassager = 1;
     @Enumerated(EnumType.STRING)
     private Statut statut;
-    private LocalDate dateAnnulation;
+    private Date dateAnnulation;
     private String raisonAnnulation;
 
     @ManyToOne

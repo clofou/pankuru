@@ -31,8 +31,8 @@ public class ClasseSiegeService implements CrudService<ClasseSiege,Integer> {
     public ClasseSiege misAJour(ClasseSiege classeSiege, Integer Id) {
         return classeSiegeRepository.findById(Id)
                 .map((c)->{
-                    c.setNom(c.getNom());
-                    c.setPositionSiege(c.getPositionSiege());
+                    c.setNom(classeSiege.getNom());
+                    c.setPositionSiege(classeSiege.getPositionSiege());
                     return classeSiegeRepository.save(c);
                 }).orElseThrow(()-> new RuntimeException("Classe introuvable"));
     }

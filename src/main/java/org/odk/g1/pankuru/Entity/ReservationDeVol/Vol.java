@@ -13,6 +13,7 @@ import org.odk.g1.pankuru.Entity.Localite.Aeroport;
 
 import java.time.LocalDate;
 // import java.util.List;
+import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
@@ -30,9 +31,8 @@ public class Vol {
     private String aeroportDepart;
     @Column(nullable = false)
     private String aeroportDArrivee;
-    private LocalDate dateEtHeureArrivee;
-    @Column(nullable = false)
-    private LocalDate dateEtHeureDepart;
+    private Date dateEtHeureArrivee;
+    private Date dateEtHeureDepart;
     @Enumerated(EnumType.STRING)
     private StatutVol satut = StatutVol.EN_COURS;
 

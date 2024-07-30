@@ -31,8 +31,8 @@ public class PositionSiegeService implements CrudService<PositionSiege,Integer> 
     public PositionSiege misAJour(PositionSiege positionSiege, Integer Id) {
         return positionSiegeRepository.findById(Id)
                 .map((p)->{
-                    p.setSiege(p.getSiege());
-                    p.setNom(p.getNom());
+                    p.setSiege(positionSiege.getSiege());
+                    p.setNom(positionSiege.getNom());
                     return positionSiegeRepository.save(p);
                 }).orElseThrow(()->new RuntimeException("Position introuvable"));
     }

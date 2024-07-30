@@ -16,7 +16,6 @@ public class Siege {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(nullable = false)
     private String numero;
     private Boolean disponibilite = true;
 
