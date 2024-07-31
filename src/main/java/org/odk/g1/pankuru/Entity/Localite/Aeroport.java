@@ -13,7 +13,6 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table(name = "Aeroport")
 @Data
-@NoArgsConstructor
 public class Aeroport {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,7 +24,7 @@ public class Aeroport {
     private double altitude;
     private int capaciteParking;
     private int nombreDePistes;
-    
+
     @ManyToOne
     @JoinColumn(name = "ville_id")
     private Ville ville;
