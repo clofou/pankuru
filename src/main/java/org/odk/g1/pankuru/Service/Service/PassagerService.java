@@ -32,6 +32,10 @@ public class PassagerService implements CrudService<Passager,Long> {
         return passagerRepository.findById(id);
     }
 
+    public List<Map<String, Object>> trouverParId1(Long id) {
+        return passagerRepository.trouverParId(id);
+    }
+
     @Override
     public Passager misAJour(Passager passager, Long Id) {
         return passagerRepository.findById(Id)

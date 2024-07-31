@@ -14,11 +14,10 @@ import java.util.Optional;
 @AllArgsConstructor
 @RequestMapping("/reservation")
 @CrossOrigin("http://localhost:4200")
-
 public class ReservationControleur {
     private ReservationService reservationService;
     @PostMapping("/ajout")
-    public Reservation ajouter(Reservation reservation){
+    public Reservation ajouter(@RequestBody Reservation reservation){
         return reservationService.ajout(reservation);
     }
 
@@ -28,8 +27,8 @@ public class ReservationControleur {
     }
 
     @GetMapping("/afficher/{id}")
-    public Optional<Reservation> parId(@PathVariable Long id){
-        return reservationService.trouverParId(id);
+    public List<Map<String, Object>> parId(@PathVariable Long id){
+        return reservationService.trouverParId1(id);
     }
 
     @PutMapping("/modifier/{id}")

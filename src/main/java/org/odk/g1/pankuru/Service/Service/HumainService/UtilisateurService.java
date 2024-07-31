@@ -23,7 +23,7 @@ public class UtilisateurService implements CrudService<Utilisateur, Long>{
     @Override
     public Utilisateur ajout(Utilisateur entity) {
 
-        if(UtilService.isValidEmail(entity.getEmail())) {
+        if(!UtilService.isValidEmail(entity.getEmail())) {
             throw new RuntimeException("Votre mail est invalide");
         }
 
@@ -50,6 +50,10 @@ public class UtilisateurService implements CrudService<Utilisateur, Long>{
     @Override
     public Optional<Utilisateur> trouverParId(Long id) {
         return utilisateurRepo.findById(id);
+    }
+
+    public List<Map<String, Object>> trouverParId1(Long id) {
+        return utilisateurRepo.trouverParId(id);
     }
 
     @Override

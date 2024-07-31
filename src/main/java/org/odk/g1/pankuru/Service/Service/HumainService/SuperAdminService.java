@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.odk.g1.pankuru.Entity.Humain.SuperAdmin;
 import org.odk.g1.pankuru.Repository.HumainRepo.SuperAdminRepo;
 import org.odk.g1.pankuru.Service.Interface.CrudService;
+import org.odk.g1.pankuru.Utils.UtilService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -20,11 +21,8 @@ public class SuperAdminService implements CrudService<SuperAdmin, Long>{
     @Override
     public SuperAdmin ajout(SuperAdmin entity) {
 
-        if(!entity.getEmail().contains("@")) {
-            throw  new RuntimeException("Votre mail invalide");
-        }
-        if(!entity.getEmail().contains(".")) {
-            throw  new RuntimeException("Votre mail invalide");
+        if(!UtilService.isValidEmail(entity.getEmail())) {
+            throw  new RuntimeException("Votre mail est invalide");
         }
 
         Optional<SuperAdmin> superAdmin = this.superAdminRepo.findByEmail(entity.getEmail());

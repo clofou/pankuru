@@ -25,8 +25,8 @@ public class PassagerControleur {
         return passagerService.liste1();
     }
     @GetMapping("/afficher/{id}")
-    public Optional<Passager> parId(@PathVariable Long id){
-        return passagerService.trouverParId(id);
+    public List<Map<String, Object>> parId(@PathVariable Long id){
+        return passagerService.trouverParId1(id);
     }
     @PutMapping("/modifier/{id}")
     public Passager modif(@PathVariable Long id,@RequestBody Passager passager){

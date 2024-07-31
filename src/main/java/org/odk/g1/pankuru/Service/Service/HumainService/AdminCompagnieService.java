@@ -23,7 +23,7 @@ public class AdminCompagnieService implements CrudService<AdminCompagnie, Long>{
     @Override
     public AdminCompagnie ajout(AdminCompagnie entity) {
 
-        if(UtilService.isValidEmail(entity.getEmail())) {
+        if(!UtilService.isValidEmail(entity.getEmail())) {
             throw new RuntimeException("Votre mail est invalide");
         }
 

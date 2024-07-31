@@ -26,7 +26,12 @@ public class UtilisateurController {
     @GetMapping("/afficher")
     public List<Map<String, Object>> afficher(){
         return utilisateurService.liste1();
-    } 
+    }
+
+    @GetMapping("/afficher/{id}")
+    public List<Map<String, Object>> afficherId(@PathVariable Long id){
+        return utilisateurService.trouverParId1(id);
+    }
 
     @PutMapping("/modifier/{id}")
     public Utilisateur modifier(@PathVariable Long id,@RequestBody Utilisateur utilisateur){

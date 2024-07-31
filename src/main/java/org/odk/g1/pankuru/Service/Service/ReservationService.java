@@ -32,6 +32,10 @@ public class ReservationService implements CrudService<Reservation,Long> {
         return reservationRepository.findById(id);
     }
 
+    public List<Map<String, Object>> trouverParId1(Long id) {
+        return reservationRepository.trouverParId(id);
+    }
+
     @Override
     public Reservation misAJour(Reservation reservation, Long Id) {
         return reservationRepository.findById(Id)
