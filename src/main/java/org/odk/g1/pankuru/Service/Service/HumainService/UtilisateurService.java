@@ -1,6 +1,7 @@
 package org.odk.g1.pankuru.Service.Service.HumainService;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import org.odk.g1.pankuru.Entity.Humain.Utilisateur;
@@ -40,6 +41,10 @@ public class UtilisateurService implements CrudService<Utilisateur, Long>{
     @Override
     public List<Utilisateur> liste() {
         return utilisateurRepo.findAll();
+    }
+
+    public List<Map<String, Object>> liste1() {
+        return utilisateurRepo.tout();
     }
 
     @Override

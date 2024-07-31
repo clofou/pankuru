@@ -7,6 +7,7 @@ import org.odk.g1.pankuru.Service.Service.ReservationService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
@@ -22,8 +23,8 @@ public class ReservationControleur {
     }
 
     @GetMapping("/afficher")
-    public List<Reservation> lire(){
-        return reservationService.liste();
+    public List<Map<String, Object>> lire(){
+        return reservationService.liste1();
     }
 
     @GetMapping("/afficher/{id}")

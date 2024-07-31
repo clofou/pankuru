@@ -7,6 +7,7 @@ import org.odk.g1.pankuru.Service.Interface.CrudService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 @Service
 @AllArgsConstructor
@@ -20,6 +21,10 @@ public class PassagerService implements CrudService<Passager,Long> {
     @Override
     public List<Passager> liste() {
         return passagerRepository.findAll();
+    }
+
+    public List<Map<String, Object>> liste1() {
+        return passagerRepository.tout();
     }
 
     @Override
