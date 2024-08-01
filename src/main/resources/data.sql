@@ -68,21 +68,21 @@ INSERT INTO vol(aeroportdarrivee, aeroport_depart, date_et_heure_arrivee, date_e
 
 -- Insertion des personnes
 INSERT INTO Personne (nom, prenom, email, password, numero_de_telephone, adresse_id, role_id)
-VALUES ('Dupont', 'Jean', 'jean.dupont@example.com', 'password123', '0123456789', (SELECT id FROM Adresse WHERE rue = '1 Avenue des Champs-Élysées'), (SELECT nom FROM Role WHERE nom = 'ADMIN'));
+VALUES ('Dupont', 'Jean', 'jean.dupont@example.com', 'password123', '0123456789', (SELECT id FROM Adresse WHERE rue = '1 Avenue des Champs-Élysées'), (SELECT id FROM Role WHERE nom = 'ADMIN'));
 
 INSERT INTO Personne (nom, prenom, email, password, numero_de_telephone, adresse_id, role_id)
-VALUES ('Traore', 'Issa', 'issa1.dupont@example.com', 'password123', '0123456789', (SELECT id FROM Adresse WHERE rue = 'Hamdallaye ACI1'), (SELECT nom FROM Role WHERE nom = 'PASSAGER'));
+VALUES ('Traore', 'Issa', 'issa1.dupont@example.com', 'password123', '0123456789', (SELECT id FROM Adresse WHERE rue = 'Hamdallaye ACI1'), (SELECT id FROM Role WHERE nom = 'PASSAGER'));
 
 INSERT INTO Personne (nom, prenom, email, password, numero_de_telephone, adresse_id, role_id)
-VALUES ('Smith', 'John', 'john.smith@example.com', 'password456', '0987654321', (SELECT id FROM Adresse WHERE rue = '2 Heathrow Road'), (SELECT nom FROM Role WHERE nom = 'USER'));
+VALUES ('Smith', 'John', 'john.smith@example.com', 'password456', '0987654321', (SELECT id FROM Adresse WHERE rue = '2 Heathrow Road'), (SELECT id FROM Role WHERE nom = 'USER'));
 INSERT INTO Personne (nom, prenom, email, password, numero_de_telephone, adresse_id, role_id)
-VALUES ('Issa', 'Liam', 'lol@example.com', 'password45r', '0987654321', (SELECT id FROM Adresse WHERE rue = 'Bamako Lafiabougou'), (SELECT nom FROM Role WHERE nom = 'USER'));
+VALUES ('Issa', 'Liam', 'lol@example.com', 'password45r', '0987654321', (SELECT id FROM Adresse WHERE rue = 'Bamako Lafiabougou'), (SELECT id FROM Role WHERE nom = 'USER'));
 INSERT INTO Personne (nom, prenom, email, password, numero_de_telephone, adresse_id, role_id)
-VALUES ('Mamadou', 'Thiam', 'lol1@example.com', 'password456v', '0987654321', (SELECT id FROM Adresse WHERE rue = 'Hamdallaye ACI'), (SELECT nom FROM Role WHERE nom = 'USER'));
+VALUES ('Mamadou', 'Thiam', 'lol1@example.com', 'password456v', '0987654321', (SELECT id FROM Adresse WHERE rue = 'Hamdallaye ACI'), (SELECT id FROM Role WHERE nom = 'USER'));
 INSERT INTO Personne (nom, prenom, email, password, numero_de_telephone, adresse_id, role_id)
-VALUES ('Tienou', 'Ali', 'lol2@example.com', 'password456c', '0987654321', (SELECT id FROM Adresse WHERE rue = 'Banconi'), (SELECT nom FROM Role WHERE nom = 'PERSONNEL'));
+VALUES ('Tienou', 'Ali', 'lol2@example.com', 'password456c', '0987654321', (SELECT id FROM Adresse WHERE rue = 'Banconi'), (SELECT nom FROM Role WHERE id = 'PERSONNEL'));
 INSERT INTO Personne (nom, prenom, email, password, numero_de_telephone, adresse_id, role_id)
-VALUES ('Lead', 'Lo', 'lol67@example.com', 'password456l', '0987654321', (SELECT id FROM Adresse WHERE rue = 'Banconi1'), (SELECT nom FROM Role WHERE nom = 'ADMINCOMPAGNIE'));
+VALUES ('Lead', 'Lo', 'lol67@example.com', 'password456l', '0987654321', (SELECT id FROM Adresse WHERE rue = 'Banconi1'), (SELECT nom FROM Role WHERE id = 'ADMINCOMPAGNIE'));
 
 -- Insertion des super administrateurs
 INSERT INTO super_admin (id,pseudo) VALUES ((SELECT id FROM personne WHERE email = 'jean.dupont@example.com'),'superadmin1');

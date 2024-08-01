@@ -28,14 +28,18 @@ public class RoleService {
         roleRepository.save(role);
     }
 
-    public Role updateRole(String id, Role role) {
+    public Role updateRole(Integer id, Role role) {
         Role roleUpdate = roleRepository.findById(id).orElse(null);
-        assert roleUpdate != null;
+        System.out.println("hhh");
+        System.out.println(roleUpdate);
+        //assert roleUpdate != null;
+        System.out.println("bbbb");
         roleUpdate.setNom(role.getNom());
+        System.out.println(roleUpdate);
         return roleRepository.save(roleUpdate);
     }
 
-    public void deleteRole(String id) {
+    public void deleteRole(Integer id) {
         roleRepository.deleteById(id);
     }
 }
