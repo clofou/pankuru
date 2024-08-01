@@ -27,13 +27,16 @@ public class Reservation {
     private Date dateAnnulation;
     private String raisonAnnulation;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "vol_id")
     private Vol vol;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "reservation")
     private List<Passager> passagerList;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "utilisateur_id")
     private Utilisateur utilisateur;

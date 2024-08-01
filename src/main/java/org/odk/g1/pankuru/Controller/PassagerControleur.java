@@ -6,7 +6,7 @@ import org.odk.g1.pankuru.Service.Service.PassagerService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Map;
+import java.util.Optional;
 
 @RestController
 @AllArgsConstructor
@@ -20,12 +20,12 @@ public class PassagerControleur {
         return passagerService.ajout(passager);
     }
     @GetMapping("/afficher")
-    public List<Map<String, Object>>lire(){
-        return passagerService.liste1();
+    public List<Passager>lire(){
+        return passagerService.liste();
     }
     @GetMapping("/afficher/{id}")
-    public List<Map<String, Object>> parId(@PathVariable Long id){
-        return passagerService.trouverParId1(id);
+    public Optional<Passager> parId(@PathVariable Long id){
+        return passagerService.trouverParId(id);
     }
     @PutMapping("/modifier/{id}")
     public Passager modif(@PathVariable Long id,@RequestBody Passager passager){
