@@ -1,6 +1,7 @@
 package org.odk.g1.pankuru.Controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.odk.g1.pankuru.Entity.Compagnie.Avion;
 import org.odk.g1.pankuru.Service.Service.AvionService;
@@ -24,6 +25,11 @@ public class AvionController {
     @GetMapping("/afficher")
     public List<Avion> afficher(){
         return avionService.liste();
+    } 
+
+    @GetMapping("/afficher/{id}")
+    public Optional<Avion> afficher1(@PathVariable("id") Integer id){
+        return avionService.trouverParId(id);
     } 
 
     @PutMapping("/modifier/{id}")

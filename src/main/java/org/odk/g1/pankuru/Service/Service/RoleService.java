@@ -36,9 +36,7 @@ public class RoleService {
     }
 
     public void deleteRole(String id) {
-        Role roleToDelete = roleRepository.findById(id).orElse(null);
-        assert roleToDelete != null;
-        roleRepository.delete(roleToDelete);
+        roleRepository.deleteById(id);
     }
 }
 

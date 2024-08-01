@@ -48,6 +48,4 @@ public class RoleController {
         this.roleService.deleteRole(id);
     }
 
-
-
 }
