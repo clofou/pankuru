@@ -8,7 +8,6 @@ import org.odk.g1.pankuru.Entity.Humain.SuperAdmin;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -43,7 +42,7 @@ public class Compagnie {
     private SuperAdmin superAdmin;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "compagnie", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "compagnie")
     private List<Contrat> contratList;
 
     @JsonIgnore
@@ -55,6 +54,6 @@ public class Compagnie {
     private List<Avion> avionList;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "compagnie")
+    @OneToMany (mappedBy = "compagnie")
     private List<AdminCompagnie> adminCompagnieList;
 }

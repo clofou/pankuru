@@ -1,6 +1,7 @@
 package org.odk.g1.pankuru.Controller.HumainController;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.odk.g1.pankuru.Entity.Humain.Personnel;
 import org.odk.g1.pankuru.Service.Service.HumainService.PersonnelService;
@@ -25,6 +26,11 @@ public class PersonnelController {
     @GetMapping("/afficher")
     public List<Personnel> afficher(){
         return personnelService.liste();
+    } 
+
+    @GetMapping("/afficher/{id}")
+    public Optional<Personnel> trouverParId(@PathVariable Long id){
+        return personnelService.trouverParId(id);
     } 
 
     @PutMapping("/modifier/{id}")

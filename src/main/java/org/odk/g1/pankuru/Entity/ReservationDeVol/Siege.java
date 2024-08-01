@@ -21,7 +21,7 @@ public class Siege {
     private PositionSiege positionSiege;
     
     @JsonIgnore
-    @OneToMany(mappedBy = "siege",cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "siege")
     private List<Passager> passagerList;
 
 }

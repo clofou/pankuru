@@ -24,6 +24,6 @@ public class PositionSiege {
     private ClasseSiege classeSiege;
     
     @JsonIgnore
-    @OneToMany(mappedBy = "positionSiege",cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "positionSiege")
     private List<Siege> siege;
 }

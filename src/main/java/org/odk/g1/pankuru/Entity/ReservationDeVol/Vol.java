@@ -34,7 +34,7 @@ public class Vol {
     private StatutVol satut = StatutVol.EN_COURS;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "vol",cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "vol")
     private List<Reservation> reservationList;
 
     @ManyToMany

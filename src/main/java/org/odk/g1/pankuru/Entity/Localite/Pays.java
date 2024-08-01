@@ -17,6 +17,6 @@ public class Pays {
     private String nom;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "pays", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "pays")
     private List<Ville> villeList;
 }

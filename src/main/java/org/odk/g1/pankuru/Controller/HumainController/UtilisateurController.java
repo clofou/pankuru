@@ -24,8 +24,8 @@ public class UtilisateurController {
     }
 
     @GetMapping("/afficher")
-    public List<Map<String, Object>> afficher(){
-        return utilisateurService.liste1();
+    public List<Utilisateur> afficher(){
+        return utilisateurService.liste();
     }
 
     @GetMapping("/afficher/{id}")

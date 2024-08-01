@@ -51,7 +51,9 @@ public class PersonnelService implements CrudService<Personnel, Long>{
 
     @Override
     public void supprimer(Long id) {
-        personnelRepo.deleteById(id);
+        Personnel personnelExistant = personnelRepo.findById(id).orElseThrow(() -> new IllegalArgumentException("Le personnel avec l'ID " + id + "n'existe pas."));
+        personnelRepo.delete(personnelExistant);
+    
     }
 
 }

@@ -20,6 +20,6 @@ public class ClasseSiege {
     private String nom;
     
     @JsonIgnore
-    @OneToMany(mappedBy = "classeSiege", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "classeSiege")
     private Set<PositionSiege>positionSiege;
 }
