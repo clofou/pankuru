@@ -1,6 +1,7 @@
 package org.odk.g1.pankuru.Controller.HumainController;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.odk.g1.pankuru.Entity.Humain.SuperAdmin;
 import org.odk.g1.pankuru.Service.Service.HumainService.SuperAdminService;
@@ -25,6 +26,11 @@ public class SuperAdminController {
     @GetMapping("/afficher")
     public List<SuperAdmin> afficher(){
         return superAdminService.liste();
+    } 
+
+    @GetMapping("/afficher/{id}")
+    public Optional<SuperAdmin> afficher1(@PathVariable("id") Long id){
+        return superAdminService.trouverParId(id);
     } 
 
     @PutMapping("/modifier/{id}")
