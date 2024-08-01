@@ -47,8 +47,7 @@ public class PersonneController {
     */
     @PostMapping(path = "connexion")
     public ResponseEntity<HashMap<String, Object>> connexion(@RequestBody AuthentificationDTO authentificationDTO) {
-        String email = authentificationDTO.getUsername();
-        String password = authentificationDTO.getPassword();
+        
         try {
             final Authentication authenticate = authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(authentificationDTO.getUsername(), authentificationDTO.getPassword())

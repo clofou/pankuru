@@ -2,7 +2,6 @@ package org.odk.g1.pankuru.Entity.Humain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Entity;
-import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 import lombok.*;
 import org.odk.g1.pankuru.Entity.Compagnie.Compagnie;

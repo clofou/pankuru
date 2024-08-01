@@ -15,7 +15,6 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
 @EnableWebSecurity
@@ -47,6 +46,7 @@ public class SecurityConfig {
                                 .requestMatchers("/passager/modifier/**", "/passager/ajout","/passager/afficher/**", "passager/supprimer/**").permitAll()
                                 .requestMatchers("/utilisateur/modifier/**", "/utilisateur/ajout","utilisateur/afficher/**", "utilisateur/supprimer/**").permitAll()
                                 .requestMatchers("/reservation/modifier/**", "/reservation/ajout","reservation/afficher/**", "reservation/supprimer/**").permitAll()
+                                .requestMatchers("/role/modifier/**", "/role/ajout","role/afficher/**", "role/supprimer/**").permitAll()
                                 .anyRequest().authenticated())
                 .sessionManagement(manager->manager.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
         return http.build();

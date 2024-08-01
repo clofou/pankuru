@@ -9,11 +9,8 @@ import lombok.NoArgsConstructor;
 import org.odk.g1.pankuru.Entity.Enum.Statut;
 import org.odk.g1.pankuru.Entity.Humain.Utilisateur;
 import org.odk.g1.pankuru.Entity.Paiement.Paiement;
-
-import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
-import java.util.Set;
 
 @Data
 @AllArgsConstructor

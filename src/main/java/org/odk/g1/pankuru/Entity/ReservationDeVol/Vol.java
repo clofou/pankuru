@@ -10,12 +10,9 @@ import org.odk.g1.pankuru.Entity.Compagnie.Avion;
 import org.odk.g1.pankuru.Entity.Enum.StatutVol;
 // import org.springframework.format.annotation.DateTimeFormat;
 import org.odk.g1.pankuru.Entity.Localite.Aeroport;
-
-import java.time.LocalDate;
 // import java.util.List;
 import java.util.Date;
 import java.util.List;
-import java.util.Set;
 
 @Data
 @AllArgsConstructor

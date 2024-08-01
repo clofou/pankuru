@@ -38,13 +38,13 @@ public class RoleController {
 
     @ResponseStatus(HttpStatus.OK)
     @PatchMapping("/{id}")
-    public Role modifierRole(@PathVariable("id") int id, @RequestBody  Role role){
+    public Role modifierRole(@PathVariable("id") String id, @RequestBody  Role role){
         return this.roleService.updateRole(id, role);
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/{id}")
-    public void supprimerRole(@PathVariable("id") Integer id){
+    public void supprimerRole(@PathVariable("id") String id){
         this.roleService.deleteRole(id);
     }
 
