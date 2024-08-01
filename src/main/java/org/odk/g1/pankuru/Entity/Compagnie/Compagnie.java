@@ -41,19 +41,19 @@ public class Compagnie {
     @JoinColumn(name = "superAdmin_id")
     private SuperAdmin superAdmin;
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "compagnie")
+    
+    @OneToMany
     private List<Contrat> contratList;
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "compagnie")
+    
+    @OneToMany
     private List<Personnel> personnelList;
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "compagnie")
+    
+    @OneToMany
     private List<Avion> avionList;
 
-    @JsonIgnore
-    @OneToMany (mappedBy = "compagnie")
+    
+    @OneToMany 
     private List<AdminCompagnie> adminCompagnieList;
 }

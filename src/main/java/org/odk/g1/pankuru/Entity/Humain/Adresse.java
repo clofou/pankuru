@@ -3,6 +3,7 @@ package org.odk.g1.pankuru.Entity.Humain;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
+import java.util.List;
 
 @Entity
 @Data
@@ -22,7 +23,7 @@ public class Adresse {
     private String pays;
 
     @JsonIgnore
-    @OneToOne(mappedBy = "adresse")
-    private Personne personne;
+    @OneToMany(mappedBy = "adresse")
+    private List<Personne> personneList;
 
 }

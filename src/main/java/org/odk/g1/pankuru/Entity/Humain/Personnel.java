@@ -22,7 +22,7 @@ public class Personnel extends Personne {
     private boolean enService = false;
 
     @ManyToOne
-    @JoinColumn(name = "compagnie_id")
+    //@JoinColumn(name = "compagnie_id")
     private Compagnie compagnie;
 
 

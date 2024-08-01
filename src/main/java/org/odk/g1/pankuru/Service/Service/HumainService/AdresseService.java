@@ -40,7 +40,7 @@ public class AdresseService implements CrudService<Adresse, Long> {
             if(entity.getEtat() != null) adresse1.setEtat(entity.getEtat());
             if(entity.getRue() != null) adresse1.setRue(entity.getRue());
             if(entity.getPays() != null) adresse1.setPays(entity.getPays());
-            if(entity.getPersonne() != null) adresse1.setPersonne(entity.getPersonne());
+            if(entity.getPersonneList() != null) adresse1.setPersonneList(entity.getPersonneList());
             if(entity.getVille() != null) adresse1.setVille(entity.getVille());
             if(entity.getCodePostal() != null) adresse1.setCodePostal(entity.getCodePostal());
             return adresseRepo.save(adresse1);

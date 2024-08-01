@@ -31,7 +31,7 @@ public class Personne implements UserDetails {
     private String numeroDeTelephone;
 
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "adresse_id")
     private Adresse adresse;
 

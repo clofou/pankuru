@@ -1,7 +1,7 @@
 package org.odk.g1.pankuru.Controller.HumainController;
 
 import java.util.List;
-import java.util.Map;
+import java.util.Optional;
 
 import org.odk.g1.pankuru.Entity.Humain.Utilisateur;
 import org.odk.g1.pankuru.Service.Service.HumainService.UtilisateurService;
@@ -29,8 +29,8 @@ public class UtilisateurController {
     }
 
     @GetMapping("/afficher/{id}")
-    public List<Map<String, Object>> afficherId(@PathVariable Long id){
-        return utilisateurService.trouverParId1(id);
+    public Optional<Utilisateur> afficherId(@PathVariable Long id){
+        return utilisateurService.trouverParId(id);
     }
 
     @PutMapping("/modifier/{id}")
