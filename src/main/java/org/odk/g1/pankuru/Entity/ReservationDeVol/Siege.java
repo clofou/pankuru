@@ -17,7 +17,7 @@ public class Siege {
     private Boolean disponibilite = true;
 
     @ManyToOne
-    @JoinColumn(nullable = false, name = "positionSiege_id")
+    @JoinColumn(name = "positionSiege_id")
     private PositionSiege positionSiege;
     
     @JsonIgnore

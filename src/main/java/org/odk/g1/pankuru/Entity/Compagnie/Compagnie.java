@@ -42,18 +42,18 @@ public class Compagnie {
     private SuperAdmin superAdmin;
 
     
-    @OneToMany
+    @OneToMany(mappedBy = "compagnie")
     private List<Contrat> contratList;
 
     
-    @OneToMany
+    @OneToMany(mappedBy = "compagnie")
     private List<Personnel> personnelList;
 
     
-    @OneToMany
+    @OneToMany(mappedBy = "compagnie")
     private List<Avion> avionList;
 
     
-    @OneToMany 
+    @OneToMany(mappedBy = "compagnie")
     private List<AdminCompagnie> adminCompagnieList;
 }
