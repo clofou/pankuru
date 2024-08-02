@@ -5,7 +5,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
 import lombok.*;
 import org.odk.g1.pankuru.Entity.Compagnie.Compagnie;
-
+import org.odk.g1.pankuru.Utils.UtilService;
 import java.util.List;
 
 @Entity
@@ -14,7 +14,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class SuperAdmin extends Personne{
-    private String pseudo;
+    private String pseudo = UtilService.generateRandomPseudo();
 
     @JsonIgnore
     @OneToMany(mappedBy = "superAdmin")

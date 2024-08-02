@@ -29,6 +29,7 @@ public class Vol {
     @Column(nullable = false)
     private String aeroportDArrivee;
     private Date dateEtHeureArrivee;
+    @Column(nullable = false)
     private Date dateEtHeureDepart;
     @Enumerated(EnumType.STRING)
     private StatutVol satut = StatutVol.EN_COURS;

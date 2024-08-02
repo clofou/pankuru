@@ -16,7 +16,7 @@ import java.util.Optional;
 public class PositionSiegeControleur {
     private PositionSiegeService positionSiegeService;
     @PostMapping("/ajout")
-    public PositionSiege ajouter(PositionSiege positionSiege){
+    public PositionSiege ajouter(@RequestBody PositionSiege positionSiege){
         return positionSiegeService.ajout(positionSiege);
     }
     @GetMapping("/afficher")

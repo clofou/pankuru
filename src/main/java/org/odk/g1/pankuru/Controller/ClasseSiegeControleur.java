@@ -17,7 +17,7 @@ import java.util.Optional;
 public class ClasseSiegeControleur {
     private ClasseSiegeService classeSiegeService;
     @PostMapping("/ajout")
-    public ClasseSiege supprimerClasse(ClasseSiege classeSiege){
+    public ClasseSiege supprimerClasse(@RequestBody ClasseSiege classeSiege){
         return classeSiegeService.ajout(classeSiege);
     }
 

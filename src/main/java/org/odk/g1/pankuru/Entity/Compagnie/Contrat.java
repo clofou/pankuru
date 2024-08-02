@@ -30,7 +30,7 @@ public class Contrat {
     private String commentaires;
 
     @ManyToOne
-    @JoinColumn(name = "compagnie_id")
+    @JoinColumn(name = "compagnie_id", nullable = false)
     @JsonIgnore
     private Compagnie compagnie;
 }

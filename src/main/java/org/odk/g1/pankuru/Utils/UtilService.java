@@ -2,6 +2,7 @@ package org.odk.g1.pankuru.Utils;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.Random;
 
 public class UtilService {
 
@@ -62,6 +63,13 @@ public class UtilService {
 
     public static boolean isValidPassword(String password) {
         return password != null && password.length() > 6;
+    }
+    
+    public static String generateRandomPseudo() {
+        String[] pseudoList = {"Nyetim", "Bravo", "Kpous", "DELTA", "Kpou", "Kpoum", "Kpouma", "Kpoumata", "Kpassima"};
+        Random random = new Random();
+        int randomIndex = random.nextInt(pseudoList.length);
+        return pseudoList[randomIndex];
     }
 
     

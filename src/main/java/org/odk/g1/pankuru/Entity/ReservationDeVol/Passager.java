@@ -25,7 +25,7 @@ public class Passager {
     private Siege siege;
 
     @ManyToOne
-    @JoinColumn(name = "reservation_id")
+    @JoinColumn(name = "reservation_id", nullable = false)
     private Reservation reservation;
 
     @JsonIgnore

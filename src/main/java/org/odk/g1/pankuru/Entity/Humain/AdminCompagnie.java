@@ -7,6 +7,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import lombok.*;
 import org.odk.g1.pankuru.Entity.Compagnie.Compagnie;
+import org.odk.g1.pankuru.Utils.UtilService;
 
 import java.util.List;
 
@@ -17,10 +18,10 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class AdminCompagnie extends Personne {
-    private String pseudo;
+    private String pseudo = UtilService.generateRandomPseudo();
 
     @ManyToOne
-    @JoinColumn(name = "compagnie_id")
+    @JoinColumn(name = "compagnie_id", nullable = false)
     private Compagnie compagnie;
 
     @JsonIgnore

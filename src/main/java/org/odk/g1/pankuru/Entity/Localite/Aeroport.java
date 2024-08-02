@@ -20,14 +20,17 @@ public class Aeroport {
     private Long id;
     private String nom;
     private String codeIATA;
+    @Column(nullable = false)
     private double longitude;
+    @Column(nullable = false)
     private double latitude;
+    @Column(nullable = false)
     private double altitude;
-    private int capaciteParking;
-    private int nombreDePistes;
+    private int capaciteParking = 0;
+    private int nombreDePistes = 0;
     
     @ManyToOne
-    @JoinColumn(name = "ville_id")
+    @JoinColumn(name = "ville_id", nullable = false)
     private Ville ville;
 
     @JsonIgnore

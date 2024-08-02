@@ -5,9 +5,7 @@ import java.util.List;
 import org.odk.g1.pankuru.Entity.Humain.AdminCompagnie;
 import org.odk.g1.pankuru.Entity.Humain.Personnel;
 import org.odk.g1.pankuru.Entity.Humain.SuperAdmin;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -16,8 +14,10 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Email;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import jakarta.persistence.Column;
 
 @Entity
 @Table(name = "Compagnie")
@@ -28,32 +28,38 @@ public class Compagnie {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String matricule;
+    @Column(nullable = false, unique = true)
     private String nom;
-    private String logo;
+    private String logoUrl;
     private int codeIATA;
     private String codeICAO;
     private String numeroTelephone;
+    @Email(message = "Email invalide")
     private String email;
     private String siteWeb;
     private String numeroLicence;
 
     @ManyToOne
-    @JoinColumn(name = "superAdmin_id")
+    @JoinColumn(name = "superAdmin_id", nullable = false)
     private SuperAdmin superAdmin;
 
     
+    @JsonIgnore
     @OneToMany(mappedBy = "compagnie")
     private List<Contrat> contratList;
 
     
+    @JsonIgnore
     @OneToMany(mappedBy = "compagnie")
     private List<Personnel> personnelList;
 
     
+    @JsonIgnore
     @OneToMany(mappedBy = "compagnie")
     private List<Avion> avionList;
 
     
+    @JsonIgnore
     @OneToMany(mappedBy = "compagnie")
     private List<AdminCompagnie> adminCompagnieList;
 }

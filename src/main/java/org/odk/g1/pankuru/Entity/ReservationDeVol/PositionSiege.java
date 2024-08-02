@@ -20,7 +20,7 @@ public class PositionSiege {
     private double tarif;
 
     @ManyToOne
-    @JoinColumn(name = "classeSiege_id")
+    @JoinColumn(name = "classeSiege_id", nullable = false)
     private ClasseSiege classeSiege;
     
     @JsonIgnore

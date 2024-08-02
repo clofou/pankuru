@@ -36,7 +36,7 @@ public class Personne implements UserDetails {
     private Adresse adresse;
 
     @ManyToOne
-    @JoinColumn(name = "role_id")
+    @JoinColumn(name = "role_id", nullable = false)
     private Role role;
 
     @JsonIgnore

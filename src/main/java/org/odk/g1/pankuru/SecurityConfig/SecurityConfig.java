@@ -48,6 +48,8 @@ public class SecurityConfig {
                                 .requestMatchers("/reservation/modifier/**", "/reservation/ajout","reservation/afficher/**", "reservation/supprimer/**").permitAll()
                                 .requestMatchers("/role/modifier/**", "/role/ajout","role/afficher/**", "role/supprimer/**").permitAll()
                                 .requestMatchers("/admincompagnie/modifier/**", "/admincompagnie/ajout","admincompagnie/afficher/**", "admincompagnie/supprimer/**").permitAll()
+                                .requestMatchers("/position/modifier/**", "/position/ajout","position/afficher/**", "position/supprimer/**").permitAll()
+                                .requestMatchers("/Classe/modifier/**", "/Classe/ajout","Classe/afficher/**", "Classe/supprimer/**").permitAll()
                                 .anyRequest().authenticated())
                 .sessionManagement(manager->manager.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
         return http.build();

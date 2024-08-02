@@ -40,7 +40,7 @@ public class CompagnieService implements CrudService<Compagnie, Integer>{
             Compagnie compagnieAModifier = compagnieExistant.get();
             compagnieAModifier.setMatricule(compagnie.getMatricule());
             compagnieAModifier.setNom(compagnie.getNom());
-            compagnieAModifier.setLogo(compagnie.getLogo());
+            compagnieAModifier.setLogoUrl(compagnie.getLogoUrl());
             compagnieAModifier.setCodeIATA(compagnie.getCodeIATA());
             compagnieAModifier.setCodeICAO(compagnie.getCodeICAO());
             compagnieAModifier.setNumeroTelephone(compagnie.getNumeroTelephone());

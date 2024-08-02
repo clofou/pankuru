@@ -9,8 +9,9 @@ import lombok.NoArgsConstructor;
 import org.odk.g1.pankuru.Entity.Enum.Statut;
 import org.odk.g1.pankuru.Entity.Humain.Utilisateur;
 import org.odk.g1.pankuru.Entity.Paiement.Paiement;
-import java.util.Date;
 import java.util.List;
+import java.time.LocalDate;
+import java.util.Date;
 
 @Data
 @AllArgsConstructor
@@ -20,16 +21,16 @@ public class Reservation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Date dateReservation;
+    private LocalDate dateReservation = LocalDate.now();
     private int nombreDepassager = 1;
     @Enumerated(EnumType.STRING)
-    private Statut statut;
+    private Statut statut = Statut.EN_ATTENTE;
     private Date dateAnnulation;
     private String raisonAnnulation;
 
     @JsonIgnore
     @ManyToOne
-    @JoinColumn(name = "vol_id")
+    @JoinColumn(name = "vol_id", nullable = false)
     private Vol vol;
 
     @JsonIgnore
@@ -38,7 +39,7 @@ public class Reservation {
 
     @JsonIgnore
     @ManyToOne
-    @JoinColumn(name = "utilisateur_id")
+    @JoinColumn(name = "utilisateur_id", nullable = false)
     private Utilisateur utilisateur;
 
     @JsonIgnore

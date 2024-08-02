@@ -9,10 +9,12 @@ public class Faq{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    @Column(nullable = false)
     private String questionCategorie;
+    @Column(nullable = false, length = 4000)
     private String reponse;
 
     @ManyToOne
-    @JoinColumn(name = "adminCompagnie_id")
+    @JoinColumn(name = "adminCompagnie_id", nullable = false)
     private AdminCompagnie adminCompagnie;
 }

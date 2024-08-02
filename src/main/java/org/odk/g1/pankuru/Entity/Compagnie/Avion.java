@@ -22,10 +22,10 @@ public class Avion {
     private int capaciteTotale;
     private String nom;
     @Enumerated(EnumType.STRING)
-    private StatutAvion statut;
+    private StatutAvion statut = StatutAvion.DISPONIBLE;
 
     @ManyToOne
-    @JoinColumn(name = "compagnie_id")
+    @JoinColumn(name = "compagnie_id", nullable = false)
     @JsonIgnore
     private Compagnie compagnie;
 

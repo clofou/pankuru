@@ -13,6 +13,7 @@ public class Audit {
     @Column(nullable = false)
     private String nomClasse;
     private String idDuChamp;
+    @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private EnumAction typeAction;
     @Column(length = 4000)
@@ -21,6 +22,6 @@ public class Audit {
     private String nouvelleValeur;
 
     @ManyToOne
-    @JoinColumn(name = "personne_id")
+    @JoinColumn(name = "personne_id", nullable = false)
     private Personne personne;
 }
