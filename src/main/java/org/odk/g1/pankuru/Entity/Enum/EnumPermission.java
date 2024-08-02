@@ -1,6 +1,8 @@
 package org.odk.g1.pankuru.Entity.Enum;
 
 public enum EnumPermission{
-    LECTURE,
-    ECRITURE
+    AJOUT,
+    MODIFIER,
+    AFFICHER,
+    SUPPRIMER
 }

@@ -1,6 +1,9 @@
 package org.odk.g1.pankuru.SecurityConfig;
 
 import lombok.AllArgsConstructor;
+
+import org.odk.g1.pankuru.Entity.Enum.EnumPermission;
+import org.odk.g1.pankuru.Service.Service.PermissionService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -15,6 +18,9 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import java.util.List;
+import org.odk.g1.pankuru.dto.RolePermissionDTO;
+import org.odk.g1.pankuru.Service.Service.RolePermissionService;
 
 @Configuration
 @EnableWebSecurity
@@ -23,36 +29,33 @@ public class SecurityConfig {
 
     private final UserDetailsService userDetailsService;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
+    private final RolePermissionService rolePermissionService;
     //private final JwtAuth jwtAuth;
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        List<RolePermissionDTO> rolePermissions = rolePermissionService.getAllRolePermissions();
+
         http.csrf(AbstractHttpConfigurer::disable)
                 .cors(Customizer.withDefaults())
                 .authorizeHttpRequests(request->
-                        request
-                                .requestMatchers("/superadmin/ajout", "/superadmin/afficher/**","/superadmin/supprimer/**", "/superadmin/modifier/**").permitAll()
-                                .requestMatchers("/avion/ajout", "/avion/afficher/**", "/avion/supprimer/**", "/avion/modifier/**").permitAll()
-                                .requestMatchers("/vol/ajout", "/vol/modifier/**","/vol/afficher", "/vol/supprimer/**").permitAll()
-                                .requestMatchers("/admin/ajout", "/admin/afficher/**","/admin/modifier/**", "/admin/supprimer/**").permitAll()
-                                .requestMatchers("/faq/ajout", "/faq/afficher/**", "/faq/modifier/**", "/faq/supprimer/**").permitAll()
-                                .requestMatchers("/siege/ajout", "/siege/afficher/**", "/siege/modifier/**", "/siege/supprimer/**").permitAll()
-                                .requestMatchers("/personne/ajout", "/personne/afficher/**", "/personne/modifier/**", "/personne/supprimer/**").permitAll()
-                                .requestMatchers("/personnel/ajout", "/personnel/afficher/**", "/personnel/modifier/**", "/personnel/supprimer/**").permitAll()
-                                .requestMatchers("/aeroport/ajout", "/aeroport/afficher/**", "/aeroport/modifier/**", "/aeroport/supprimer/**").permitAll()
-                                .requestMatchers("/compagnie/ajout", "/compagnie/afficher/**", "/compagnie/modifier/**", "/compagnie/supprimer/**").permitAll()
-                                .requestMatchers("/role/**").permitAll()
-                                .requestMatchers("/personne/connexion").permitAll()
-                                .requestMatchers("/passager/modifier/**", "/passager/ajout","/passager/afficher/**", "passager/supprimer/**").permitAll()
-                                .requestMatchers("/utilisateur/modifier/**", "/utilisateur/ajout","utilisateur/afficher/**", "utilisateur/supprimer/**").permitAll()
-                                .requestMatchers("/reservation/modifier/**", "/reservation/ajout","reservation/afficher/**", "reservation/supprimer/**").permitAll()
-                                .requestMatchers("/role/modifier/**", "/role/ajout","role/afficher/**", "role/supprimer/**").permitAll()
-                                .requestMatchers("/admincompagnie/modifier/**", "/admincompagnie/ajout","admincompagnie/afficher/**", "admincompagnie/supprimer/**").permitAll()
-                                .requestMatchers("/position/modifier/**", "/position/ajout","position/afficher/**", "position/supprimer/**").permitAll()
-                                .requestMatchers("/Classe/modifier/**", "/Classe/ajout","Classe/afficher/**", "Classe/supprimer/**").permitAll()
-                                .anyRequest().authenticated())
+                    {
+                        for (RolePermissionDTO rolePermission : rolePermissions) {
+                            if (rolePermission.getPermissionPermission() == EnumPermission.AFFICHER){
+                                request.requestMatchers("/"+rolePermission.getPermissionEndpoint()+"/afficher/**").hasRole(rolePermission.getRoleName());
+                            }else if (rolePermission.getPermissionPermission() == EnumPermission.AJOUT){
+                                request.requestMatchers("/"+rolePermission.getPermissionEndpoint()+"/ajout").hasRole(rolePermission.getRoleName());
+                            }else if (rolePermission.getPermissionPermission() == EnumPermission.MODIFIER){
+                                request.requestMatchers("/"+rolePermission.getPermissionEndpoint()+"/modifier/*+").hasRole(rolePermission.getRoleName());
+                            }else if (rolePermission.getPermissionPermission() == EnumPermission.SUPPRIMER){
+                                request.requestMatchers("/"+rolePermission.getPermissionEndpoint()+"/supprimer/*+").hasRole(rolePermission.getRoleName());
+                            }
+                        }
+                        request.anyRequest().authenticated();
+
+                    })
                 .sessionManagement(manager->manager.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
-        return http.build();
+        return http.httpBasic(Customizer.withDefaults()).build();
     }
 
     @Bean

@@ -125,12 +125,10 @@ public final class HttpRequestResponseUtils {
             ObjectMapper mapper = new ObjectMapper();
 
             try {
-                userJson = mapper.writeValueAsString(personne);
-                System.out.println(userJson);
+                userJson = mapper.writeValueAsString(personne.getNom() + " " + personne.getPrenom());
             } catch (JsonProcessingException e) {
                 e.printStackTrace();
             }
-            System.out.println(userJson);
             return userJson;
         }
          return userJson;

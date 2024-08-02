@@ -15,6 +15,7 @@ public class Permission {
     @Column(nullable = false)
     private String endPoint;
     @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
     private EnumPermission permission;
 
     @ManyToMany
