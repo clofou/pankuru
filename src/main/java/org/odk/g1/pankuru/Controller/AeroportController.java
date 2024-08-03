@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.odk.g1.pankuru.Entity.Localite.Aeroport;
 import org.odk.g1.pankuru.Service.Service.AeroportService;
+import org.odk.g1.pankuru.Service.Service.CompagnieService;
 import org.springframework.web.bind.annotation.*;
 
 import lombok.AllArgsConstructor;
@@ -14,6 +15,7 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class AeroportController {
     private final AeroportService aeroportService;
+    private final CompagnieService compagnieService;
 
     @PostMapping("/ajout")
     public Aeroport ajouter(@RequestBody Aeroport aeroport){
@@ -22,7 +24,7 @@ public class AeroportController {
 
     @GetMapping("/afficher")
     public List<Aeroport> afficher(){
-        return aeroportService.liste();
+        return compagnieService.getAeroportsByCompagnieId();
     } 
 
     @PutMapping("/modifier/{id}")

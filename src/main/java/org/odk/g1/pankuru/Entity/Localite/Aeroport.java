@@ -3,12 +3,13 @@ package org.odk.g1.pankuru.Entity.Localite;
 import java.util.List;
 
 import jakarta.persistence.*;
+
+import org.odk.g1.pankuru.Entity.Humain.AdminCompagnie;
 import org.odk.g1.pankuru.Entity.ReservationDeVol.Vol;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "Aeroport")
@@ -34,4 +35,8 @@ public class Aeroport {
     @JsonIgnore
     @ManyToMany(mappedBy = "aeroportList")
     private List<Vol> vols;
+
+    @ManyToOne
+    @JoinColumn(name = "adminCompagnie_id", nullable = false)
+    private AdminCompagnie adminCompagnie;
 }

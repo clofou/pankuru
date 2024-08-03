@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 
 import org.odk.g1.pankuru.Entity.Compagnie.Avion;
 import org.odk.g1.pankuru.Entity.Enum.StatutVol;
+import org.odk.g1.pankuru.Entity.Humain.AdminCompagnie;
 // import org.springframework.format.annotation.DateTimeFormat;
 import org.odk.g1.pankuru.Entity.Localite.Aeroport;
 // import java.util.List;
@@ -49,5 +50,9 @@ public class Vol {
            joinColumns = @JoinColumn(name = "vol_id"), 
            inverseJoinColumns = @JoinColumn(name = "aeroport_id"))
     private List<Aeroport> aeroportList;
+
+    @ManyToOne
+    @JoinColumn(name = "adminCompagnie_id", nullable = false)
+    private AdminCompagnie adminCompagnie;
 
 }

@@ -5,6 +5,7 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import org.odk.g1.pankuru.Entity.Enum.StatutAvion;
+import org.odk.g1.pankuru.Entity.Humain.AdminCompagnie;
 import org.odk.g1.pankuru.Entity.ReservationDeVol.Vol;
 
 import lombok.Data;
@@ -24,12 +25,13 @@ public class Avion {
     @Enumerated(EnumType.STRING)
     private StatutAvion statut = StatutAvion.DISPONIBLE;
 
-    @ManyToOne
-    @JoinColumn(name = "compagnie_id", nullable = false)
-    @JsonIgnore
-    private Compagnie compagnie;
-
     @JsonIgnore
     @ManyToMany(mappedBy = "avionList")
     private List<Vol> vol;
+
+    @ManyToOne
+    @JoinColumn(name = "adminCompagnie_id", nullable = false)
+    private AdminCompagnie adminCompagnie;
+
+    
 }

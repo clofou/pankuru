@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.odk.g1.pankuru.Entity.Humain.Personnel;
+import org.odk.g1.pankuru.Service.Service.CompagnieService;
 import org.odk.g1.pankuru.Service.Service.HumainService.PersonnelService;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,6 +18,7 @@ import lombok.AllArgsConstructor;
 public class PersonnelController {
     
     private final PersonnelService personnelService;
+    private final CompagnieService compagnieService;
 
     @PostMapping("/ajout")
     public Personnel ajouter(@RequestBody Personnel personnel){
@@ -25,7 +27,7 @@ public class PersonnelController {
 
     @GetMapping("/afficher")
     public List<Personnel> afficher(){
-        return personnelService.liste();
+        return compagnieService.getPersonnelByCompagnie();
     } 
 
     @GetMapping("/afficher/{id}")

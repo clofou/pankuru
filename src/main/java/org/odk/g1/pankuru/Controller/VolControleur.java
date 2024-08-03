@@ -2,6 +2,7 @@ package org.odk.g1.pankuru.Controller;
 
 import lombok.AllArgsConstructor;
 import org.odk.g1.pankuru.Entity.ReservationDeVol.Vol;
+import org.odk.g1.pankuru.Service.Service.CompagnieService;
 import org.odk.g1.pankuru.Service.Service.VolService;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,13 +16,15 @@ import java.util.Optional;
 
 public class VolControleur {
     private VolService volService;
+    private CompagnieService compagnieService;
+
     @PostMapping("/ajout")
     public Vol ajout(@RequestBody Vol vol){
         return volService.ajout(vol);
     }
     @GetMapping("/afficher")
     public List<Vol>lire(){
-        return volService.liste();
+        return compagnieService.getVolByCompagnie();
     }
 
     @GetMapping("/afficher/{id}")

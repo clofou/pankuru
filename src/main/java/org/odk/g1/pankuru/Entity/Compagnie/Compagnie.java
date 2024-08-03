@@ -51,15 +51,5 @@ public class Compagnie {
     
     @JsonIgnore
     @OneToMany(mappedBy = "compagnie")
-    private List<Personnel> personnelList;
-
-    
-    @JsonIgnore
-    @OneToMany(mappedBy = "compagnie")
-    private List<Avion> avionList;
-
-    
-    @JsonIgnore
-    @OneToMany(mappedBy = "compagnie")
     private List<AdminCompagnie> adminCompagnieList;
 }

@@ -3,6 +3,7 @@ package org.odk.g1.pankuru.Controller;
 import java.util.List;
 
 import org.odk.g1.pankuru.Entity.Localite.Pays;
+import org.odk.g1.pankuru.Service.Service.CompagnieService;
 import org.odk.g1.pankuru.Service.Service.PaysService;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,6 +17,7 @@ import lombok.AllArgsConstructor;
 public class PaysController {
     
     private final PaysService paysService;
+    private final CompagnieService compagnieService;
 
     @PostMapping("/ajout")
     public Pays ajouter(@RequestBody Pays pays){
@@ -24,7 +26,7 @@ public class PaysController {
 
     @GetMapping("/afficher")
     public List<Pays> afficher(){
-        return paysService.liste();
+        return compagnieService.getPaysByCompagnieId();
     } 
 
     @PutMapping("/modifier/{id}")

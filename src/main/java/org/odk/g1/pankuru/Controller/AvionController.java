@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.odk.g1.pankuru.Entity.Compagnie.Avion;
 import org.odk.g1.pankuru.Service.Service.AvionService;
+import org.odk.g1.pankuru.Service.Service.CompagnieService;
 import org.springframework.web.bind.annotation.*;
 
 import lombok.AllArgsConstructor;
@@ -16,6 +17,7 @@ import lombok.AllArgsConstructor;
 public class AvionController {
     
     private final AvionService avionService;
+    private final CompagnieService compagnieService;
 
     @PostMapping("/ajout")
     public Avion ajouter(@RequestBody Avion avion){
@@ -24,7 +26,7 @@ public class AvionController {
 
     @GetMapping("/afficher")
     public List<Avion> afficher(){
-        return avionService.liste();
+        return compagnieService.getAvionByCompagnie();
     } 
 
     @GetMapping("/afficher/{id}")

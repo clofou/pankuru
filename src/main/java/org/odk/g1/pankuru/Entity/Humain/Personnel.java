@@ -22,8 +22,8 @@ public class Personnel extends Personne {
     private boolean enService = false;
 
     @ManyToOne
-    @JoinColumn(name = "compagnie_id", nullable = false)
-    private Compagnie compagnie;
+    @JoinColumn(name = "adminCompagnie_id", nullable = false)
+    private AdminCompagnie adminCompagnie;
 
 
 }

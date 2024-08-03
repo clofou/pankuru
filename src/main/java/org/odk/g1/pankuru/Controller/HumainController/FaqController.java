@@ -3,6 +3,7 @@ package org.odk.g1.pankuru.Controller.HumainController;
 import java.util.List;
 
 import org.odk.g1.pankuru.Entity.Humain.Faq;
+import org.odk.g1.pankuru.Service.Service.CompagnieService;
 import org.odk.g1.pankuru.Service.Service.HumainService.FaqService;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,6 +16,7 @@ import lombok.AllArgsConstructor;
 public class FaqController {
 
     private final FaqService faqService;
+    private final CompagnieService compagnieService;
 
     @PostMapping("/ajout")
     public Faq ajouter(@RequestBody Faq faq){
@@ -23,7 +25,7 @@ public class FaqController {
 
     @GetMapping("/afficher")
     public List<Faq> afficher(){
-        return faqService.liste();
+        return compagnieService.getFaqByCompagnie();
     }
 
     @PutMapping("/modifier/{id}")

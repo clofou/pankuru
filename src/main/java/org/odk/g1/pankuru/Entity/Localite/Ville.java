@@ -3,6 +3,8 @@ package org.odk.g1.pankuru.Entity.Localite;
 
 import java.util.List;
 
+import org.odk.g1.pankuru.Entity.Humain.AdminCompagnie;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.*;
@@ -28,4 +30,8 @@ public class Ville {
     @JsonIgnore
     @OneToMany(mappedBy = "ville")
     private List<Aeroport> aeroportList;
+
+    @ManyToOne
+    @JoinColumn(name = "adminCompagnie_id", nullable = false)
+    private AdminCompagnie adminCompagnie;
 }

@@ -3,7 +3,6 @@ package org.odk.g1.pankuru.SecurityConfig;
 import lombok.AllArgsConstructor;
 
 import org.odk.g1.pankuru.Entity.Enum.EnumPermission;
-import org.odk.g1.pankuru.Service.Service.PermissionService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -40,14 +39,20 @@ public class SecurityConfig {
                 .cors(Customizer.withDefaults())
                 .authorizeHttpRequests(request->
                     {
+                        request.requestMatchers("/personne/connexion").permitAll();
                         for (RolePermissionDTO rolePermission : rolePermissions) {
+
                             if (rolePermission.getPermissionPermission() == EnumPermission.AFFICHER){
+                                System.out.println("/"+rolePermission.getPermissionEndpoint()+"/afficher/** "+ rolePermission.getRoleName());
                                 request.requestMatchers("/"+rolePermission.getPermissionEndpoint()+"/afficher/**").hasRole(rolePermission.getRoleName());
                             }else if (rolePermission.getPermissionPermission() == EnumPermission.AJOUT){
+                                System.out.println("/"+rolePermission.getPermissionEndpoint()+"/ajout/** "+ rolePermission.getRoleName());
                                 request.requestMatchers("/"+rolePermission.getPermissionEndpoint()+"/ajout").hasRole(rolePermission.getRoleName());
                             }else if (rolePermission.getPermissionPermission() == EnumPermission.MODIFIER){
+                                System.out.println("/"+rolePermission.getPermissionEndpoint()+"/modifier/** "+ rolePermission.getRoleName());
                                 request.requestMatchers("/"+rolePermission.getPermissionEndpoint()+"/modifier/*+").hasRole(rolePermission.getRoleName());
                             }else if (rolePermission.getPermissionPermission() == EnumPermission.SUPPRIMER){
+                                System.out.println("/"+rolePermission.getPermissionEndpoint()+"/supprimer/** "+ rolePermission.getRoleName());
                                 request.requestMatchers("/"+rolePermission.getPermissionEndpoint()+"/supprimer/*+").hasRole(rolePermission.getRoleName());
                             }
                         }
