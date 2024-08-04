@@ -1,6 +1,7 @@
 package org.odk.g1.pankuru.Controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.odk.g1.pankuru.Entity.Compagnie.Compagnie;
 import org.odk.g1.pankuru.Service.Service.CompagnieService;
@@ -25,7 +26,12 @@ public class CompagnieController {
     @GetMapping("/afficher")
     public List<Compagnie> afficher(){
         return compagnieService.liste();
-    } 
+    }
+
+    @GetMapping("/afficher/{id}")
+    public Optional<Compagnie> trouverParId(@PathVariable Integer id){
+        return compagnieService.trouverParId(id);
+    }
 
     @PutMapping("/modifier/{id}")
     public Compagnie modifier(@PathVariable Integer id,@RequestBody Compagnie compagnie){
@@ -33,7 +39,7 @@ public class CompagnieController {
     }
 
     @DeleteMapping("/supprimer/{id}")
-    public void supprimer(@PathVariable Integer id){
+    public void lockAndUnlock(@PathVariable Integer id){
         compagnieService.supprimer(id);
     }
 }

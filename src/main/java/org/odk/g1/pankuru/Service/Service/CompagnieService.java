@@ -10,6 +10,7 @@ import org.odk.g1.pankuru.Entity.Compagnie.Compagnie;
 import org.odk.g1.pankuru.Entity.Humain.AdminCompagnie;
 import org.odk.g1.pankuru.Entity.Humain.Faq;
 import org.odk.g1.pankuru.Entity.Humain.Personnel;
+import org.odk.g1.pankuru.Entity.Humain.SuperAdmin;
 import org.odk.g1.pankuru.Entity.Localite.Aeroport;
 import org.odk.g1.pankuru.Entity.Localite.Pays;
 import org.odk.g1.pankuru.Entity.Localite.Ville;
@@ -17,6 +18,7 @@ import org.odk.g1.pankuru.Entity.ReservationDeVol.Vol;
 import org.odk.g1.pankuru.Repository.*;
 import org.odk.g1.pankuru.Repository.HumainRepo.AdminCompagnieRepo;
 import org.odk.g1.pankuru.Repository.HumainRepo.PersonnelRepo;
+import org.odk.g1.pankuru.Repository.HumainRepo.SuperAdminRepo;
 import org.odk.g1.pankuru.Service.Interface.CrudService;
 import org.springframework.stereotype.Service;
 
@@ -33,6 +35,7 @@ public class CompagnieService implements CrudService<Compagnie, Integer>{
     private PaysRepository paysRepository;
     private VilleRepository villeRepository;
     private AvionRepository avionRepository;
+    private final SuperAdminRepo superAdminRepo;
     private PersonnelRepo personnelRepo;
     private VolRepository volRepository;
     private FaqRepository faqRepository;
@@ -107,7 +110,6 @@ public class CompagnieService implements CrudService<Compagnie, Integer>{
         return personnels;
     }
 
-
     public List<Faq> getFaqByCompagnie() {
         Integer compagnieId = userService.getCompagnieId();
 
@@ -139,6 +141,9 @@ public class CompagnieService implements CrudService<Compagnie, Integer>{
 
     @Override
     public Compagnie ajout(Compagnie compagnie) {
+        Long superAdminId = userService.getCurrentUsernameId();
+        Optional<SuperAdmin> superAdmin = superAdminRepo.findById(superAdminId);
+        superAdmin.ifPresent(compagnie::setSuperAdmin);
         return compagnieRepository.save(compagnie);
     }
 
@@ -170,6 +175,10 @@ public class CompagnieService implements CrudService<Compagnie, Integer>{
             compagnieAModifier.setSiteWeb(compagnie.getSiteWeb());
             compagnieAModifier.setNumeroLicence(compagnie.getNumeroLicence());
 
+            Long superAdminId = userService.getCurrentUsernameId();
+            Optional<SuperAdmin> superAdmin = superAdminRepo.findById(superAdminId);
+            superAdmin.ifPresent(compagnieAModifier::setSuperAdmin);
+
             return compagnieRepository.save(compagnieAModifier);
         } else {
             throw new IllegalArgumentException("La compagnie avec l'ID " + compagnie.getId() + " n'existe pas.");
@@ -178,7 +187,11 @@ public class CompagnieService implements CrudService<Compagnie, Integer>{
 
     @Override
     public void supprimer(Integer id) {
-        compagnieRepository.deleteById(id);
+        Optional<Compagnie> compagnieExistant = compagnieRepository.findById(id);
+        if (compagnieExistant.isPresent()){
+            Compagnie compagnie = compagnieExistant.get();
+            compagnie.setLocked(!compagnie.isLocked());
+        }
     }
     
 }

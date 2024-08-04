@@ -52,11 +52,11 @@ INSERT INTO super_admin (id,pseudo) VALUES ((SELECT id FROM personne WHERE email
 INSERT INTO super_admin (id,pseudo) VALUES ((SELECT id FROM personne WHERE email = 'madel.tito@example.com'),'madelTito');
 
 -- Insertion des compagnies
-INSERT INTO Compagnie (matricule, nom, logo_url, codeiata, codeicao, numero_telephone, email, site_web, numero_licence, super_admin_id)
-VALUES ('AF123', 'Air France', 'airfrance_logo.png', 123, 'AFR', '014567890', 'contact@airfrance.com', 'www.airfrance.com', 'AF123456', (SELECT id FROM super_admin WHERE pseudo = 'superadmin1'));
+INSERT INTO Compagnie (matricule, nom, logo_url, codeiata, codeicao, numero_telephone, email, site_web, numero_licence, super_admin_id, is_locked)
+VALUES ('AF123', 'Air France', 'airfrance_logo.png', 123, 'AFR', '014567890', 'contact@airfrance.com', 'www.airfrance.com', 'AF123456', (SELECT id FROM super_admin WHERE pseudo = 'superadmin1'), false);
 
-INSERT INTO Compagnie (matricule, nom, logo_url, codeiata, codeicao, numero_telephone, email, site_web, numero_licence, super_admin_id)
-VALUES ('BA456', 'British Airways', 'britishairways_logo.png', 456, 'BAW', '098765432', 'contact@britishairways.com', 'www.britishairways.com', 'BA456789', (SELECT id FROM super_admin WHERE pseudo = 'superadmin1'));
+INSERT INTO Compagnie (matricule, nom, logo_url, codeiata, codeicao, numero_telephone, email, site_web, numero_licence, super_admin_id, is_locked)
+VALUES ('BA456', 'British Airways', 'britishairways_logo.png', 456, 'BAW', '098765432', 'contact@britishairways.com', 'www.britishairways.com', 'BA456789', (SELECT id FROM super_admin WHERE pseudo = 'superadmin1'), false);
 
 
 -- Insertion des administrateurs de compagnies
@@ -291,10 +291,10 @@ INSERT INTO role_permission(role_id,permission_id) VALUES ((SELECT id FROM role 
 INSERT INTO role_permission(role_id,permission_id) VALUES ((SELECT id FROM role WHERE nom = 'ADMINCOMPAGNIE'),(SELECT id FROM permission WHERE end_point = 'admincompagnie' AND permission = 'MODIFIER'));
 INSERT INTO role_permission(role_id,permission_id) VALUES ((SELECT id FROM role WHERE nom = 'ADMINCOMPAGNIE'),(SELECT id FROM permission WHERE end_point = 'admincompagnie' AND permission = 'SUPPRIMER'));
 
-INSERT INTO role_permission(role_id,permission_id) VALUES ((SELECT id FROM role WHERE nom = 'ADMINCOMPAGNIE'),(SELECT id FROM permission WHERE end_point = 'compagnie' AND permission = 'AFFICHER'));
-INSERT INTO role_permission(role_id,permission_id) VALUES ((SELECT id FROM role WHERE nom = 'ADMINCOMPAGNIE'),(SELECT id FROM permission WHERE end_point = 'compagnie' AND permission = 'AJOUT'));
-INSERT INTO role_permission(role_id,permission_id) VALUES ((SELECT id FROM role WHERE nom = 'ADMINCOMPAGNIE'),(SELECT id FROM permission WHERE end_point = 'compagnie' AND permission = 'MODIFIER'));
-INSERT INTO role_permission(role_id,permission_id) VALUES ((SELECT id FROM role WHERE nom = 'ADMINCOMPAGNIE'),(SELECT id FROM permission WHERE end_point = 'compagnie' AND permission = 'SUPPRIMER'));
+INSERT INTO role_permission(role_id,permission_id) VALUES ((SELECT id FROM role WHERE nom = 'ADMIN'),(SELECT id FROM permission WHERE end_point = 'compagnie' AND permission = 'AFFICHER'));
+INSERT INTO role_permission(role_id,permission_id) VALUES ((SELECT id FROM role WHERE nom = 'ADMIN'),(SELECT id FROM permission WHERE end_point = 'compagnie' AND permission = 'AJOUT'));
+INSERT INTO role_permission(role_id,permission_id) VALUES ((SELECT id FROM role WHERE nom = 'ADMIN'),(SELECT id FROM permission WHERE end_point = 'compagnie' AND permission = 'MODIFIER'));
+INSERT INTO role_permission(role_id,permission_id) VALUES ((SELECT id FROM role WHERE nom = 'ADMIN'),(SELECT id FROM permission WHERE end_point = 'compagnie' AND permission = 'SUPPRIMER'));
 
 INSERT INTO role_permission(role_id,permission_id) VALUES ((SELECT id FROM role WHERE nom = 'ADMINCOMPAGNIE'),(SELECT id FROM permission WHERE end_point = 'personnel' AND permission = 'AFFICHER'));
 INSERT INTO role_permission(role_id,permission_id) VALUES ((SELECT id FROM role WHERE nom = 'ADMINCOMPAGNIE'),(SELECT id FROM permission WHERE end_point = 'personnel' AND permission = 'AJOUT'));

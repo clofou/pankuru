@@ -38,6 +38,7 @@ public class Compagnie {
     private String email;
     private String siteWeb;
     private String numeroLicence;
+    private boolean isLocked = false;
 
     @ManyToOne
     @JoinColumn(name = "superAdmin_id")
