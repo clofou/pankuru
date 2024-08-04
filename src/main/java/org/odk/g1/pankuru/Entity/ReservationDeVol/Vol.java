@@ -33,7 +33,7 @@ public class Vol {
     private StatutVol satut = StatutVol.EN_COURS;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "vol")
+    @OneToMany(mappedBy = "vol", cascade = CascadeType.REMOVE)
     private List<Reservation> reservationList;
 
     @ManyToMany

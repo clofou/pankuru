@@ -34,7 +34,7 @@ public class Reservation {
     private Vol vol;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "reservation")
+    @OneToMany(mappedBy = "reservation", cascade = CascadeType.REMOVE)
     private List<Passager> passagerList;
 
     @JsonIgnore

@@ -29,6 +29,6 @@ public class Passager {
     private Reservation reservation;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "passager")
+    @OneToMany(mappedBy = "passager", cascade = CascadeType.REMOVE)
     private List<Bagage> bagageList;
 }
