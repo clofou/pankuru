@@ -63,5 +63,9 @@ public class AdminCompagnie extends Personne {
     @OneToMany(mappedBy = "adminCompagnie")
     private List<Personnel> personnelList;
 
+    @ManyToOne
+    @JoinColumn(name = "superadmin_id")
+    private SuperAdmin superAdmin;
+
 
 }

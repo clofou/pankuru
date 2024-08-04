@@ -30,6 +30,6 @@ public class UserService {
     }
 
     public Integer getCompagnieId(){
-        return adminCompagnieRepository.findCompagnieById(getCurrentUsernameId());
+        return adminCompagnieRepository.findCompagnieIdByAdminId(getCurrentUsernameId());
     }
 }

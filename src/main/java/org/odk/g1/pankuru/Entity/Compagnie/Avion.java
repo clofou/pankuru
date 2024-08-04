@@ -30,7 +30,7 @@ public class Avion {
     private List<Vol> vol;
 
     @ManyToOne
-    @JoinColumn(name = "adminCompagnie_id", nullable = false)
+    @JoinColumn(name = "adminCompagnie_id")
     private AdminCompagnie adminCompagnie;
 
     

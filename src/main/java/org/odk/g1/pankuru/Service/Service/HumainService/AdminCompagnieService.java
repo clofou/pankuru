@@ -4,8 +4,11 @@ import java.util.List;
 import java.util.Optional;
 
 import org.odk.g1.pankuru.Entity.Humain.AdminCompagnie;
+import org.odk.g1.pankuru.Entity.Humain.SuperAdmin;
 import org.odk.g1.pankuru.Repository.HumainRepo.AdminCompagnieRepo;
+import org.odk.g1.pankuru.Repository.HumainRepo.SuperAdminRepo;
 import org.odk.g1.pankuru.Service.Interface.CrudService;
+import org.odk.g1.pankuru.Service.Service.UserService;
 import org.odk.g1.pankuru.Utils.UtilService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -19,6 +22,8 @@ public class AdminCompagnieService implements CrudService<AdminCompagnie, Long>{
 
     private final AdminCompagnieRepo adminCompagnieRepo;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
+    private final UserService userService;
+    private final SuperAdminRepo superAdminRepo;
 
     @Override
     public AdminCompagnie ajout(AdminCompagnie entity) {
@@ -34,6 +39,10 @@ public class AdminCompagnieService implements CrudService<AdminCompagnie, Long>{
 
         String encodePassword = bCryptPasswordEncoder.encode(entity.getPassword());
         entity.setPassword(encodePassword);
+
+        Long superAdminId = userService.getCurrentUsernameId();
+        Optional<SuperAdmin> superAdmin = superAdminRepo.findById(superAdminId);
+        superAdmin.ifPresent(entity::setSuperAdmin);
 
         return adminCompagnieRepo.save(entity);
     }

@@ -32,6 +32,6 @@ public class Ville {
     private List<Aeroport> aeroportList;
 
     @ManyToOne
-    @JoinColumn(name = "adminCompagnie_id", nullable = false)
+    @JoinColumn(name = "adminCompagnie_id")
     private AdminCompagnie adminCompagnie;
 }

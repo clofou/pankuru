@@ -40,7 +40,7 @@ public class Compagnie {
     private String numeroLicence;
 
     @ManyToOne
-    @JoinColumn(name = "superAdmin_id", nullable = false)
+    @JoinColumn(name = "superAdmin_id")
     private SuperAdmin superAdmin;
 
     

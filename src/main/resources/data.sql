@@ -27,22 +27,29 @@ INSERT INTO Role (nom) VALUES ('PERSONNEL');
 -- Insertion des personnes
 INSERT INTO Personne (nom, prenom, email, password, numero_de_telephone, adresse_id, role_id)
 VALUES ('Dupont', 'Jean', 'jean.dupont@example.com', '$2a$12$vDyegFIXdomnwp.zcE3fOOpOz0c585DC5vg/LWfpzDp0uBrymhnra', '0123456789', (SELECT id FROM Adresse WHERE rue = '1 Avenue des Champs-Élysées'), (SELECT id FROM Role WHERE nom = 'ADMIN'));
-
 INSERT INTO Personne (nom, prenom, email, password, numero_de_telephone, adresse_id, role_id)
 VALUES ('Traore', 'Issa', 'issa1.dupont@example.com', '$2a$12$vDyegFIXdomnwp.zcE3fOOpOz0c585DC5vg/LWfpzDp0uBrymhnra', '0123456789', (SELECT id FROM Adresse WHERE rue = 'Hamdallaye ACI1'), (SELECT id FROM Role WHERE nom = 'PERSONNEL'));
-
 INSERT INTO Personne (nom, prenom, email, password, numero_de_telephone, adresse_id, role_id)
 VALUES ('Smith', 'John', 'john.smith@example.com', '$2a$12$vDyegFIXdomnwp.zcE3fOOpOz0c585DC5vg/LWfpzDp0uBrymhnra', '0987654321', (SELECT id FROM Adresse WHERE rue = '2 Heathrow Road'), (SELECT id FROM Role WHERE nom = 'USER'));
 INSERT INTO Personne (nom, prenom, email, password, numero_de_telephone, adresse_id, role_id)
-VALUES ('Issa', 'Liam', 'lol@example.com', '$2a$12$vDyegFIXdomnwp.zcE3fOOpOz0c585DC5vg/LWfpzDp0uBrymhnra', '0987654321', (SELECT id FROM Adresse WHERE rue = 'Bamako Lafiabougou'), (SELECT id FROM Role WHERE nom = 'USER'));
+VALUES ('Issa', 'Liam', 'lol@example.com', '$2a$12$vDyegFIXdomnwp.zcE3fOOpOz0c585DC5vg/LWfpzDp0uBrymhnra', '0987654321', (SELECT id FROM Adresse WHERE rue = 'Bamako Lafiabougou'), (SELECT id FROM Role WHERE nom = 'ADMINCOMPAGNIE'));
 INSERT INTO Personne (nom, prenom, email, password, numero_de_telephone, adresse_id, role_id)
 VALUES ('Mamadou', 'Thiam', 'lol1@example.com', '$2a$12$vDyegFIXdomnwp.zcE3fOOpOz0c585DC5vg/LWfpzDp0uBrymhnra', '0987654321', (SELECT id FROM Adresse WHERE rue = 'Hamdallaye ACI'), (SELECT id FROM Role WHERE nom = 'USER'));
 INSERT INTO Personne (nom, prenom, email, password, numero_de_telephone, adresse_id, role_id)
 VALUES ('Tienou', 'Ali', 'lol2@example.com', '$2a$12$vDyegFIXdomnwp.zcE3fOOpOz0c585DC5vg/LWfpzDp0uBrymhnra', '0987654321', (SELECT id FROM Adresse WHERE rue = 'Banconi'), (SELECT id FROM Role WHERE nom = 'PERSONNEL'));
 INSERT INTO Personne (nom, prenom, email, password, numero_de_telephone, adresse_id, role_id)
 VALUES ('Lead', 'Lo', 'lol67@example.com', '$2a$12$vDyegFIXdomnwp.zcE3fOOpOz0c585DC5vg/LWfpzDp0uBrymhnra', '0987654321', (SELECT id FROM Adresse WHERE rue = 'Banconi1'), (SELECT id FROM Role WHERE nom = 'ADMINCOMPAGNIE'));
+INSERT INTO Personne (nom, prenom, email, password, numero_de_telephone, adresse_id, role_id)
+VALUES ('Bamadou', 'Traore', 'mamadou@gmail.com', '$2a$12$vDyegFIXdomnwp.zcE3fOOpOz0c585DC5vg/LWfpzDp0uBrymhnra', '0987654321', (SELECT id FROM Adresse WHERE rue = 'Banconi1'), (SELECT id FROM Role WHERE nom = 'ADMINCOMPAGNIE'));
+INSERT INTO Personne (nom, prenom, email, password, numero_de_telephone, adresse_id, role_id)
+VALUES ('Babou', 'Traore', 'babou@example.com', '$2a$12$vDyegFIXdomnwp.zcE3fOOpOz0c585DC5vg/LWfpzDp0uBrymhnra', '0987654321', (SELECT id FROM Adresse WHERE rue = 'Bamako Lafiabougou'), (SELECT id FROM Role WHERE nom = 'ADMINCOMPAGNIE'));
+INSERT INTO Personne (nom, prenom, email, password, numero_de_telephone, adresse_id, role_id)
+VALUES ('Madel', 'Tito', 'madel.tito@example.com', '$2a$12$vDyegFIXdomnwp.zcE3fOOpOz0c585DC5vg/LWfpzDp0uBrymhnra', '2237665478', (SELECT id FROM Adresse WHERE rue = 'Bamako Lafiabougou'), (SELECT id FROM Role WHERE nom = 'ADMIN'));
+
+
 -- Insertion des super administrateurs
 INSERT INTO super_admin (id,pseudo) VALUES ((SELECT id FROM personne WHERE email = 'jean.dupont@example.com'),'superadmin1');
+INSERT INTO super_admin (id,pseudo) VALUES ((SELECT id FROM personne WHERE email = 'madel.tito@example.com'),'madelTito');
 
 -- Insertion des compagnies
 INSERT INTO Compagnie (matricule, nom, logo_url, codeiata, codeicao, numero_telephone, email, site_web, numero_licence, super_admin_id)
@@ -53,7 +60,13 @@ VALUES ('BA456', 'British Airways', 'britishairways_logo.png', 456, 'BAW', '0987
 
 
 -- Insertion des administrateurs de compagnies
-INSERT INTO admin_compagnie (id, pseudo, compagnie_id) VALUES ((SELECT id FROM personne WHERE nom = 'Lead'),'admin1', (SELECT id FROM Compagnie WHERE matricule = 'AF123'));
+INSERT INTO admin_compagnie (id, pseudo, compagnie_id, superadmin_id) VALUES ((SELECT id FROM personne WHERE nom = 'Lead'),'admin1c1', (SELECT id FROM Compagnie WHERE matricule = 'AF123'), (SELECT id FROM super_admin WHERE pseudo = 'superadmin1'));
+-- Insertion des administrateurs de compagnies
+INSERT INTO admin_compagnie (id, pseudo, compagnie_id, superadmin_id) VALUES ((SELECT id FROM personne WHERE nom = 'Bamadou'),'admin2c1', (SELECT id FROM Compagnie WHERE matricule = 'AF123'), (SELECT id FROM super_admin WHERE pseudo = 'superadmin1'));
+-- Insertion des administrateurs de compagnies
+INSERT INTO admin_compagnie (id, pseudo, compagnie_id, superadmin_id) VALUES ((SELECT id FROM personne WHERE nom = 'Babou'),'admin1c2', (SELECT id FROM Compagnie WHERE matricule = 'BA456'), (SELECT id FROM super_admin WHERE pseudo = 'superadmin1'));
+-- Insertion des administrateurs de compagnies
+INSERT INTO admin_compagnie (id, pseudo, compagnie_id, superadmin_id) VALUES ((SELECT id FROM personne WHERE nom = 'Issa'),'admin2c2', (SELECT id FROM Compagnie WHERE matricule = 'BA456'), (SELECT id FROM super_admin WHERE pseudo = 'madelTito'));
 
 
 -- Insertion des pays
@@ -136,6 +149,13 @@ VALUES ((SELECT id FROM personne WHERE nom = 'Issa'),'2024-01-15', 'Pilot', TRUE
 
 -- Affectation d'un vol à un avion
 INSERT INTO vol_avion(vol_id, avion_id) VALUES ((select id from vol where aeroportdarrivee='SKY MALI AIRPORT'),(select id from avion where matricule='AF001'));
+
+INSERT INTO faq(question_categorie, reponse, admin_compagnie_id) VALUES ('Cest Quoi le prix de la classe Buissness', 'Le Prix de la classe Buissness est de 100$',(SELECT id FROM personne WHERE nom = 'Lead'));
+INSERT INTO faq(question_categorie, reponse, admin_compagnie_id) VALUES ('Combien de passager par reservation', 'Le nombre de passager par reservation peut varier en fonction du nombre de paiement',(SELECT id FROM personne WHERE nom = 'Lead'));
+INSERT INTO faq(question_categorie, reponse, admin_compagnie_id) VALUES ('Les toilettes', 'Les toilettes se trouvent derriere les position hubot',(SELECT id FROM personne WHERE nom = 'Babou'));
+INSERT INTO faq(question_categorie, reponse, admin_compagnie_id) VALUES ('Reserver via le site', 'Notre site web est disponible pour tout un chacun a ladresse bar.com',(SELECT id FROM personne WHERE nom = 'Issa'));
+
+
 
 INSERT INTO permission(end_point,permission) VALUES ('admincompagnie', 'AJOUT');
 INSERT INTO permission(end_point,permission) VALUES ('admincompagnie', 'MODIFIER');

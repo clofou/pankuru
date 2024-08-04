@@ -4,7 +4,9 @@ import java.util.List;
 import java.util.Optional;
 
 import org.odk.g1.pankuru.Entity.Compagnie.Avion;
+import org.odk.g1.pankuru.Entity.Humain.AdminCompagnie;
 import org.odk.g1.pankuru.Repository.AvionRepository;
+import org.odk.g1.pankuru.Repository.HumainRepo.AdminCompagnieRepo;
 import org.odk.g1.pankuru.Service.Interface.CrudService;
 import org.springframework.stereotype.Service;
 
@@ -15,9 +17,15 @@ import lombok.AllArgsConstructor;
 public class AvionService implements CrudService<Avion, Integer>{
 
     private final AvionRepository avionRepository;
+    private final UserService userService;
+    private final AdminCompagnieRepo adminCompagnieRepo;
 
     @Override
     public Avion ajout(Avion avion) {
+        Long adminCompagnieId = userService.getCurrentUsernameId();
+        Optional<AdminCompagnie> adminCompagnie1 = adminCompagnieRepo.findById(adminCompagnieId);
+        adminCompagnie1.ifPresent(avion::setAdminCompagnie);
+
         return avionRepository.save(avion);
     }
 

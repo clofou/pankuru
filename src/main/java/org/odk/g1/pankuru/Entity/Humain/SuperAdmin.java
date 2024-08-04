@@ -19,4 +19,8 @@ public class SuperAdmin extends Personne{
     @JsonIgnore
     @OneToMany(mappedBy = "superAdmin")
     private List<Compagnie> compagnieList;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "superAdmin")
+    private List<AdminCompagnie> adminCompagnieList;
 }

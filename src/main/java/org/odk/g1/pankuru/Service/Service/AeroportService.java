@@ -3,8 +3,10 @@ package org.odk.g1.pankuru.Service.Service;
 import java.util.List;
 import java.util.Optional;
 
+import org.odk.g1.pankuru.Entity.Humain.AdminCompagnie;
 import org.odk.g1.pankuru.Entity.Localite.Aeroport;
 import org.odk.g1.pankuru.Repository.AeroportRepository;
+import org.odk.g1.pankuru.Repository.HumainRepo.AdminCompagnieRepo;
 import org.odk.g1.pankuru.Service.Interface.CrudService;
 import org.springframework.stereotype.Service;
 
@@ -15,9 +17,16 @@ import lombok.AllArgsConstructor;
 public class AeroportService implements CrudService<Aeroport, Long>{
 
     private final AeroportRepository aeroportRepository;
+    private final UserService userService;
+    private final AdminCompagnieRepo adminCompagnieRepo;
 
     @Override
     public Aeroport ajout(Aeroport aeroport) {
+        Long idadminCompagnie = userService.getCurrentUsernameId();
+        System.out.println(idadminCompagnie);
+        Optional<AdminCompagnie> adminCompagnie = adminCompagnieRepo.findById(idadminCompagnie);
+        adminCompagnie.ifPresent(aeroport::setAdminCompagnie);
+
         return aeroportRepository.save(aeroport);
     }
 

@@ -40,10 +40,6 @@ public class Personne implements UserDetails {
     private Role role;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "personne")
-    private List<Audit> auditList;
-
-    @JsonIgnore
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return Collections.singletonList(new SimpleGrantedAuthority("ROLE_"+this.role.getNom()));
@@ -59,23 +55,4 @@ public class Personne implements UserDetails {
         return email;
     }
 
-    @Override
-    public boolean isAccountNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isAccountNonLocked() {
-        return true;
-    }
-
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isEnabled() {
-        return true;
-    }
 }

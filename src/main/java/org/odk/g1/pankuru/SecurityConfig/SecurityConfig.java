@@ -50,10 +50,10 @@ public class SecurityConfig {
                                 request.requestMatchers("/"+rolePermission.getPermissionEndpoint()+"/ajout").hasRole(rolePermission.getRoleName());
                             }else if (rolePermission.getPermissionPermission() == EnumPermission.MODIFIER){
                                 System.out.println("/"+rolePermission.getPermissionEndpoint()+"/modifier/** "+ rolePermission.getRoleName());
-                                request.requestMatchers("/"+rolePermission.getPermissionEndpoint()+"/modifier/*+").hasRole(rolePermission.getRoleName());
+                                request.requestMatchers("/"+rolePermission.getPermissionEndpoint()+"/modifier/**").hasRole(rolePermission.getRoleName());
                             }else if (rolePermission.getPermissionPermission() == EnumPermission.SUPPRIMER){
                                 System.out.println("/"+rolePermission.getPermissionEndpoint()+"/supprimer/** "+ rolePermission.getRoleName());
-                                request.requestMatchers("/"+rolePermission.getPermissionEndpoint()+"/supprimer/*+").hasRole(rolePermission.getRoleName());
+                                request.requestMatchers("/"+rolePermission.getPermissionEndpoint()+"/supprimer/**").hasRole(rolePermission.getRoleName());
                             }
                         }
                         request.anyRequest().authenticated();

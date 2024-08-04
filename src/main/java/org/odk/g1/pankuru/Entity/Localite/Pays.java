@@ -23,6 +23,6 @@ public class Pays {
     private List<Ville> villeList;
 
     @ManyToOne
-    @JoinColumn(name = "adminCompagnie_id", nullable = false)
+    @JoinColumn(name = "adminCompagnie_id")
     private AdminCompagnie adminCompagnie;
 }

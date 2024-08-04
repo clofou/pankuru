@@ -25,12 +25,9 @@ public class Vol {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String numeroDeVol;
-    @Column(nullable = false)
     private String aeroportDepart;
-    @Column(nullable = false)
     private String aeroportDArrivee;
     private Date dateEtHeureArrivee;
-    @Column(nullable = false)
     private Date dateEtHeureDepart;
     @Enumerated(EnumType.STRING)
     private StatutVol satut = StatutVol.EN_COURS;
@@ -52,7 +49,7 @@ public class Vol {
     private List<Aeroport> aeroportList;
 
     @ManyToOne
-    @JoinColumn(name = "adminCompagnie_id", nullable = false)
+    @JoinColumn(name = "adminCompagnie_id")
     private AdminCompagnie adminCompagnie;
 
 }
