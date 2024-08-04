@@ -19,6 +19,7 @@ public class AvionService implements CrudService<Avion, Integer>{
     private final AvionRepository avionRepository;
     private final UserService userService;
     private final AdminCompagnieRepo adminCompagnieRepo;
+    private final CompagnieService compagnieService;
 
     @Override
     public Avion ajout(Avion avion) {
@@ -36,28 +37,45 @@ public class AvionService implements CrudService<Avion, Integer>{
 
     @Override
     public Optional<Avion> trouverParId(Integer id) {
-        return avionRepository.findById(id);
+        Optional<Avion> avion = avionRepository.findById(id);
+        if (avion.isPresent()) {
+            if(compagnieService.getAvionByCompagnie().contains(avion.get())){
+                return avionRepository.findById(id);
+            }
+        }
+        return Optional.empty();
     }
 
     @Override
     public Avion misAJour(Avion avion, Integer Id) {
-        Optional<Avion> avionExistant = avionRepository.findById(Id);
-        if (avionExistant.isPresent()) {
-            Avion avionAModifier = avionExistant.get();
-            avionAModifier.setMatricule(avion.getMatricule());
-            avionAModifier.setCapaciteTotale(avion.getCapaciteTotale());
-            avionAModifier.setNom(avion.getNom());
-            avionAModifier.setStatut(avion.getStatut());
+        Optional<Avion> avion1 = avionRepository.findById(Id);
+        if (avion1.isPresent()) {
+            if(compagnieService.getAvionByCompagnie().contains(avion1.get())){
+                Optional<Avion> avionExistant = avionRepository.findById(Id);
+                if (avionExistant.isPresent()) {
+                    Avion avionAModifier = avionExistant.get();
+                    avionAModifier.setMatricule(avion.getMatricule());
+                    avionAModifier.setCapaciteTotale(avion.getCapaciteTotale());
+                    avionAModifier.setNom(avion.getNom());
+                    avionAModifier.setStatut(avion.getStatut());
 
-            return avionRepository.save(avionAModifier);
-        } else {
-            throw new IllegalArgumentException("L'avion avec l'ID " + avion.getId() + "n'existe pas.");
+                    return avionRepository.save(avionAModifier);
+                } else {
+                    throw new IllegalArgumentException("L'avion avec l'ID " + avion.getId() + "n'existe pas.");
+                }
+            }
         }
+        return null;
     }
 
     @Override
     public void supprimer(Integer id) {
-        avionRepository.deleteById(id);
+        Optional<Avion> avion = avionRepository.findById(id);
+        if (avion.isPresent()) {
+            if(compagnieService.getAvionByCompagnie().contains(avion.get())){
+                avionRepository.deleteById(id);
+            }
+        }
     }
 
     

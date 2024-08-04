@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import org.odk.g1.pankuru.Entity.Enum.StatutAvion;
 import org.odk.g1.pankuru.Entity.Humain.AdminCompagnie;
+import org.odk.g1.pankuru.Entity.ReservationDeVol.Siege;
 import org.odk.g1.pankuru.Entity.ReservationDeVol.Vol;
 
 import lombok.Data;
@@ -32,6 +33,9 @@ public class Avion {
     @ManyToOne
     @JoinColumn(name = "adminCompagnie_id")
     private AdminCompagnie adminCompagnie;
+
+    @OneToMany(mappedBy = "avion")
+    private List<Siege> siegeList;
 
     
 }

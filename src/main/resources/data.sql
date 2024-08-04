@@ -104,9 +104,6 @@ INSERT INTO position_siege(nom, tarif, classe_siege_id) VALUES ('25E', 2000, (se
 INSERT INTO position_siege(nom, tarif, classe_siege_id) VALUES ('24E', 5000, (select id from classe_siege where nom='AFFAIRE'));
 INSERT INTO position_siege(nom, tarif, classe_siege_id) VALUES ('23B', 2000, (select id from classe_siege where nom='ECONOMIQUE'));
 
-INSERT INTO siege(numero, position_siege_id) VALUES (25, (select id from position_siege where nom='25E'));
-INSERT INTO siege(numero, position_siege_id) VALUES (26, (select id from position_siege where nom='23B'));
-
 -- Insertion des vols
 INSERT INTO vol(aeroportdarrivee, aeroport_depart, date_et_heure_arrivee, date_et_heure_depart, numero_de_vol, satut, admin_compagnie_id) VALUES ('SKY MALI AIRPORT', 'AIR FRANCE AIRPORT', '2024-11-12', '2024-11-11', 'b500', 'EN_COURS', (SELECT id FROM personne WHERE nom = 'Lead'));
 INSERT INTO vol(aeroportdarrivee, aeroport_depart, date_et_heure_arrivee, date_et_heure_depart, numero_de_vol, satut, admin_compagnie_id) VALUES ('SKY MALI AIRPORT1', 'AIR FRANCE AIRPORT2', '2024-11-12', '2024-11-11', 'b500', 'EN_COURS', (SELECT id FROM personne WHERE nom = 'Lead'));
@@ -119,6 +116,10 @@ VALUES ('AF001', 200, 'Boeing 777', 'DISPONIBLE', (SELECT id FROM personne WHERE
 
 INSERT INTO Avion (matricule, capacite_totale, nom, statut, admin_compagnie_id)
 VALUES ('BA002', 150, 'Airbus A320', 'MAINTENANCE', (SELECT id FROM personne WHERE nom = 'Lead'));
+
+INSERT INTO siege(numero, position_siege_id, avion_id) VALUES (25, (select id from position_siege where nom='25E'), (select id from avion where matricule='AF001'));
+INSERT INTO siege(numero, position_siege_id, avion_id) VALUES (26, (select id from position_siege where nom='23B'), (select id from avion where matricule='AF001'));
+
 
 -- Insertion des contrats
 INSERT INTO Contrat (type, description, date_debut, date_fin, statut, cgu, commentaires, compagnie_id)
@@ -207,11 +208,6 @@ INSERT INTO permission(end_point,permission) VALUES ('avion', 'MODIFIER');
 INSERT INTO permission(end_point,permission) VALUES ('avion', 'SUPPRIMER');
 INSERT INTO permission(end_point,permission) VALUES ('avion', 'AFFICHER');
 
-INSERT INTO permission(end_point,permission) VALUES ('bagage', 'AJOUT');
-INSERT INTO permission(end_point,permission) VALUES ('bagage', 'MODIFIER');
-INSERT INTO permission(end_point,permission) VALUES ('bagage', 'SUPPRIMER');
-INSERT INTO permission(end_point,permission) VALUES ('bagage', 'AFFICHER');
-
 INSERT INTO permission(end_point,permission) VALUES ('classe', 'AJOUT');
 INSERT INTO permission(end_point,permission) VALUES ('classe', 'MODIFIER');
 INSERT INTO permission(end_point,permission) VALUES ('classe', 'SUPPRIMER');
@@ -277,6 +273,22 @@ INSERT INTO permission(end_point,permission) VALUES ('vol', 'MODIFIER');
 INSERT INTO permission(end_point,permission) VALUES ('vol', 'SUPPRIMER');
 INSERT INTO permission(end_point,permission) VALUES ('vol', 'AFFICHER');
 
+INSERT INTO permission(end_point,permission) VALUES ('carteBancaire', 'AJOUT');
+INSERT INTO permission(end_point,permission) VALUES ('carteBancaire', 'MODIFIER');
+INSERT INTO permission(end_point,permission) VALUES ('carteBancaire', 'SUPPRIMER');
+INSERT INTO permission(end_point,permission) VALUES ('carteBancaire', 'AFFICHER');
+
+INSERT INTO permission(end_point,permission) VALUES ('mobileMoney', 'AJOUT');
+INSERT INTO permission(end_point,permission) VALUES ('mobileMoney', 'MODIFIER');
+INSERT INTO permission(end_point,permission) VALUES ('mobileMoney', 'SUPPRIMER');
+INSERT INTO permission(end_point,permission) VALUES ('mobileMoney', 'AFFICHER');
+
+INSERT INTO permission(end_point,permission) VALUES ('bagage', 'AJOUT');
+INSERT INTO permission(end_point,permission) VALUES ('bagage', 'MODIFIER');
+INSERT INTO permission(end_point,permission) VALUES ('bagage', 'SUPPRIMER');
+INSERT INTO permission(end_point,permission) VALUES ('bagage', 'AFFICHER');
+
+
 INSERT INTO role_permission(role_id,permission_id) VALUES ((SELECT id FROM role WHERE nom = 'ADMIN'),(SELECT id FROM permission WHERE end_point = 'superadmin' AND permission = 'AFFICHER'));
 INSERT INTO role_permission(role_id,permission_id) VALUES ((SELECT id FROM role WHERE nom = 'ADMIN'),(SELECT id FROM permission WHERE end_point = 'superadmin' AND permission = 'AJOUT'));
 INSERT INTO role_permission(role_id,permission_id) VALUES ((SELECT id FROM role WHERE nom = 'ADMIN'),(SELECT id FROM permission WHERE end_point = 'superadmin' AND permission = 'MODIFIER'));
@@ -310,6 +322,26 @@ INSERT INTO role_permission(role_id,permission_id) VALUES ((SELECT id FROM role 
 INSERT INTO role_permission(role_id,permission_id) VALUES ((SELECT id FROM role WHERE nom = 'ADMINCOMPAGNIE'),(SELECT id FROM permission WHERE end_point = 'vol' AND permission = 'AJOUT'));
 INSERT INTO role_permission(role_id,permission_id) VALUES ((SELECT id FROM role WHERE nom = 'ADMINCOMPAGNIE'),(SELECT id FROM permission WHERE end_point = 'vol' AND permission = 'MODIFIER'));
 INSERT INTO role_permission(role_id,permission_id) VALUES ((SELECT id FROM role WHERE nom = 'ADMINCOMPAGNIE'),(SELECT id FROM permission WHERE end_point = 'vol' AND permission = 'SUPPRIMER'));
+
+INSERT INTO role_permission(role_id,permission_id) VALUES ((SELECT id FROM role WHERE nom = 'ADMINCOMPAGNIE'),(SELECT id FROM permission WHERE end_point = 'siege' AND permission = 'AFFICHER'));
+INSERT INTO role_permission(role_id,permission_id) VALUES ((SELECT id FROM role WHERE nom = 'ADMINCOMPAGNIE'),(SELECT id FROM permission WHERE end_point = 'siege' AND permission = 'AJOUT'));
+INSERT INTO role_permission(role_id,permission_id) VALUES ((SELECT id FROM role WHERE nom = 'ADMINCOMPAGNIE'),(SELECT id FROM permission WHERE end_point = 'siege' AND permission = 'MODIFIER'));
+INSERT INTO role_permission(role_id,permission_id) VALUES ((SELECT id FROM role WHERE nom = 'ADMINCOMPAGNIE'),(SELECT id FROM permission WHERE end_point = 'siege' AND permission = 'SUPPRIMER'));
+
+INSERT INTO role_permission(role_id,permission_id) VALUES ((SELECT id FROM role WHERE nom = 'USER'),(SELECT id FROM permission WHERE end_point = 'carteBancaire' AND permission = 'AFFICHER'));
+INSERT INTO role_permission(role_id,permission_id) VALUES ((SELECT id FROM role WHERE nom = 'USER'),(SELECT id FROM permission WHERE end_point = 'carteBancaire' AND permission = 'AJOUT'));
+INSERT INTO role_permission(role_id,permission_id) VALUES ((SELECT id FROM role WHERE nom = 'USER'),(SELECT id FROM permission WHERE end_point = 'carteBancaire' AND permission = 'MODIFIER'));
+INSERT INTO role_permission(role_id,permission_id) VALUES ((SELECT id FROM role WHERE nom = 'USER'),(SELECT id FROM permission WHERE end_point = 'carteBancaire' AND permission = 'SUPPRIMER'));
+
+INSERT INTO role_permission(role_id,permission_id) VALUES ((SELECT id FROM role WHERE nom = 'USER'),(SELECT id FROM permission WHERE end_point = 'bagage' AND permission = 'AFFICHER'));
+INSERT INTO role_permission(role_id,permission_id) VALUES ((SELECT id FROM role WHERE nom = 'USER'),(SELECT id FROM permission WHERE end_point = 'bagage' AND permission = 'AJOUT'));
+INSERT INTO role_permission(role_id,permission_id) VALUES ((SELECT id FROM role WHERE nom = 'USER'),(SELECT id FROM permission WHERE end_point = 'bagage' AND permission = 'MODIFIER'));
+INSERT INTO role_permission(role_id,permission_id) VALUES ((SELECT id FROM role WHERE nom = 'USER'),(SELECT id FROM permission WHERE end_point = 'bagage' AND permission = 'SUPPRIMER'));
+
+INSERT INTO role_permission(role_id,permission_id) VALUES ((SELECT id FROM role WHERE nom = 'USER'),(SELECT id FROM permission WHERE end_point = 'mobileMoney' AND permission = 'AFFICHER'));
+INSERT INTO role_permission(role_id,permission_id) VALUES ((SELECT id FROM role WHERE nom = 'USER'),(SELECT id FROM permission WHERE end_point = 'mobileMoney' AND permission = 'AJOUT'));
+INSERT INTO role_permission(role_id,permission_id) VALUES ((SELECT id FROM role WHERE nom = 'USER'),(SELECT id FROM permission WHERE end_point = 'mobileMoney' AND permission = 'MODIFIER'));
+INSERT INTO role_permission(role_id,permission_id) VALUES ((SELECT id FROM role WHERE nom = 'USER'),(SELECT id FROM permission WHERE end_point = 'mobileMoney' AND permission = 'SUPPRIMER'));
 
 INSERT INTO role_permission(role_id,permission_id) VALUES ((SELECT id FROM role WHERE nom = 'ADMINCOMPAGNIE'),(SELECT id FROM permission WHERE end_point = 'aeroport' AND permission = 'AFFICHER'));
 INSERT INTO role_permission(role_id,permission_id) VALUES ((SELECT id FROM role WHERE nom = 'ADMINCOMPAGNIE'),(SELECT id FROM permission WHERE end_point = 'aeroport' AND permission = 'AJOUT'));
@@ -371,10 +403,10 @@ INSERT INTO role_permission(role_id,permission_id) VALUES ((SELECT id FROM role 
 INSERT INTO role_permission(role_id,permission_id) VALUES ((SELECT id FROM role WHERE nom = 'ADMINCOMPAGNIE'),(SELECT id FROM permission WHERE end_point = 'bagage' AND permission = 'MODIFIER'));
 INSERT INTO role_permission(role_id,permission_id) VALUES ((SELECT id FROM role WHERE nom = 'ADMINCOMPAGNIE'),(SELECT id FROM permission WHERE end_point = 'bagage' AND permission = 'SUPPRIMER'));
 
-INSERT INTO role_permission(role_id,permission_id) VALUES ((SELECT id FROM role WHERE nom = 'ADMINCOMPAGNIE'),(SELECT id FROM permission WHERE end_point = 'utilisateur' AND permission = 'AFFICHER'));
-INSERT INTO role_permission(role_id,permission_id) VALUES ((SELECT id FROM role WHERE nom = 'ADMINCOMPAGNIE'),(SELECT id FROM permission WHERE end_point = 'utilisateur' AND permission = 'AJOUT'));
-INSERT INTO role_permission(role_id,permission_id) VALUES ((SELECT id FROM role WHERE nom = 'ADMINCOMPAGNIE'),(SELECT id FROM permission WHERE end_point = 'utilisateur' AND permission = 'MODIFIER'));
-INSERT INTO role_permission(role_id,permission_id) VALUES ((SELECT id FROM role WHERE nom = 'ADMINCOMPAGNIE'),(SELECT id FROM permission WHERE end_point = 'utilisateur' AND permission = 'SUPPRIMER'));
+INSERT INTO role_permission(role_id,permission_id) VALUES ((SELECT id FROM role WHERE nom = 'ADMIN'),(SELECT id FROM permission WHERE end_point = 'utilisateur' AND permission = 'AFFICHER'));
+INSERT INTO role_permission(role_id,permission_id) VALUES ((SELECT id FROM role WHERE nom = 'USER'),(SELECT id FROM permission WHERE end_point = 'utilisateur' AND permission = 'AJOUT'));
+INSERT INTO role_permission(role_id,permission_id) VALUES ((SELECT id FROM role WHERE nom = 'USER'),(SELECT id FROM permission WHERE end_point = 'utilisateur' AND permission = 'MODIFIER'));
+INSERT INTO role_permission(role_id,permission_id) VALUES ((SELECT id FROM role WHERE nom = 'USER'),(SELECT id FROM permission WHERE end_point = 'utilisateur' AND permission = 'SUPPRIMER'));
 
 INSERT INTO role_permission(role_id,permission_id) VALUES ((SELECT id FROM role WHERE nom = 'ADMINCOMPAGNIE'),(SELECT id FROM permission WHERE end_point = 'role' AND permission = 'AFFICHER'));
 INSERT INTO role_permission(role_id,permission_id) VALUES ((SELECT id FROM role WHERE nom = 'ADMINCOMPAGNIE'),(SELECT id FROM permission WHERE end_point = 'role' AND permission = 'AJOUT'));

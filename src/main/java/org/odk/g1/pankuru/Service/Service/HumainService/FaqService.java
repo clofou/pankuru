@@ -3,6 +3,7 @@ package org.odk.g1.pankuru.Service.Service.HumainService;
 import lombok.AllArgsConstructor;
 import org.odk.g1.pankuru.Entity.Humain.AdminCompagnie;
 import org.odk.g1.pankuru.Entity.Humain.Faq;
+import org.odk.g1.pankuru.Entity.ReservationDeVol.Vol;
 import org.odk.g1.pankuru.Repository.HumainRepo.AdminCompagnieRepo;
 import org.odk.g1.pankuru.Repository.HumainRepo.FaqRepo;
 import org.odk.g1.pankuru.Service.Interface.CrudService;
@@ -47,21 +48,32 @@ public class FaqService implements CrudService<Faq, Integer> {
 
     @Override
     public Faq misAJour(Faq entity, Integer Id) {
-        Optional<Faq> faqExistant = faqRepo.findById(Id);
-        if (faqExistant.isPresent()) {
-            Faq faqAModifier = faqExistant.get();
-            faqAModifier.setAdminCompagnie(entity.getAdminCompagnie());
-            faqAModifier.setReponse(entity.getReponse());
-            faqAModifier.setQuestionCategorie(entity.getQuestionCategorie());
-            return faqRepo.save(faqAModifier);
-        } else {
-            throw new IllegalArgumentException("Le faq avec l'ID " + entity.getId() + "n'existe pas.");
+        Optional<Faq> faq = faqRepo.findById(Id);
+        if (faq.isPresent()) {
+            if(compagnieService.getFaqByCompagnie().contains(faq.get())){
+                Optional<Faq> faqExistant = faqRepo.findById(Id);
+                if (faqExistant.isPresent()) {
+                    Faq faqAModifier = faqExistant.get();
+                    faqAModifier.setAdminCompagnie(entity.getAdminCompagnie());
+                    faqAModifier.setReponse(entity.getReponse());
+                    faqAModifier.setQuestionCategorie(entity.getQuestionCategorie());
+                    return faqRepo.save(faqAModifier);
+                } else {
+                    throw new IllegalArgumentException("Le faq avec l'ID " + entity.getId() + "n'existe pas.");
+                }
+            }
         }
+        return null;
     }
 
     @Override
     public void supprimer(Integer integer) {
-        faqRepo.deleteById(integer);
+        Optional<Faq> faq = faqRepo.findById(integer);
+        if (faq.isPresent()) {
+            if(compagnieService.getFaqByCompagnie().contains(faq.get())){
+                faqRepo.deleteById(integer);
+            }
+        }
     }
 
 }

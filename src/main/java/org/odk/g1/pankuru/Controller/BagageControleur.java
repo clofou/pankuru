@@ -30,8 +30,6 @@ public class BagageControleur {
         return bagageService.misAJour(bagage, id);
     }
 
-
-
     @DeleteMapping("/supprimer/{id}")
     public void supprimerBagage(@PathVariable Long id){
     bagageService.supprimer(id);

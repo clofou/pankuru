@@ -7,10 +7,7 @@ import java.util.Optional;
 import jakarta.transaction.Transactional;
 import org.odk.g1.pankuru.Entity.Compagnie.Avion;
 import org.odk.g1.pankuru.Entity.Compagnie.Compagnie;
-import org.odk.g1.pankuru.Entity.Humain.AdminCompagnie;
-import org.odk.g1.pankuru.Entity.Humain.Faq;
-import org.odk.g1.pankuru.Entity.Humain.Personnel;
-import org.odk.g1.pankuru.Entity.Humain.SuperAdmin;
+import org.odk.g1.pankuru.Entity.Humain.*;
 import org.odk.g1.pankuru.Entity.Localite.Aeroport;
 import org.odk.g1.pankuru.Entity.Localite.Pays;
 import org.odk.g1.pankuru.Entity.Localite.Ville;
@@ -18,6 +15,7 @@ import org.odk.g1.pankuru.Entity.ReservationDeVol.Vol;
 import org.odk.g1.pankuru.Repository.*;
 import org.odk.g1.pankuru.Repository.HumainRepo.AdminCompagnieRepo;
 import org.odk.g1.pankuru.Repository.HumainRepo.PersonnelRepo;
+import org.odk.g1.pankuru.Repository.HumainRepo.RapportRepo;
 import org.odk.g1.pankuru.Repository.HumainRepo.SuperAdminRepo;
 import org.odk.g1.pankuru.Service.Interface.CrudService;
 import org.springframework.stereotype.Service;
@@ -39,6 +37,7 @@ public class CompagnieService implements CrudService<Compagnie, Integer>{
     private PersonnelRepo personnelRepo;
     private VolRepository volRepository;
     private FaqRepository faqRepository;
+    private RapportRepo rapportRepo;
 
     public List<Aeroport> getAeroportsByCompagnieId() {
         Integer compagnieId = userService.getCompagnieId();
@@ -138,6 +137,20 @@ public class CompagnieService implements CrudService<Compagnie, Integer>{
         return vols;
     }
 
+    public List<Rapport> getRapportByCompagnie() {
+        Integer compagnieId = userService.getCompagnieId();
+
+        List<Rapport> rapports = new ArrayList<>();
+        Compagnie compagnie = compagnieRepository.findById(compagnieId).orElse(null);
+
+        if (compagnie != null) {
+            for (AdminCompagnie adminCompagnie : compagnie.getAdminCompagnieList()) {
+                rapports.addAll(rapportRepo.findByAdminCompagnieId(adminCompagnie.getId()));
+            }
+        }
+        return rapports;
+    }
+
 
     @Override
     public Compagnie ajout(Compagnie compagnie) {
@@ -164,16 +177,7 @@ public class CompagnieService implements CrudService<Compagnie, Integer>{
         }
         Optional<Compagnie> compagnieExistant = compagnieRepository.findById(Id);
         if (compagnieExistant.isPresent()) {
-            Compagnie compagnieAModifier = compagnieExistant.get();
-            compagnieAModifier.setMatricule(compagnie.getMatricule());
-            compagnieAModifier.setNom(compagnie.getNom());
-            compagnieAModifier.setLogoUrl(compagnie.getLogoUrl());
-            compagnieAModifier.setCodeIATA(compagnie.getCodeIATA());
-            compagnieAModifier.setCodeICAO(compagnie.getCodeICAO());
-            compagnieAModifier.setNumeroTelephone(compagnie.getNumeroTelephone());
-            compagnieAModifier.setEmail(compagnie.getEmail());
-            compagnieAModifier.setSiteWeb(compagnie.getSiteWeb());
-            compagnieAModifier.setNumeroLicence(compagnie.getNumeroLicence());
+            Compagnie compagnieAModifier = modifierCompagnieExistant(compagnie, compagnieExistant.get());
 
             Long superAdminId = userService.getCurrentUsernameId();
             Optional<SuperAdmin> superAdmin = superAdminRepo.findById(superAdminId);
@@ -183,6 +187,19 @@ public class CompagnieService implements CrudService<Compagnie, Integer>{
         } else {
             throw new IllegalArgumentException("La compagnie avec l'ID " + compagnie.getId() + " n'existe pas.");
         }
+    }
+
+    private static Compagnie modifierCompagnieExistant(Compagnie compagnie, Compagnie compagnieExistant) {
+        compagnieExistant.setMatricule(compagnie.getMatricule());
+        compagnieExistant.setNom(compagnie.getNom());
+        compagnieExistant.setLogoUrl(compagnie.getLogoUrl());
+        compagnieExistant.setCodeIATA(compagnie.getCodeIATA());
+        compagnieExistant.setCodeICAO(compagnie.getCodeICAO());
+        compagnieExistant.setNumeroTelephone(compagnie.getNumeroTelephone());
+        compagnieExistant.setEmail(compagnie.getEmail());
+        compagnieExistant.setSiteWeb(compagnie.getSiteWeb());
+        compagnieExistant.setNumeroLicence(compagnie.getNumeroLicence());
+        return compagnieExistant;
     }
 
     @Override
