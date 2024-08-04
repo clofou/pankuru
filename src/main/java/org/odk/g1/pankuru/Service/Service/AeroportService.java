@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.odk.g1.pankuru.Entity.Humain.AdminCompagnie;
 import org.odk.g1.pankuru.Entity.Localite.Aeroport;
+import org.odk.g1.pankuru.Entity.ReservationDeVol.Vol;
 import org.odk.g1.pankuru.Repository.AeroportRepository;
 import org.odk.g1.pankuru.Repository.HumainRepo.AdminCompagnieRepo;
 import org.odk.g1.pankuru.Service.Interface.CrudService;
@@ -19,6 +20,7 @@ public class AeroportService implements CrudService<Aeroport, Long>{
     private final AeroportRepository aeroportRepository;
     private final UserService userService;
     private final AdminCompagnieRepo adminCompagnieRepo;
+    private final CompagnieService compagnieService;
 
     @Override
     public Aeroport ajout(Aeroport aeroport) {
@@ -42,26 +44,41 @@ public class AeroportService implements CrudService<Aeroport, Long>{
 
     @Override
     public Aeroport misAJour(Aeroport aeroport, Long Id) {
-        Optional<Aeroport> aeroportExistant = aeroportRepository.findById(Id);
-        if (aeroportExistant.isPresent()) {
-            Aeroport aeroportAModifier = aeroportExistant.get();
-            aeroportAModifier.setNom(aeroport.getNom());
-            aeroportAModifier.setCodeIATA(aeroport.getCodeIATA());
-            aeroportAModifier.setLongitude(aeroport.getLongitude());
-            aeroportAModifier.setLatitude(aeroport.getLatitude());
-            aeroportAModifier.setAltitude(aeroport.getAltitude());
-            aeroportAModifier.setCapaciteParking(aeroport.getCapaciteParking());
-            aeroportAModifier.setNombreDePistes(aeroport.getNombreDePistes());
+        Optional<Aeroport> aeroport1 = aeroportRepository.findById(Id);
+        if (aeroport1.isPresent()) {
+            if(compagnieService.getAeroportsByCompagnieId().contains(aeroport1.get())){
+                Optional<Aeroport> aeroportExistant = aeroportRepository.findById(Id);
+                if (aeroportExistant.isPresent()) {
+                    Aeroport aeroportAModifier = aeroportExistant.get();
+                    aeroportAModifier.setNom(aeroport.getNom());
+                    aeroportAModifier.setCodeIATA(aeroport.getCodeIATA());
+                    aeroportAModifier.setLongitude(aeroport.getLongitude());
+                    aeroportAModifier.setLatitude(aeroport.getLatitude());
+                    aeroportAModifier.setAltitude(aeroport.getAltitude());
+                    aeroportAModifier.setCapaciteParking(aeroport.getCapaciteParking());
+                    aeroportAModifier.setNombreDePistes(aeroport.getNombreDePistes());
 
-            return aeroportRepository.save(aeroportAModifier);
-        } else {
-            throw new IllegalArgumentException("L'aeroport avec l'ID " + aeroport.getId() + "n'existe pas.");
+                    Long adminCompagnieId = userService.getCurrentUsernameId();
+                    Optional<AdminCompagnie> adminCompagnie = adminCompagnieRepo.findById(adminCompagnieId);
+                    adminCompagnie.ifPresent(aeroportAModifier::setAdminCompagnie);
+
+                    return aeroportRepository.save(aeroportAModifier);
+                } else {
+                    throw new IllegalArgumentException("L'aeroport avec l'ID " + aeroport.getId() + "n'existe pas.");
+                }
+            }
         }
+        return null;
     }
 
     @Override
     public void supprimer(Long id) {
-        aeroportRepository.deleteById(id);
+        Optional<Aeroport> aeroport = aeroportRepository.findById(id);
+        if (aeroport.isPresent()) {
+            if(compagnieService.getAeroportsByCompagnieId().contains(aeroport.get())){
+                aeroportRepository.deleteById(id);
+            }
+        }
     }
     
 }

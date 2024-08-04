@@ -46,7 +46,6 @@ public class VolService implements CrudService<Vol,Long> {
     @Override
     public Vol misAJour(Vol vol, Long Id) {
         Optional<Vol> vol1 = volRepository.findById(Id);
-        System.out.println("===================jJJJjjjjj=============");
         if (vol1.isPresent()) {
             if(compagnieService.getVolByCompagnie().contains(vol1.get())){
                 return volRepository.findById(Id)
