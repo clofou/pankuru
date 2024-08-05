@@ -34,6 +34,7 @@ public class Avion {
     @JoinColumn(name = "adminCompagnie_id")
     private AdminCompagnie adminCompagnie;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "avion")
     private List<Siege> siegeList;
 

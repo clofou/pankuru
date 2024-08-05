@@ -23,8 +23,8 @@ public class PassagerService implements CrudService<Passager,Long> {
         return passagerRepository.findAll();
     }
 
-    public List<Map<String, Object>> liste1() {
-        return passagerRepository.tout();
+    public List<Map<String, Object>> liste1(Long id) {
+        return passagerRepository.tout(id);
     }
 
     @Override

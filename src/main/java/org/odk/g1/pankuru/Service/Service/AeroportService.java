@@ -39,7 +39,13 @@ public class AeroportService implements CrudService<Aeroport, Long>{
 
     @Override
     public Optional<Aeroport> trouverParId(Long id) {
-        return aeroportRepository.findById(id);
+        Optional<Aeroport> aeroport = aeroportRepository.findById(id);
+        if (aeroport.isPresent()) {
+            if(compagnieService.getAeroportsByCompagnieId().contains(aeroport.get())){
+                return aeroportRepository.findById(id);
+            }
+        }
+        return Optional.empty();
     }
 
     @Override

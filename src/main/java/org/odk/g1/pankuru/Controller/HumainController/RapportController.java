@@ -31,7 +31,12 @@ public class RapportController {
     @GetMapping("/afficher")
     public List<Rapport> afficher(){
         return compagnieService.getRapportByCompagnie();
-    } 
+    }
+
+    @GetMapping("/afficher/{id}")
+    public Optional<Rapport> trouverParId(@PathVariable Long id){
+        return rapportService.trouverParId(id);
+    }
 
     @PutMapping("/modifier/{id}")
     public Rapport modifier(@PathVariable Long id,@RequestBody Rapport rapport){

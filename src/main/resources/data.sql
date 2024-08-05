@@ -100,9 +100,12 @@ INSERT INTO classe_siege(nom) VALUES ('ECONOMIQUE');
 INSERT INTO classe_siege(nom) VALUES ('AFFAIRE');
 INSERT INTO classe_siege(nom) VALUES ('BUISSNESS');
 
-INSERT INTO position_siege(nom, tarif, classe_siege_id) VALUES ('25E', 2000, (select id from classe_siege where nom='ECONOMIQUE'));
-INSERT INTO position_siege(nom, tarif, classe_siege_id) VALUES ('24E', 5000, (select id from classe_siege where nom='AFFAIRE'));
-INSERT INTO position_siege(nom, tarif, classe_siege_id) VALUES ('23B', 2000, (select id from classe_siege where nom='ECONOMIQUE'));
+INSERT INTO position_siege(nom, tarif, classe_siege_id) VALUES ('MILIEU', 2000, (select id from classe_siege where nom='ECONOMIQUE'));
+INSERT INTO position_siege(nom, tarif, classe_siege_id) VALUES ('HUBLOT', 5000, (select id from classe_siege where nom='AFFAIRE'));
+INSERT INTO position_siege(nom, tarif, classe_siege_id) VALUES ('COULOIR', 2000, (select id from classe_siege where nom='ECONOMIQUE'));
+INSERT INTO position_siege(nom, tarif, classe_siege_id) VALUES ('HUBLOT', 5000, (select id from classe_siege where nom='AFFAIRE'));
+INSERT INTO position_siege(nom, tarif, classe_siege_id) VALUES ('COULOIR', 2000, (select id from classe_siege where nom='ECONOMIQUE'));
+
 
 -- Insertion des vols
 INSERT INTO vol(aeroportdarrivee, aeroport_depart, date_et_heure_arrivee, date_et_heure_depart, numero_de_vol, satut, admin_compagnie_id) VALUES ('SKY MALI AIRPORT', 'AIR FRANCE AIRPORT', '2024-11-12', '2024-11-11', 'b500', 'EN_COURS', (SELECT id FROM personne WHERE nom = 'Lead'));
@@ -117,8 +120,10 @@ VALUES ('AF001', 200, 'Boeing 777', 'DISPONIBLE', (SELECT id FROM personne WHERE
 INSERT INTO Avion (matricule, capacite_totale, nom, statut, admin_compagnie_id)
 VALUES ('BA002', 150, 'Airbus A320', 'MAINTENANCE', (SELECT id FROM personne WHERE nom = 'Lead'));
 
-INSERT INTO siege(numero, position_siege_id, avion_id) VALUES (25, (select id from position_siege where nom='25E'), (select id from avion where matricule='AF001'));
-INSERT INTO siege(numero, position_siege_id, avion_id) VALUES (26, (select id from position_siege where nom='23B'), (select id from avion where matricule='AF001'));
+INSERT INTO siege(numero, position_siege_id, avion_id) VALUES ('25E', 1, (select id from avion where matricule='AF001'));
+INSERT INTO siege(numero, position_siege_id, avion_id) VALUES ('26B', 2, (select id from avion where matricule='AF001'));
+INSERT INTO siege(numero, position_siege_id, avion_id) VALUES ('27D', 2, (select id from avion where matricule='AF001'));
+INSERT INTO siege(numero, position_siege_id, avion_id) VALUES ('28E', 3, (select id from avion where matricule='AF001'));
 
 
 -- Insertion des contrats
@@ -127,8 +132,6 @@ VALUES ('Location', 'Location de matériel', '2024-01-01', '2024-12-31', 'EN_ATT
 
 INSERT INTO Contrat (type, description, date_debut, date_fin, statut, cgu, commentaires, compagnie_id)
 VALUES ('Maintenance', 'Maintenance des avions', '2024-02-01', '2024-11-30', 'CONFIRMER', 'Conditions générales', 'Vérifier les détails', (SELECT id FROM compagnie WHERE matricule = 'AF123'));
-
-
 
 
 -- Insertion des utilisateurs
@@ -140,9 +143,16 @@ VALUES ((SELECT id FROM personne WHERE nom = 'Mamadou'), 50, '1985-05-05', 'P123
 
 -- Insertion de reservation
 INSERT INTO reservation(date_reservation, nombre_depassager, statut, utilisateur_id, vol_id) VALUES ('2024-11-1', 1, 'EN_ATTENTE',(select id from utilisateur where numero_de_passport='P9876543'), (select id from vol where aeroportdarrivee='SKY MALI AIRPORT'));
+-- Insertion de reservation
+INSERT INTO reservation(date_reservation, nombre_depassager, statut, utilisateur_id, vol_id) VALUES ('2024-12-4', 3, 'EN_ATTENTE',(select id from utilisateur where numero_de_passport='P1234567'), (select id from vol where aeroportdarrivee='SKY MALI AIRPORT1'));
+
 
 -- Insertion des Passagers
-INSERT INTO passager (nom, numero_de_pass_port, numero_de_visa, prenom, reservation_id, siege_id) VALUES ('TRAORE', 'TRGGE65', 'ERR33', 'FAKORO', 1, (select id from siege where numero=25));
+INSERT INTO passager (nom, numero_de_pass_port, numero_de_visa, prenom, reservation_id, siege_id) VALUES ('TRAORE', 'TRGGE65', 'ERR33', 'FAKORO', 1, (select id from siege where numero='25E'));
+INSERT INTO passager (nom, numero_de_pass_port, numero_de_visa, prenom, reservation_id, siege_id) VALUES ('DEMBELE', 'TRGGE667', 'ERR3390', 'MAMADOU', 2, (select id from siege where numero='26B'));
+INSERT INTO passager (nom, numero_de_pass_port, numero_de_visa, prenom, reservation_id, siege_id) VALUES ('DIARRE', 'TRGGEUI65', 'ERRNH33', 'ISSA', 2, (select id from siege where numero='27D'));
+INSERT INTO passager (nom, numero_de_pass_port, numero_de_visa, prenom, reservation_id, siege_id) VALUES ('DIAKITE', 'TRGGE65B200', 'ERR33HH', 'IBRAHIM', 2, (select id from siege where numero='28E'));
+
 
 -- Insertion des personnels
 INSERT INTO Personnel (id, date_embauche, poste, en_service, admin_compagnie_id)
@@ -417,6 +427,11 @@ INSERT INTO role_permission(role_id,permission_id) VALUES ((SELECT id FROM role 
 INSERT INTO role_permission(role_id,permission_id) VALUES ((SELECT id FROM role WHERE nom = 'ADMINCOMPAGNIE'),(SELECT id FROM permission WHERE end_point = 'adresse' AND permission = 'AJOUT'));
 INSERT INTO role_permission(role_id,permission_id) VALUES ((SELECT id FROM role WHERE nom = 'ADMINCOMPAGNIE'),(SELECT id FROM permission WHERE end_point = 'adresse' AND permission = 'MODIFIER'));
 INSERT INTO role_permission(role_id,permission_id) VALUES ((SELECT id FROM role WHERE nom = 'ADMINCOMPAGNIE'),(SELECT id FROM permission WHERE end_point = 'adresse' AND permission = 'SUPPRIMER'));
+
+INSERT INTO role_permission(role_id,permission_id) VALUES ((SELECT id FROM role WHERE nom = 'ADMINCOMPAGNIE'),(SELECT id FROM permission WHERE end_point = 'passager' AND permission = 'AFFICHER'));
+INSERT INTO role_permission(role_id,permission_id) VALUES ((SELECT id FROM role WHERE nom = 'ADMINCOMPAGNIE'),(SELECT id FROM permission WHERE end_point = 'passager' AND permission = 'AJOUT'));
+INSERT INTO role_permission(role_id,permission_id) VALUES ((SELECT id FROM role WHERE nom = 'ADMINCOMPAGNIE'),(SELECT id FROM permission WHERE end_point = 'passager' AND permission = 'MODIFIER'));
+INSERT INTO role_permission(role_id,permission_id) VALUES ((SELECT id FROM role WHERE nom = 'ADMINCOMPAGNIE'),(SELECT id FROM permission WHERE end_point = 'passager' AND permission = 'SUPPRIMER'));
 
 INSERT INTO role_permission(role_id,permission_id) VALUES ((SELECT id FROM role WHERE nom = 'ADMINCOMPAGNIE'),(SELECT id FROM permission WHERE end_point = 'faq' AND permission = 'AFFICHER'));
 INSERT INTO role_permission(role_id,permission_id) VALUES ((SELECT id FROM role WHERE nom = 'ADMINCOMPAGNIE'),(SELECT id FROM permission WHERE end_point = 'faq' AND permission = 'AJOUT'));

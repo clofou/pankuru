@@ -6,6 +6,7 @@ import org.odk.g1.pankuru.Service.Service.PassagerService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
@@ -22,6 +23,10 @@ public class PassagerControleur {
     @GetMapping("/afficher")
     public List<Passager>lire(){
         return passagerService.liste();
+    }
+    @GetMapping("/afficher/vol/{id}")
+    public List<Map<String, Object>> passagerDUnVol(@PathVariable Long id){
+        return passagerService.liste1(id);
     }
     @GetMapping("/afficher/{id}")
     public Optional<Passager> parId(@PathVariable Long id){

@@ -1,6 +1,7 @@
 package org.odk.g1.pankuru.Controller.HumainController;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.odk.g1.pankuru.Entity.Humain.Faq;
 import org.odk.g1.pankuru.Service.Service.CompagnieService;
@@ -26,6 +27,10 @@ public class FaqController {
     @GetMapping("/afficher")
     public List<Faq> afficher(){
         return compagnieService.getFaqByCompagnie();
+    }
+    @GetMapping("/afficher/{id}")
+    public Optional<Faq> trouverParId(@PathVariable Integer id){
+        return faqService.trouverParId(id);
     }
 
     @PutMapping("/modifier/{id}")
