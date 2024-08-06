@@ -2,18 +2,11 @@ package org.odk.g1.pankuru.Entity.Compagnie;
 
 import java.util.List;
 
+import jakarta.persistence.*;
 import org.odk.g1.pankuru.Entity.Enum.StatutAvion;
+import org.odk.g1.pankuru.Entity.ReservationDeVol.Escale;
 import org.odk.g1.pankuru.Entity.ReservationDeVol.Vol;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.ManyToMany;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -37,4 +30,7 @@ public class Avion {
     @ManyToMany
     @JoinTable(name = "vol_id")
     private List<Vol> vol;
+
+    @OneToMany(mappedBy = "Avion")
+    private List<Escale> escales;
 }

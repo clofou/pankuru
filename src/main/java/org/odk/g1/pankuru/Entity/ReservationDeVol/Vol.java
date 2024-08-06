@@ -13,6 +13,7 @@ import org.odk.g1.pankuru.Entity.Localite.Aeroport;
 
 import java.time.LocalDate;
 // import java.util.List;
+import java.util.List;
 import java.util.Set;
 
 @Data
@@ -45,4 +46,7 @@ public class Vol {
            joinColumns = @JoinColumn(name = "vol_id"), 
            inverseJoinColumns = @JoinColumn(name = "aeroport_id"))
     private Set<Aeroport> aeroports;
+
+    @OneToMany(mappedBy = "Vol")
+    private List<Escale> escales;
 }
