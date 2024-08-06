@@ -12,14 +12,11 @@ public class Adresse {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String rue;
-    @Column(nullable = false)
     private String ville;
-    @Column(nullable = false)
     private String etat;
-    @Column(nullable = false)
     private String codePostal;
-    @Column(nullable = false)
     private String pays;
+    private String champComplet;
 
     @JsonIgnore
     @OneToMany(mappedBy = "adresse")

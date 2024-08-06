@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.odk.g1.pankuru.Entity.Humain.Personnel;
 import org.odk.g1.pankuru.Service.Service.CompagnieService;
 import org.odk.g1.pankuru.Service.Service.HumainService.PersonnelService;
+import org.odk.g1.pankuru.dto.PersonnelDTO;
 import org.springframework.web.bind.annotation.*;
 
 import lombok.AllArgsConstructor;
@@ -21,8 +22,8 @@ public class PersonnelController {
     private final CompagnieService compagnieService;
 
     @PostMapping("/ajout")
-    public Personnel ajouter(@RequestBody Personnel personnel){
-        return personnelService.ajout(personnel);
+    public Personnel ajouter(@RequestBody PersonnelDTO personneldto){
+        return personnelService.ajout1(personneldto);
     }
 
     @GetMapping("/afficher")
