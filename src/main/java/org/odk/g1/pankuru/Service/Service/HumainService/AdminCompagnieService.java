@@ -27,15 +27,10 @@ public class AdminCompagnieService implements CrudService<AdminCompagnie, Long>{
 
     @Override
     public AdminCompagnie ajout(AdminCompagnie entity) {
-
-        if(!UtilService.isValidEmail(entity.getEmail())) {
-            throw new RuntimeException("Votre mail est invalide");
-        }
+        assert UtilService.isValidEmail(entity.getEmail()) : "Votre mail est invalide";
 
         Optional<AdminCompagnie> adminCompagnie = this.adminCompagnieRepo.findByEmail(entity.getEmail());
-        if(adminCompagnie.isPresent()) {
-            throw  new RuntimeException("Votre mail est déjà utilisé");
-        }
+        assert adminCompagnie.isEmpty() : "Votre mail est déjà utilisé";
 
         String encodePassword = bCryptPasswordEncoder.encode(entity.getPassword());
         entity.setPassword(encodePassword);

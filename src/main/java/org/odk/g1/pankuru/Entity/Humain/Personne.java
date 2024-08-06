@@ -29,11 +29,8 @@ public class Personne implements UserDetails {
     private String email;
     private String password;
     private String numeroDeTelephone;
+    private String adresse;
 
-
-    @ManyToOne
-    @JoinColumn(name = "adresse_id")
-    private Adresse adresse;
 
     @ManyToOne
     @JoinColumn(name = "role_id", nullable = false)

@@ -4,15 +4,13 @@ import java.util.List;
 import java.util.Optional;
 
 import org.odk.g1.pankuru.Entity.Humain.AdminCompagnie;
-import org.odk.g1.pankuru.Entity.Humain.Adresse;
 import org.odk.g1.pankuru.Entity.Humain.Personnel;
 import org.odk.g1.pankuru.Repository.HumainRepo.AdminCompagnieRepo;
-import org.odk.g1.pankuru.Repository.HumainRepo.AdresseRepo;
 import org.odk.g1.pankuru.Repository.HumainRepo.PersonnelRepo;
 import org.odk.g1.pankuru.Service.Interface.CrudService;
 import org.odk.g1.pankuru.Service.Service.CompagnieService;
 import org.odk.g1.pankuru.Service.Service.UserService;
-import org.odk.g1.pankuru.dto.PersonnelDTO;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import lombok.AllArgsConstructor;
@@ -26,7 +24,7 @@ public class PersonnelService implements CrudService<Personnel, Long>{
     private final UserService userService;
     private final AdminCompagnieRepo adminCompagnieRepo;
     private final CompagnieService compagnieService;
-    private final AdresseRepo adresseRepo;
+    private final PasswordEncoder passwordEncoder;
 
     @Override
     public Personnel ajout(Personnel entity) {
@@ -34,22 +32,7 @@ public class PersonnelService implements CrudService<Personnel, Long>{
         Optional<AdminCompagnie> adminCompagnie = adminCompagnieRepo.findById(adminCompagnieId);
         adminCompagnie.ifPresent(entity::setAdminCompagnie);
 
-        return personnelRepo.save(entity);
-    }
-
-    public Personnel ajout1(PersonnelDTO entity1) {
-        Personnel entity = entity1.getPersonnel();
-
-        Adresse adresse = new Adresse();
-        adresse.setChampComplet(entity1.getAdresse());
-
-        Adresse adresseSave =  adresseRepo.save(adresse);
-
-        Long adminCompagnieId = userService.getCurrentUsernameId();
-        Optional<AdminCompagnie> adminCompagnie = adminCompagnieRepo.findById(adminCompagnieId);
-        adminCompagnie.ifPresent(entity::setAdminCompagnie);
-
-        entity.setAdresse(adresseSave);
+        entity.setPassword(passwordEncoder.encode(entity.getPassword()));
 
         return personnelRepo.save(entity);
     }

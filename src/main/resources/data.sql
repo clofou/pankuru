@@ -1,22 +1,3 @@
--- Insertion des adresses
-INSERT INTO Adresse (rue, ville, code_postal, pays, etat)
-VALUES ('1 Avenue des Champs-Élysées', 'Paris', '75008', 'France', '');
-INSERT INTO Adresse (rue, ville, code_postal, pays, etat)
-VALUES ('2 Heathrow Road', 'London', 'LHR 9BA', 'United KingDom', '');
-INSERT INTO Adresse (rue, ville, code_postal, pays, etat)
-VALUES ('Via Leonardo da Vinci', 'Rome', '00100', 'Italy', '');
-INSERT INTO Adresse (rue, ville, code_postal, pays, etat)
-VALUES ('Bamako Lafiabougou', 'Bamako', '75008', 'Mali', '');
-INSERT INTO Adresse (rue, ville, code_postal, pays, etat)
-VALUES ('Hamdallaye ACI', 'Bamako', 'LHR 9BA', 'Mali', '');
-INSERT INTO Adresse (rue, ville, code_postal, pays, etat)
-VALUES ('Banconi', 'Bamako', '00100', 'Mali', '');
-INSERT INTO Adresse (rue, ville, code_postal, pays, etat)
-VALUES ('Banconi1', 'Bamako', '00100', 'Mali', '');
-
-INSERT INTO Adresse (rue, ville, code_postal, pays, etat)
-VALUES ('Hamdallaye ACI1', 'Bamako', '00100', 'Mali', '');
-
 
 -- Insertion des rôles
 INSERT INTO Role (nom) VALUES ('ADMIN');
@@ -25,26 +6,26 @@ INSERT INTO Role (nom) VALUES ('ADMINCOMPAGNIE');
 INSERT INTO Role (nom) VALUES ('PERSONNEL');
 
 -- Insertion des personnes
-INSERT INTO Personne (nom, prenom, email, password, numero_de_telephone, adresse_id, role_id)
-VALUES ('Dupont', 'Jean', 'jean.dupont@example.com', '$2a$12$vDyegFIXdomnwp.zcE3fOOpOz0c585DC5vg/LWfpzDp0uBrymhnra', '0123456789', (SELECT id FROM Adresse WHERE rue = '1 Avenue des Champs-Élysées'), (SELECT id FROM Role WHERE nom = 'ADMIN'));
-INSERT INTO Personne (nom, prenom, email, password, numero_de_telephone, adresse_id, role_id)
-VALUES ('Traore', 'Issa', 'issa1.dupont@example.com', '$2a$12$vDyegFIXdomnwp.zcE3fOOpOz0c585DC5vg/LWfpzDp0uBrymhnra', '0123456789', (SELECT id FROM Adresse WHERE rue = 'Hamdallaye ACI1'), (SELECT id FROM Role WHERE nom = 'PERSONNEL'));
-INSERT INTO Personne (nom, prenom, email, password, numero_de_telephone, adresse_id, role_id)
-VALUES ('Smith', 'John', 'john.smith@example.com', '$2a$12$vDyegFIXdomnwp.zcE3fOOpOz0c585DC5vg/LWfpzDp0uBrymhnra', '0987654321', (SELECT id FROM Adresse WHERE rue = '2 Heathrow Road'), (SELECT id FROM Role WHERE nom = 'USER'));
-INSERT INTO Personne (nom, prenom, email, password, numero_de_telephone, adresse_id, role_id)
-VALUES ('Issa', 'Liam', 'lol@example.com', '$2a$12$vDyegFIXdomnwp.zcE3fOOpOz0c585DC5vg/LWfpzDp0uBrymhnra', '0987654321', (SELECT id FROM Adresse WHERE rue = 'Bamako Lafiabougou'), (SELECT id FROM Role WHERE nom = 'ADMINCOMPAGNIE'));
-INSERT INTO Personne (nom, prenom, email, password, numero_de_telephone, adresse_id, role_id)
-VALUES ('Mamadou', 'Thiam', 'lol1@example.com', '$2a$12$vDyegFIXdomnwp.zcE3fOOpOz0c585DC5vg/LWfpzDp0uBrymhnra', '0987654321', (SELECT id FROM Adresse WHERE rue = 'Hamdallaye ACI'), (SELECT id FROM Role WHERE nom = 'USER'));
-INSERT INTO Personne (nom, prenom, email, password, numero_de_telephone, adresse_id, role_id)
-VALUES ('Tienou', 'Ali', 'lol2@example.com', '$2a$12$vDyegFIXdomnwp.zcE3fOOpOz0c585DC5vg/LWfpzDp0uBrymhnra', '0987654321', (SELECT id FROM Adresse WHERE rue = 'Banconi'), (SELECT id FROM Role WHERE nom = 'PERSONNEL'));
-INSERT INTO Personne (nom, prenom, email, password, numero_de_telephone, adresse_id, role_id)
-VALUES ('Lead', 'Lo', 'lol67@example.com', '$2a$12$vDyegFIXdomnwp.zcE3fOOpOz0c585DC5vg/LWfpzDp0uBrymhnra', '0987654321', (SELECT id FROM Adresse WHERE rue = 'Banconi1'), (SELECT id FROM Role WHERE nom = 'ADMINCOMPAGNIE'));
-INSERT INTO Personne (nom, prenom, email, password, numero_de_telephone, adresse_id, role_id)
-VALUES ('Bamadou', 'Traore', 'mamadou@gmail.com', '$2a$12$vDyegFIXdomnwp.zcE3fOOpOz0c585DC5vg/LWfpzDp0uBrymhnra', '0987654321', (SELECT id FROM Adresse WHERE rue = 'Banconi1'), (SELECT id FROM Role WHERE nom = 'ADMINCOMPAGNIE'));
-INSERT INTO Personne (nom, prenom, email, password, numero_de_telephone, adresse_id, role_id)
-VALUES ('Babou', 'Traore', 'babou@example.com', '$2a$12$vDyegFIXdomnwp.zcE3fOOpOz0c585DC5vg/LWfpzDp0uBrymhnra', '0987654321', (SELECT id FROM Adresse WHERE rue = 'Bamako Lafiabougou'), (SELECT id FROM Role WHERE nom = 'ADMINCOMPAGNIE'));
-INSERT INTO Personne (nom, prenom, email, password, numero_de_telephone, adresse_id, role_id)
-VALUES ('Madel', 'Tito', 'madel.tito@example.com', '$2a$12$vDyegFIXdomnwp.zcE3fOOpOz0c585DC5vg/LWfpzDp0uBrymhnra', '2237665478', (SELECT id FROM Adresse WHERE rue = 'Bamako Lafiabougou'), (SELECT id FROM Role WHERE nom = 'ADMIN'));
+INSERT INTO Personne (nom, prenom, email, password, numero_de_telephone, adresse, role_id)
+VALUES ('Dupont', 'Jean', 'jean.dupont@example.com', '$2a$12$vDyegFIXdomnwp.zcE3fOOpOz0c585DC5vg/LWfpzDp0uBrymhnra', '0123456789', 'Banconi ACI', (SELECT id FROM Role WHERE nom = 'ADMIN'));
+INSERT INTO Personne (nom, prenom, email, password, numero_de_telephone, adresse, role_id)
+VALUES ('Traore', 'Issa', 'issa1.dupont@example.com', '$2a$12$vDyegFIXdomnwp.zcE3fOOpOz0c585DC5vg/LWfpzDp0uBrymhnra', '0123456789', 'Hamdallaye ACI 2000', (SELECT id FROM Role WHERE nom = 'PERSONNEL'));
+INSERT INTO Personne (nom, prenom, email, password, numero_de_telephone, adresse, role_id)
+VALUES ('Smith', 'John', 'john.smith@example.com', '$2a$12$vDyegFIXdomnwp.zcE3fOOpOz0c585DC5vg/LWfpzDp0uBrymhnra', '0987654321', '2 Heathrow Road', (SELECT id FROM Role WHERE nom = 'USER'));
+INSERT INTO Personne (nom, prenom, email, password, numero_de_telephone, adresse, role_id)
+VALUES ('Issa', 'Liam', 'lol@example.com', '$2a$12$vDyegFIXdomnwp.zcE3fOOpOz0c585DC5vg/LWfpzDp0uBrymhnra', '0987654321', 'Bamako Lafiabougou', (SELECT id FROM Role WHERE nom = 'ADMINCOMPAGNIE'));
+INSERT INTO Personne (nom, prenom, email, password, numero_de_telephone, adresse, role_id)
+VALUES ('Mamadou', 'Thiam', 'lol1@example.com', '$2a$12$vDyegFIXdomnwp.zcE3fOOpOz0c585DC5vg/LWfpzDp0uBrymhnra', '0987654321', 'Hamdallaye ACI', (SELECT id FROM Role WHERE nom = 'USER'));
+INSERT INTO Personne (nom, prenom, email, password, numero_de_telephone, adresse, role_id)
+VALUES ('Tienou', 'Ali', 'lol2@example.com', '$2a$12$vDyegFIXdomnwp.zcE3fOOpOz0c585DC5vg/LWfpzDp0uBrymhnra', '0987654321', 'Banconi', (SELECT id FROM Role WHERE nom = 'PERSONNEL'));
+INSERT INTO Personne (nom, prenom, email, password, numero_de_telephone, adresse, role_id)
+VALUES ('Lead', 'Lo', 'lol67@example.com', '$2a$12$vDyegFIXdomnwp.zcE3fOOpOz0c585DC5vg/LWfpzDp0uBrymhnra', '0987654321', 'Banconi1', (SELECT id FROM Role WHERE nom = 'ADMINCOMPAGNIE'));
+INSERT INTO Personne (nom, prenom, email, password, numero_de_telephone, adresse, role_id)
+VALUES ('Bamadou', 'Traore', 'mamadou@gmail.com', '$2a$12$vDyegFIXdomnwp.zcE3fOOpOz0c585DC5vg/LWfpzDp0uBrymhnra', '0987654321', 'Banconi1', (SELECT id FROM Role WHERE nom = 'ADMINCOMPAGNIE'));
+INSERT INTO Personne (nom, prenom, email, password, numero_de_telephone, adresse, role_id)
+VALUES ('Babou', 'Traore', 'babou@example.com', '$2a$12$vDyegFIXdomnwp.zcE3fOOpOz0c585DC5vg/LWfpzDp0uBrymhnra', '0987654321', 'Bamako Lafiabougou', (SELECT id FROM Role WHERE nom = 'ADMINCOMPAGNIE'));
+INSERT INTO Personne (nom, prenom, email, password, numero_de_telephone, adresse, role_id)
+VALUES ('Madel', 'Tito', 'madel.tito@example.com', '$2a$12$vDyegFIXdomnwp.zcE3fOOpOz0c585DC5vg/LWfpzDp0uBrymhnra', '2237665478', 'Bamako Lafiabougou', (SELECT id FROM Role WHERE nom = 'ADMIN'));
 
 
 -- Insertion des super administrateurs

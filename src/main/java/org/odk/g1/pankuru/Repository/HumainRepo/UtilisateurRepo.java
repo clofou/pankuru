@@ -13,9 +13,9 @@ import java.util.Optional;
 @Repository
 public interface UtilisateurRepo extends JpaRepository<Utilisateur, Long> {
     Optional<Utilisateur> findByEmail(String email);
-    @Query("select u.nom as nom, u.prenom as prenom, u.numeroDePassport as numeroDePassport, u.numeroDeVisa as numeroDeVisa, u.pointDeFideliter as pointDeFideliter, u.numeroDeTelephone as numeroDeTelephone, r.nom as role, a.ville as ville, a.rue as rue from Utilisateur u join u.role r join u.adresse a")
+    @Query("select u.nom as nom, u.prenom as prenom, u.numeroDePassport as numeroDePassport, u.numeroDeVisa as numeroDeVisa, u.pointDeFideliter as pointDeFideliter, u.numeroDeTelephone as numeroDeTelephone,u.adresse as adresse, r.nom as role from Utilisateur u join u.role r")
     List<Map<String, Object>> tout();
 
-    @Query("select u.nom as nom, u.prenom as prenom, u.numeroDePassport as numeroDePassport, u.numeroDeVisa as numeroDeVisa, u.pointDeFideliter as pointDeFideliter, u.numeroDeTelephone as numeroDeTelephone, r.nom as role, a.ville as ville, a.rue as rue from Utilisateur u join u.role r join u.adresse a where u.id=:x")
+    @Query("select u.nom as nom, u.prenom as prenom, u.numeroDePassport as numeroDePassport, u.numeroDeVisa as numeroDeVisa, u.pointDeFideliter as pointDeFideliter, u.numeroDeTelephone as numeroDeTelephone, u.adresse as adrese, r.nom as role from Utilisateur u join u.role r join u.adresse a where u.id=:x")
     List<Map<String, Object>> trouverParId(@Param("x") Long id);
 }

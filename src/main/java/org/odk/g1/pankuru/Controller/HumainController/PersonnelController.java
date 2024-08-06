@@ -22,8 +22,8 @@ public class PersonnelController {
     private final CompagnieService compagnieService;
 
     @PostMapping("/ajout")
-    public Personnel ajouter(@RequestBody PersonnelDTO personneldto){
-        return personnelService.ajout1(personneldto);
+    public Personnel ajouter(@RequestBody Personnel personnel){
+        return personnelService.ajout(personnel);
     }
 
     @GetMapping("/afficher")
