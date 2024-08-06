@@ -33,7 +33,7 @@ public class Personne implements UserDetails {
 
 
     @ManyToOne
-    @JoinColumn(name = "role_id", nullable = false)
+    @JoinColumn(name = "role_id")
     private Role role;
 
     @JsonIgnore

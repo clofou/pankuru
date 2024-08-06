@@ -4,7 +4,9 @@ import java.util.List;
 import java.util.Optional;
 
 import org.odk.g1.pankuru.Entity.Humain.SuperAdmin;
+import org.odk.g1.pankuru.Entity.Permission.Role;
 import org.odk.g1.pankuru.Repository.HumainRepo.SuperAdminRepo;
+import org.odk.g1.pankuru.Repository.RoleRepository;
 import org.odk.g1.pankuru.Service.Interface.CrudService;
 import org.odk.g1.pankuru.Utils.UtilService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -18,6 +20,8 @@ public class SuperAdminService implements CrudService<SuperAdmin, Long>{
 
     private final SuperAdminRepo superAdminRepo;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
+    private final RoleRepository roleRepository;
+
     @Override
     public SuperAdmin ajout(SuperAdmin entity) {
 
@@ -32,6 +36,8 @@ public class SuperAdminService implements CrudService<SuperAdmin, Long>{
 
         String encodePassword = bCryptPasswordEncoder.encode(entity.getPassword());
         entity.setPassword(encodePassword);
+        Optional<Role> role = roleRepository.findByNom("ADMIN");
+        role.ifPresent(entity::setRole);
 
         return superAdminRepo.save(entity);
     }
