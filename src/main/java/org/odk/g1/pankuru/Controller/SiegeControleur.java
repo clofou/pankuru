@@ -2,7 +2,9 @@ package org.odk.g1.pankuru.Controller;
 
 import lombok.AllArgsConstructor;
 import org.odk.g1.pankuru.Entity.ReservationDeVol.Siege;
+import org.odk.g1.pankuru.Service.Service.SiegeDTO.SiegeDTOService;
 import org.odk.g1.pankuru.Service.Service.SiegeService;
+import org.odk.g1.pankuru.dto.SiegeDTO;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,9 +17,11 @@ import java.util.Optional;
 
 public class SiegeControleur {
     private SiegeService siegeService;
+    private SiegeDTOService siegeDTOService;
+
     @PostMapping("/ajout")
-    public Siege ajouter(@RequestBody Siege siege){
-        return siegeService.ajout(siege);
+    public Siege ajouter(@RequestBody SiegeDTO siege){
+        return siegeDTOService.creerSiege(siege);
     }
     @GetMapping("/afficher")
     public List<Siege>lire(){

@@ -6,7 +6,6 @@ import java.util.Optional;
 import org.odk.g1.pankuru.Entity.Humain.Personnel;
 import org.odk.g1.pankuru.Service.Service.CompagnieService;
 import org.odk.g1.pankuru.Service.Service.HumainService.PersonnelService;
-import org.odk.g1.pankuru.dto.PersonnelDTO;
 import org.springframework.web.bind.annotation.*;
 
 import lombok.AllArgsConstructor;
