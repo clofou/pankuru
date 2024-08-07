@@ -31,6 +31,6 @@ public class Avion {
     @JoinTable(name = "vol_id")
     private List<Vol> vol;
 
-    @OneToMany(mappedBy = "Avion")
+    @OneToMany(mappedBy = "avions")
     private List<Escale> escales;
 }

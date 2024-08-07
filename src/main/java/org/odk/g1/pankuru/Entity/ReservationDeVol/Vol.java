@@ -47,6 +47,6 @@ public class Vol {
            inverseJoinColumns = @JoinColumn(name = "aeroport_id"))
     private Set<Aeroport> aeroports;
 
-    @OneToMany(mappedBy = "Vol")
+    @OneToMany(mappedBy = "vols")
     private List<Escale> escales;
 }

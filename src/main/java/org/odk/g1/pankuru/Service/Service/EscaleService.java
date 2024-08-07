@@ -1,14 +1,13 @@
 package org.odk.g1.pankuru.Service.Service;
 
 import lombok.AllArgsConstructor;
-import org.odk.g1.pankuru.Entity.Compagnie.Avion;
 import org.odk.g1.pankuru.Entity.ReservationDeVol.Escale;
 import org.odk.g1.pankuru.Repository.EscaleRepository;
 import org.odk.g1.pankuru.Service.Interface.CrudService;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.Optional;
+
 @Service
 @AllArgsConstructor
 public class EscaleService implements CrudService<Escale, Long> {

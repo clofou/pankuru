@@ -5,9 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.odk.g1.pankuru.Entity.Compagnie.Avion;
 import org.odk.g1.pankuru.Entity.Localite.Aeroport;
-
 import java.util.Date;
-import java.util.Set;
 
 @Entity
 @Table(name = "escale")
@@ -19,21 +17,15 @@ public class Escale {
     private Long id;
     private Date dateEtHeure;
 
-    @ManyToMany
-    @JoinTable(name = "vol_escale",
-            joinColumns = @JoinColumn(name = "vol_id"),
-            inverseJoinColumns = @JoinColumn(name = "escale_id"))
-    private Set<Vol> vols;
+    @ManyToOne
+    @JoinColumn(name = "vol_id")
+    private Vol vols;
 
-    @ManyToMany
-    @JoinTable(name = "avion_escale",
-            joinColumns = @JoinColumn(name = "avion_id"),
-            inverseJoinColumns = @JoinColumn(name = "escale_id"))
-    private Set<Avion> avions;
+    @ManyToOne
+    @JoinColumn(name = "avion_id")
+    private Avion avions;
 
-    @ManyToMany
-    @JoinTable(name = "aeroport_escale",
-            joinColumns = @JoinColumn(name = "aeroport_id"),
-            inverseJoinColumns = @JoinColumn(name = "escale_id"))
-    private Set<Aeroport> aeroports;
+    @ManyToOne
+    @JoinColumn(name = "aeroport_id")
+    private Aeroport aeroports;
 }
