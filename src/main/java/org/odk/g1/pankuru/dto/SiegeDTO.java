@@ -2,7 +2,6 @@ package org.odk.g1.pankuru.dto;
 
 import lombok.Data;
 import org.odk.g1.pankuru.Entity.Compagnie.Avion;
-import org.odk.g1.pankuru.Entity.ReservationDeVol.Passager;
 
 @Data
 public class SiegeDTO {

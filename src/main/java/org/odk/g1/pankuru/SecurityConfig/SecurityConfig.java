@@ -1,8 +1,9 @@
 package org.odk.g1.pankuru.SecurityConfig;
 
 import lombok.AllArgsConstructor;
-
 import org.odk.g1.pankuru.Entity.Enum.EnumPermission;
+import org.odk.g1.pankuru.jwt.AuthEntryPointJwt;
+import org.odk.g1.pankuru.jwt.AuthTokenFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -13,6 +14,7 @@ import org.springframework.security.config.annotation.authentication.configurati
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
+import org.springframework.security.config.annotation.web.configurers.HeadersConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -20,6 +22,7 @@ import org.springframework.security.web.SecurityFilterChain;
 import java.util.List;
 import org.odk.g1.pankuru.dto.RolePermissionDTO;
 import org.odk.g1.pankuru.Service.Service.RolePermissionService;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
 @EnableWebSecurity
@@ -29,7 +32,13 @@ public class SecurityConfig {
     private final UserDetailsService userDetailsService;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
     private final RolePermissionService rolePermissionService;
-    //private final JwtAuth jwtAuth;
+    private AuthEntryPointJwt unauthorizedHandler;
+
+
+    @Bean
+    public AuthTokenFilter authenticationJwtTokenFilter() {
+        return new AuthTokenFilter();
+    }
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -39,7 +48,7 @@ public class SecurityConfig {
                 .cors(Customizer.withDefaults())
                 .authorizeHttpRequests(request->
                     {
-                        request.requestMatchers("/personne/connexion").permitAll();
+                        request.requestMatchers("/personne/signin").permitAll();
                         for (RolePermissionDTO rolePermission : rolePermissions) {
 
                             if (rolePermission.getPermissionPermission() == EnumPermission.AFFICHER){
@@ -58,8 +67,16 @@ public class SecurityConfig {
                         }
                         request.anyRequest().authenticated();
 
-                    })
-                .sessionManagement(manager->manager.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
+                    });
+
+        http.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
+
+        http.exceptionHandling(exception -> exception.authenticationEntryPoint(unauthorizedHandler));
+
+        http.headers(headers -> headers.frameOptions(HeadersConfigurer.FrameOptionsConfig::sameOrigin));
+
+        http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
+
         return http.build();
     }
 

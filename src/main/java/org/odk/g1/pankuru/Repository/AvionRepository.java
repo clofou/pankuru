@@ -1,7 +1,6 @@
 package org.odk.g1.pankuru.Repository;
 
 import org.odk.g1.pankuru.Entity.Compagnie.Avion;
-import org.odk.g1.pankuru.Entity.Localite.Aeroport;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

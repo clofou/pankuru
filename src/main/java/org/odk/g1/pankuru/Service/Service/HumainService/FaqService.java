@@ -3,7 +3,6 @@ package org.odk.g1.pankuru.Service.Service.HumainService;
 import lombok.AllArgsConstructor;
 import org.odk.g1.pankuru.Entity.Humain.AdminCompagnie;
 import org.odk.g1.pankuru.Entity.Humain.Faq;
-import org.odk.g1.pankuru.Entity.ReservationDeVol.Vol;
 import org.odk.g1.pankuru.Repository.HumainRepo.AdminCompagnieRepo;
 import org.odk.g1.pankuru.Repository.HumainRepo.FaqRepo;
 import org.odk.g1.pankuru.Service.Interface.CrudService;

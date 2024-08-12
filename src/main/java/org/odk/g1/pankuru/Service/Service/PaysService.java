@@ -1,7 +1,6 @@
 package org.odk.g1.pankuru.Service.Service;
 
 import org.odk.g1.pankuru.Entity.Humain.AdminCompagnie;
-import org.odk.g1.pankuru.Entity.Localite.Aeroport;
 import org.odk.g1.pankuru.Repository.HumainRepo.AdminCompagnieRepo;
 import org.springframework.stereotype.Service;
 

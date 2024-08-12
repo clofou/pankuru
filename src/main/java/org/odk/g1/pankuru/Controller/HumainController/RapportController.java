@@ -3,12 +3,9 @@ package org.odk.g1.pankuru.Controller.HumainController;
 import java.util.List;
 import java.util.Optional;
 
-import org.odk.g1.pankuru.Entity.Humain.AdminCompagnie;
 import org.odk.g1.pankuru.Entity.Humain.Rapport;
-import org.odk.g1.pankuru.Repository.HumainRepo.AdminCompagnieRepo;
 import org.odk.g1.pankuru.Service.Service.CompagnieService;
 import org.odk.g1.pankuru.Service.Service.HumainService.RapportService;
-import org.odk.g1.pankuru.Service.Service.UserService;
 import org.springframework.web.bind.annotation.*;
 
 import lombok.AllArgsConstructor;

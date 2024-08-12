@@ -3,7 +3,6 @@ package org.odk.g1.pankuru.Entity.Compagnie;
 import java.util.List;
 
 import org.odk.g1.pankuru.Entity.Humain.AdminCompagnie;
-import org.odk.g1.pankuru.Entity.Humain.Personnel;
 import org.odk.g1.pankuru.Entity.Humain.SuperAdmin;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Entity;

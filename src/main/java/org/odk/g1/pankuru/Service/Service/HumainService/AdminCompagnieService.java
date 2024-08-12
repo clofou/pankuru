@@ -26,7 +26,6 @@ public class AdminCompagnieService implements CrudService<AdminCompagnie, Long>{
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
     private final UserService userService;
     private final SuperAdminRepo superAdminRepo;
-    private final RoleRepository repository;
     private final RoleRepository roleRepository;
 
     @Override

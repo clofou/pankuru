@@ -24,6 +24,7 @@ public final class HttpRequestResponseUtils {
             return "0.0.0.0";
         }
 
+        @SuppressWarnings("null")
         HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes())
                 .getRequest();
 
@@ -44,6 +45,7 @@ public final class HttpRequestResponseUtils {
             return "";
         }
 
+        @SuppressWarnings("null")
         HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes())
                 .getRequest();
 
@@ -56,6 +58,7 @@ public final class HttpRequestResponseUtils {
             return "";
         }
 
+        @SuppressWarnings("null")
         HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes())
                 .getRequest();
 
@@ -68,6 +71,7 @@ public final class HttpRequestResponseUtils {
             return "";
         }
 
+        @SuppressWarnings("null")
         HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes())
                 .getRequest();
 
@@ -82,6 +86,7 @@ public final class HttpRequestResponseUtils {
             return "";
         }
 
+        @SuppressWarnings("null")
         HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes())
                 .getRequest();
 
@@ -94,6 +99,7 @@ public final class HttpRequestResponseUtils {
             return "";
         }
 
+        @SuppressWarnings("null")
         HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes())
                 .getRequest();
 
@@ -108,6 +114,7 @@ public final class HttpRequestResponseUtils {
             return "";
         }
 
+        @SuppressWarnings("null")
         HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes())
                 .getRequest();
 

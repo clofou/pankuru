@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Optional;
 
 import org.odk.g1.pankuru.Entity.Humain.AdminCompagnie;
-import org.odk.g1.pankuru.Entity.Localite.Pays;
 import org.odk.g1.pankuru.Entity.Localite.Ville;
 import org.odk.g1.pankuru.Repository.HumainRepo.AdminCompagnieRepo;
 import org.odk.g1.pankuru.Repository.VilleRepository;

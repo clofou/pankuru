@@ -13,7 +13,6 @@ import org.odk.g1.pankuru.Entity.Localite.Pays;
 import org.odk.g1.pankuru.Entity.Localite.Ville;
 import org.odk.g1.pankuru.Entity.ReservationDeVol.Vol;
 import org.odk.g1.pankuru.Repository.*;
-import org.odk.g1.pankuru.Repository.HumainRepo.AdminCompagnieRepo;
 import org.odk.g1.pankuru.Repository.HumainRepo.PersonnelRepo;
 import org.odk.g1.pankuru.Repository.HumainRepo.RapportRepo;
 import org.odk.g1.pankuru.Repository.HumainRepo.SuperAdminRepo;

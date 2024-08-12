@@ -1,7 +1,6 @@
 package org.odk.g1.pankuru.Repository;
 
 import org.odk.g1.pankuru.Entity.Humain.Faq;
-import org.odk.g1.pankuru.Entity.ReservationDeVol.Vol;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

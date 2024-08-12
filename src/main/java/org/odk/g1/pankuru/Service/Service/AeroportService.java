@@ -5,7 +5,6 @@ import java.util.Optional;
 
 import org.odk.g1.pankuru.Entity.Humain.AdminCompagnie;
 import org.odk.g1.pankuru.Entity.Localite.Aeroport;
-import org.odk.g1.pankuru.Entity.ReservationDeVol.Vol;
 import org.odk.g1.pankuru.Repository.AeroportRepository;
 import org.odk.g1.pankuru.Repository.HumainRepo.AdminCompagnieRepo;
 import org.odk.g1.pankuru.Service.Interface.CrudService;

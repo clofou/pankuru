@@ -1,6 +1,0 @@
-GET http://localhost:8080/role
-
-POST  HTTP/1.1
-header name: header value
-
-content http://localhost:8080/role
