@@ -1,5 +1,7 @@
 package org.odk.g1.pankuru.Controller.HumainController;
 
+import org.odk.g1.pankuru.Entity.Humain.Personne;
+import org.odk.g1.pankuru.Repository.HumainRepo.PersonneRepo;
 import org.odk.g1.pankuru.jwt.JwtUtils;
 import org.odk.g1.pankuru.jwt.LoginRequest;
 import org.odk.g1.pankuru.jwt.LoginResponse;
@@ -19,6 +21,7 @@ import lombok.AllArgsConstructor;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @RestController
@@ -29,6 +32,7 @@ import java.util.stream.Collectors;
 public class PersonneController {
 
     private final AuthenticationManager authenticationManager;
+    private final PersonneRepo personneRepo;
     private JwtUtils jwtUtils;
 
 
@@ -55,7 +59,12 @@ public class PersonneController {
                 .map(GrantedAuthority::getAuthority)
                 .collect(Collectors.toList());
 
-        LoginResponse response = new LoginResponse(userDetails.getUsername(), roles, jwtToken);
+        String fullName = "";
+        Optional<Personne> personne = personneRepo.findByEmail(userDetails.getUsername());
+        if (personne.isPresent()){
+            fullName = personne.get().getPrenom() + " " + personne.get().getNom();
+        }
+        LoginResponse response = new LoginResponse(fullName, roles, jwtToken);
 
         return ResponseEntity.ok(response);
     }

@@ -28,7 +28,6 @@ public class Reservation {
     private Date dateAnnulation;
     private String raisonAnnulation;
 
-    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "vol_id", nullable = false)
     private Vol vol;
@@ -37,7 +36,6 @@ public class Reservation {
     @OneToMany(mappedBy = "reservation", cascade = CascadeType.REMOVE)
     private List<Passager> passagerList;
 
-    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "utilisateur_id", nullable = false)
     private Utilisateur utilisateur;

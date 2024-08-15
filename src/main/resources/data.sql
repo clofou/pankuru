@@ -51,9 +51,9 @@ INSERT INTO admin_compagnie (id, pseudo, compagnie_id, superadmin_id) VALUES ((S
 
 
 -- Insertion des pays
-INSERT INTO Pays (nom, admin_compagnie_id) VALUES ('France', (SELECT id FROM personne WHERE nom = 'Lead'));
-INSERT INTO Pays (nom, admin_compagnie_id) VALUES ('United Kingdom', (SELECT id FROM personne WHERE nom = 'Lead'));
-INSERT INTO Pays (nom, admin_compagnie_id) VALUES ('Italy', (SELECT id FROM personne WHERE nom = 'Lead'));
+INSERT INTO Pays (nom, admin_compagnie_id, pays_image_url) VALUES ('France', (SELECT id FROM personne WHERE nom = 'Lead'),'https://upload.wikimedia.org/wikipedia/commons/6/62/Flag_of_France.png');
+INSERT INTO Pays (nom, admin_compagnie_id, pays_image_url) VALUES ('United Kingdom', (SELECT id FROM personne WHERE nom = 'Lead'),'https://upload.wikimedia.org/wikipedia/commons/8/83/Flag_of_the_United_Kingdom_%283-5%29.svg');
+INSERT INTO Pays (nom, admin_compagnie_id, pays_image_url) VALUES ('Italy', (SELECT id FROM personne WHERE nom = 'Lead'),'https://img.freepik.com/vecteurs-libre/illustration-du-drapeau-italie_53876-27098.jpg?t=st=1723642493~exp=1723646093~hmac=1464f4ac8cd9ccfe7c409f9ff89db626b579123cf0a5b9a22d0aa4739dbea5ca&w=900');
 
 -- Insertion des villes
 INSERT INTO Ville (nom, pays_id, admin_compagnie_id)

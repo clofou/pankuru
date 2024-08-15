@@ -28,7 +28,7 @@ public class Ville {
     private Pays pays;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "ville")
+    @OneToMany(mappedBy = "ville", cascade = CascadeType.REMOVE)
     private List<Aeroport> aeroportList;
 
     @ManyToOne
