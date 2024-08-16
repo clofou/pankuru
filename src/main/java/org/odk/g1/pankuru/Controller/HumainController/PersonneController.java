@@ -59,10 +59,10 @@ public class PersonneController {
                 .map(GrantedAuthority::getAuthority)
                 .collect(Collectors.toList());
 
-        String fullName = "";
+        Personne fullName = new Personne();
         Optional<Personne> personne = personneRepo.findByEmail(userDetails.getUsername());
         if (personne.isPresent()){
-            fullName = personne.get().getPrenom() + " " + personne.get().getNom();
+            fullName = personne.get();
         }
         LoginResponse response = new LoginResponse(fullName, roles, jwtToken);
 
