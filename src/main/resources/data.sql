@@ -9,11 +9,11 @@ INSERT INTO Role (nom) VALUES ('PERSONNEL');
 INSERT INTO Personne (nom, prenom, email, password, numero_de_telephone, adresse, role_id)
 VALUES ('Dupont', 'Jean', 'jean.dupont@example.com', '$2a$12$vDyegFIXdomnwp.zcE3fOOpOz0c585DC5vg/LWfpzDp0uBrymhnra', '0123456789', 'Banconi ACI', (SELECT id FROM Role WHERE nom = 'ADMIN'));
 INSERT INTO Personne (nom, prenom, email, password, numero_de_telephone, adresse, role_id)
-VALUES ('Traore', 'Issa', 'issa1.dupont@example.com', '$2a$12$vDyegFIXdomnwp.zcE3fOOpOz0c585DC5vg/LWfpzDp0uBrymhnra', '0123456789', 'Hamdallaye ACI 2000', (SELECT id FROM Role WHERE nom = 'PERSONNEL'));
+VALUES ('Traore', 'Papou', 'papaou1.dupont@example.com', '$2a$12$vDyegFIXdomnwp.zcE3fOOpOz0c585DC5vg/LWfpzDp0uBrymhnra', '0123456789', 'Hamdallaye ACI 2000', (SELECT id FROM Role WHERE nom = 'PERSONNEL'));
 INSERT INTO Personne (nom, prenom, email, password, numero_de_telephone, adresse, role_id)
 VALUES ('Smith', 'John', 'john.smith@example.com', '$2a$12$vDyegFIXdomnwp.zcE3fOOpOz0c585DC5vg/LWfpzDp0uBrymhnra', '0987654321', '2 Heathrow Road', (SELECT id FROM Role WHERE nom = 'USER'));
 INSERT INTO Personne (nom, prenom, email, password, numero_de_telephone, adresse, role_id)
-VALUES ('Issa', 'Liam', 'lol@example.com', '$2a$12$vDyegFIXdomnwp.zcE3fOOpOz0c585DC5vg/LWfpzDp0uBrymhnra', '0987654321', 'Bamako Lafiabougou', (SELECT id FROM Role WHERE nom = 'ADMINCOMPAGNIE'));
+VALUES ('Issa', 'Liam', 'lol@example.com', '$2a$12$vDyegFIXdomnwp.zcE3fOOpOz0c585DC5vg/LWfpzDp0uBrymhnra', '0987654321', 'Bamako Lafiabougou', (SELECT id FROM Role WHERE nom = 'USER'));
 INSERT INTO Personne (nom, prenom, email, password, numero_de_telephone, adresse, role_id)
 VALUES ('Mamadou', 'Thiam', 'lol1@example.com', '$2a$12$vDyegFIXdomnwp.zcE3fOOpOz0c585DC5vg/LWfpzDp0uBrymhnra', '0987654321', 'Hamdallaye ACI', (SELECT id FROM Role WHERE nom = 'USER'));
 INSERT INTO Personne (nom, prenom, email, password, numero_de_telephone, adresse, role_id)
@@ -46,8 +46,6 @@ INSERT INTO admin_compagnie (id, pseudo, compagnie_id, superadmin_id) VALUES ((S
 INSERT INTO admin_compagnie (id, pseudo, compagnie_id, superadmin_id) VALUES ((SELECT id FROM personne WHERE nom = 'Bamadou'),'admin2c1', (SELECT id FROM Compagnie WHERE matricule = 'AF123'), (SELECT id FROM super_admin WHERE pseudo = 'superadmin1'));
 -- Insertion des administrateurs de compagnies
 INSERT INTO admin_compagnie (id, pseudo, compagnie_id, superadmin_id) VALUES ((SELECT id FROM personne WHERE nom = 'Babou'),'admin1c2', (SELECT id FROM Compagnie WHERE matricule = 'BA456'), (SELECT id FROM super_admin WHERE pseudo = 'superadmin1'));
--- Insertion des administrateurs de compagnies
-INSERT INTO admin_compagnie (id, pseudo, compagnie_id, superadmin_id) VALUES ((SELECT id FROM personne WHERE nom = 'Issa'),'admin2c2', (SELECT id FROM Compagnie WHERE matricule = 'BA456'), (SELECT id FROM super_admin WHERE pseudo = 'madelTito'));
 
 
 -- Insertion des pays
@@ -137,7 +135,7 @@ INSERT INTO passager (nom, numero_de_pass_port, numero_de_visa, prenom, reservat
 
 -- Insertion des personnels
 INSERT INTO Personnel (id, date_embauche, poste, en_service, admin_compagnie_id)
-VALUES ((SELECT id FROM personne WHERE nom = 'Issa'),'2024-01-15', 'Pilot', TRUE, (SELECT id FROM personne WHERE nom = 'Lead'));
+VALUES ((SELECT id FROM personne WHERE nom = 'Lead'),'2024-01-15', 'Pilot', TRUE, (SELECT id FROM personne WHERE nom = 'Lead'));
 
 -- Affectation d'un vol à un avion
 INSERT INTO vol_avion(vol_id, avion_id) VALUES ((select id from vol where aeroportdarrivee='SKY MALI AIRPORT'),(select id from avion where matricule='AF001'));
@@ -145,7 +143,7 @@ INSERT INTO vol_avion(vol_id, avion_id) VALUES ((select id from vol where aeropo
 INSERT INTO faq(question_categorie, reponse, admin_compagnie_id) VALUES ('Cest Quoi le prix de la classe Buissness', 'Le Prix de la classe Buissness est de 100$',(SELECT id FROM personne WHERE nom = 'Lead'));
 INSERT INTO faq(question_categorie, reponse, admin_compagnie_id) VALUES ('Combien de passager par reservation', 'Le nombre de passager par reservation peut varier en fonction du nombre de paiement',(SELECT id FROM personne WHERE nom = 'Lead'));
 INSERT INTO faq(question_categorie, reponse, admin_compagnie_id) VALUES ('Les toilettes', 'Les toilettes se trouvent derriere les position hubot',(SELECT id FROM personne WHERE nom = 'Babou'));
-INSERT INTO faq(question_categorie, reponse, admin_compagnie_id) VALUES ('Reserver via le site', 'Notre site web est disponible pour tout un chacun a ladresse bar.com',(SELECT id FROM personne WHERE nom = 'Issa'));
+INSERT INTO faq(question_categorie, reponse, admin_compagnie_id) VALUES ('Reserver via le site', 'Notre site web est disponible pour tout un chacun a ladresse bar.com',(SELECT id FROM personne WHERE nom = 'Lead'));
 
 
 
@@ -417,5 +415,10 @@ INSERT INTO role_permission(role_id,permission_id) VALUES ((SELECT id FROM role 
 INSERT INTO role_permission(role_id,permission_id) VALUES ((SELECT id FROM role WHERE nom = 'ADMINCOMPAGNIE'),(SELECT id FROM permission WHERE end_point = 'faq' AND permission = 'AJOUT'));
 INSERT INTO role_permission(role_id,permission_id) VALUES ((SELECT id FROM role WHERE nom = 'ADMINCOMPAGNIE'),(SELECT id FROM permission WHERE end_point = 'faq' AND permission = 'MODIFIER'));
 INSERT INTO role_permission(role_id,permission_id) VALUES ((SELECT id FROM role WHERE nom = 'ADMINCOMPAGNIE'),(SELECT id FROM permission WHERE end_point = 'faq' AND permission = 'SUPPRIMER'));
+
+INSERT INTO role_permission(role_id,permission_id) VALUES ((SELECT id FROM role WHERE nom = 'USER'),(SELECT id FROM permission WHERE end_point = 'reservation' AND permission = 'AFFICHER'));
+INSERT INTO role_permission(role_id,permission_id) VALUES ((SELECT id FROM role WHERE nom = 'USER'),(SELECT id FROM permission WHERE end_point = 'reservation' AND permission = 'AJOUT'));
+INSERT INTO role_permission(role_id,permission_id) VALUES ((SELECT id FROM role WHERE nom = 'USER'),(SELECT id FROM permission WHERE end_point = 'reservation' AND permission = 'MODIFIER'));
+INSERT INTO role_permission(role_id,permission_id) VALUES ((SELECT id FROM role WHERE nom = 'USER'),(SELECT id FROM permission WHERE end_point = 'reservation' AND permission = 'SUPPRIMER'));
 
 
