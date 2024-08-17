@@ -49,6 +49,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(request->
                     {
                         request.requestMatchers("/personne/signin").permitAll();
+                        request.requestMatchers("/utilisateur/ajout").permitAll();
                         for (RolePermissionDTO rolePermission : rolePermissions) {
 
                             if (rolePermission.getPermissionPermission() == EnumPermission.AFFICHER){
