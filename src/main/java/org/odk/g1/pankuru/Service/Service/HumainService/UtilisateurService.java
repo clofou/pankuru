@@ -5,6 +5,7 @@ import java.util.Map;
 import java.util.Optional;
 
 import org.odk.g1.pankuru.Entity.Humain.Utilisateur;
+import org.odk.g1.pankuru.Entity.Permission.Role;
 import org.odk.g1.pankuru.Repository.HumainRepo.UtilisateurRepo;
 import org.odk.g1.pankuru.Service.Interface.CrudService;
 import org.odk.g1.pankuru.Utils.UtilService;
@@ -34,6 +35,11 @@ public class UtilisateurService implements CrudService<Utilisateur, Long>{
 
         String encodePassword = bCryptPasswordEncoder.encode(entity.getPassword());
         entity.setPassword(encodePassword);
+
+        Role role = new Role();
+        role.setId(2);
+        entity.setRole(role);
+
 
         return utilisateurRepo.save(entity);
     }
