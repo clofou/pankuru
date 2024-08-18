@@ -16,18 +16,16 @@ import java.util.Optional;
 public class ReservationService implements CrudService<Reservation,Long> {
     private ReservationRepository reservationRepository;
     private UserService userService;
-    private UtilisateurRepo utilisateurRepo;
 
 
     @Override
     public Reservation ajout(Reservation reservation) {
         Long userId = userService.getCurrentUsernameId();
-        System.out.print("============================================ ");
-        System.out.println(userId);
-        Utilisateur utilisateur = new Utilisateur();
-        utilisateur.setId(userId);
-        reservation.setUtilisateur(utilisateur);
 
+        Utilisateur u = new Utilisateur();
+        u.setId(userId);
+
+        reservation.setUtilisateur(u);
         return reservationRepository.save(reservation);
     }
 
@@ -37,19 +35,11 @@ public class ReservationService implements CrudService<Reservation,Long> {
         return reservationRepository.findReservationByUtilisateurId(userId);
     }
 
-    public List<Map<String, Object>> liste1() {
-
-        return reservationRepository.tout();
-    }
-
     @Override
     public Optional<Reservation> trouverParId(Long id) {
         return reservationRepository.findById(id);
     }
 
-    public List<Map<String, Object>> trouverParId1(Long id) {
-        return reservationRepository.trouverParId(id);
-    }
 
     @Override
     public Reservation misAJour(Reservation reservation, Long Id) {
