@@ -37,7 +37,7 @@ public class Reservation {
     private List<Passager> passagerList;
 
     @ManyToOne
-    @JoinColumn(name = "utilisateur_id", nullable = false)
+    @JoinColumn(name = "utilisateur_id")
     private Utilisateur utilisateur;
 
     @JsonIgnore

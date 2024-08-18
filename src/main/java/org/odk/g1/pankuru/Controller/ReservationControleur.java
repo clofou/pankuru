@@ -21,8 +21,8 @@ public class ReservationControleur {
     }
 
     @GetMapping("/afficher")
-    public List<Map<String, Object>> lire(){
-        return reservationService.liste1();
+    public List<Reservation> lire(){
+        return reservationService.liste();
     }
 
     @GetMapping("/afficher/{id}")
