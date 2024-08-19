@@ -28,6 +28,11 @@ public class UtilisateurController {
         return utilisateurService.liste();
     }
 
+    @GetMapping("/afficher/vol")
+    public List<Utilisateur> afficher2(){
+        return utilisateurService.liste();
+    }
+
     @GetMapping("/afficher/{id}")
     public Optional<Utilisateur> afficherId(@PathVariable Long id){
         return utilisateurService.trouverParId(id);
