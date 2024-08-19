@@ -55,6 +55,7 @@ public class PaysService implements CrudService<Pays, Integer>{
                 if (paysExistant.isPresent()) {
                     Pays paysAModifier = paysExistant.get();
                     paysAModifier.setNom(pays.getNom());
+                    paysAModifier.setPaysImageUrl(pays.getPaysImageUrl());
 
                     return paysRepository.save(paysAModifier);
                 } else {
