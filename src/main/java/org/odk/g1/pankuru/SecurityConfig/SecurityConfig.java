@@ -78,6 +78,7 @@ public class SecurityConfig {
         http.headers(headers -> headers.frameOptions(HeadersConfigurer.FrameOptionsConfig::sameOrigin));
 
         http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
+        http.httpBasic(Customizer.withDefaults());
 
         return http.build();
     }

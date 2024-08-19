@@ -1,6 +1,7 @@
 package org.odk.g1.pankuru.Service.Service.SiegeDTO;
 
 import lombok.AllArgsConstructor;
+import org.odk.g1.pankuru.Entity.Enum.SiegeDisponible;
 import org.odk.g1.pankuru.Entity.ReservationDeVol.ClasseSiege;
 import org.odk.g1.pankuru.Entity.ReservationDeVol.PositionSiege;
 import org.odk.g1.pankuru.Entity.ReservationDeVol.Siege;
@@ -33,6 +34,7 @@ public class SiegeDTOService {
         siege.setNumero(siegeDTO.getNumeroSiege());
         siege.setPositionSiege(positionSiege);
         siege.setAvion(siegeDTO.getAvion());
+        siege.setDisponibilite(SiegeDisponible.OUI);
 
         return siegeRepository.save(siege);
 

@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 import org.odk.g1.pankuru.Entity.Compagnie.Avion;
+import org.odk.g1.pankuru.Entity.Enum.SiegeDisponible;
 // import org.springframework.security.access.method.P;
 
 import java.util.List;
@@ -15,7 +16,7 @@ public class Siege {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String numero;
-    private Boolean disponibilite = true;
+    private SiegeDisponible disponibilite;
 
     @ManyToOne
     @JoinColumn(name = "positionSiege_id")
