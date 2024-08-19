@@ -66,6 +66,7 @@ public class SecurityConfig {
                                 request.requestMatchers("/"+rolePermission.getPermissionEndpoint()+"/supprimer/**").hasRole(rolePermission.getRoleName());
                             }
                         }
+                        request.requestMatchers("/vol/afficher/tout").hasRole("USER");
                         request.anyRequest().authenticated();
 
                     });
