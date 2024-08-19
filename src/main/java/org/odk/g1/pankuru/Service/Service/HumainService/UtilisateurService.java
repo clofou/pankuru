@@ -6,13 +6,18 @@ import java.util.Optional;
 
 import org.odk.g1.pankuru.Entity.Humain.Utilisateur;
 import org.odk.g1.pankuru.Entity.Permission.Role;
+import org.odk.g1.pankuru.Entity.ReservationDeVol.Vol;
 import org.odk.g1.pankuru.Repository.HumainRepo.UtilisateurRepo;
 import org.odk.g1.pankuru.Service.Interface.CrudService;
 import org.odk.g1.pankuru.Utils.UtilService;
+import org.odk.g1.pankuru.dto.SearchVolDTO;
+import org.odk.g1.pankuru.dto.VolResult;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import lombok.AllArgsConstructor;
+
+import javax.naming.directory.SearchResult;
 
 @Service
 @AllArgsConstructor
@@ -48,6 +53,10 @@ public class UtilisateurService implements CrudService<Utilisateur, Long>{
     public List<Utilisateur> liste() {
         return utilisateurRepo.findAll();
     }
+
+    /*public List<VolResult> searchvol(SearchVolDTO searchVolDTO){
+
+    }*/
 
     public List<Map<String, Object>> liste1() {
         return utilisateurRepo.tout();
