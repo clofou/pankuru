@@ -49,6 +49,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(request->
                     {
                         request.requestMatchers("/personne/signin").permitAll();
+                        request.requestMatchers("/utilisateur/ajout").permitAll();
                         for (RolePermissionDTO rolePermission : rolePermissions) {
 
                             if (rolePermission.getPermissionPermission() == EnumPermission.AFFICHER){
@@ -65,6 +66,7 @@ public class SecurityConfig {
                                 request.requestMatchers("/"+rolePermission.getPermissionEndpoint()+"/supprimer/**").hasRole(rolePermission.getRoleName());
                             }
                         }
+                        request.requestMatchers("/vol/afficher/tout").hasRole("USER");
                         request.anyRequest().authenticated();
 
                     });
@@ -76,6 +78,7 @@ public class SecurityConfig {
         http.headers(headers -> headers.frameOptions(HeadersConfigurer.FrameOptionsConfig::sameOrigin));
 
         http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
+        http.httpBasic(Customizer.withDefaults());
 
         return http.build();
     }

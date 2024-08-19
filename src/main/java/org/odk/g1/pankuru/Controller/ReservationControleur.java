@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 @RestController
 @AllArgsConstructor
@@ -23,13 +24,13 @@ public class ReservationControleur {
     }
 
     @GetMapping("/afficher")
-    public List<Map<String, Object>> lire(){
-        return reservationService.liste1();
+    public List<Reservation> lire(){
+        return reservationService.liste();
     }
 
     @GetMapping("/afficher/{id}")
-    public List<Map<String, Object>> parId(@PathVariable Long id){
-        return reservationService.trouverParId1(id);
+    public Optional<Reservation> parId(@PathVariable Long id){
+        return reservationService.trouverParId(id);
     }
 
     @PutMapping("/modifier/{id}")
