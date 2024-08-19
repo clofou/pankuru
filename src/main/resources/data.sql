@@ -101,10 +101,12 @@ VALUES ('AF001', 200, 'Boeing 777', 'DISPONIBLE', (SELECT id FROM personne WHERE
 INSERT INTO Avion (matricule, capacite_totale, nom, statut, admin_compagnie_id)
 VALUES ('BA002', 150, 'Airbus A320', 'MAINTENANCE', (SELECT id FROM personne WHERE nom = 'Lead'));
 
-INSERT INTO siege(numero, position_siege_id, avion_id) VALUES ('25E', 1, (select id from avion where matricule='AF001'));
-INSERT INTO siege(numero, position_siege_id, avion_id) VALUES ('26B', 2, (select id from avion where matricule='AF001'));
-INSERT INTO siege(numero, position_siege_id, avion_id) VALUES ('27D', 2, (select id from avion where matricule='AF001'));
-INSERT INTO siege(numero, position_siege_id, avion_id) VALUES ('28E', 3, (select id from avion where matricule='AF001'));
+INSERT INTO `siege`(disponibilite, numero, position_siege_id, avion_id) VALUES ('OUI','25E',1,(select id from avion where matricule='AF001'));
+INSERT INTO `siege`(disponibilite, numero, position_siege_id, avion_id) VALUES ('NON','26B',2,(select id from avion where matricule='AF001'));
+INSERT INTO `siege`(disponibilite, numero, position_siege_id, avion_id) VALUES ('NON','27D',2,(select id from avion where matricule='AF001'));
+INSERT INTO `siege`(disponibilite, numero, position_siege_id, avion_id) VALUES ('OUI','28E',2,(select id from avion where matricule='AF001'));
+
+
 
 
 -- Insertion des contrats
