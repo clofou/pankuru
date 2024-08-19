@@ -99,10 +99,12 @@ VALUES ('AF001', 200, 'Boeing 777', 'DISPONIBLE', (SELECT id FROM personne WHERE
 INSERT INTO Avion (matricule, capacite_totale, nom, statut, admin_compagnie_id)
 VALUES ('BA002', 150, 'Airbus A320', 'MAINTENANCE', (SELECT id FROM personne WHERE nom = 'Lead'));
 
-INSERT INTO siege(numero, position_siege_id, avion_id) VALUES ('25E', 1, (select id from avion where matricule='AF001'));
-INSERT INTO siege(numero, position_siege_id, avion_id) VALUES ('26B', 2, (select id from avion where matricule='AF001'));
-INSERT INTO siege(numero, position_siege_id, avion_id) VALUES ('27D', 2, (select id from avion where matricule='AF001'));
-INSERT INTO siege(numero, position_siege_id, avion_id) VALUES ('28E', 3, (select id from avion where matricule='AF001'));
+INSERT INTO `siege`(disponibilite, numero, position_siege_id, avion_id) VALUES ('OUI','25E',1,(select id from avion where matricule='AF001'));
+INSERT INTO `siege`(disponibilite, numero, position_siege_id, avion_id) VALUES ('NON','26B',2,(select id from avion where matricule='AF001'));
+INSERT INTO `siege`(disponibilite, numero, position_siege_id, avion_id) VALUES ('NON','27D',2,(select id from avion where matricule='AF001'));
+INSERT INTO `siege`(disponibilite, numero, position_siege_id, avion_id) VALUES ('OUI','28E',2,(select id from avion where matricule='AF001'));
+
+
 
 
 -- Insertion des contrats
@@ -378,7 +380,6 @@ INSERT INTO role_permission(role_id,permission_id) VALUES ((SELECT id FROM role 
 INSERT INTO role_permission(role_id,permission_id) VALUES ((SELECT id FROM role WHERE nom = 'ADMINCOMPAGNIE'),(SELECT id FROM permission WHERE end_point = 'personne' AND permission = 'MODIFIER'));
 INSERT INTO role_permission(role_id,permission_id) VALUES ((SELECT id FROM role WHERE nom = 'ADMINCOMPAGNIE'),(SELECT id FROM permission WHERE end_point = 'personne' AND permission = 'SUPPRIMER'));
 
-INSERT INTO role_permission(role_id,permission_id) VALUES ((SELECT id FROM role WHERE nom = 'ADMINCOMPAGNIE'),(SELECT id FROM permission WHERE end_point = 'vol' AND permission = 'AFFICHER'));
 INSERT INTO role_permission(role_id,permission_id) VALUES ((SELECT id FROM role WHERE nom = 'ADMINCOMPAGNIE'),(SELECT id FROM permission WHERE end_point = 'vol' AND permission = 'AJOUT'));
 INSERT INTO role_permission(role_id,permission_id) VALUES ((SELECT id FROM role WHERE nom = 'ADMINCOMPAGNIE'),(SELECT id FROM permission WHERE end_point = 'vol' AND permission = 'MODIFIER'));
 INSERT INTO role_permission(role_id,permission_id) VALUES ((SELECT id FROM role WHERE nom = 'ADMINCOMPAGNIE'),(SELECT id FROM permission WHERE end_point = 'vol' AND permission = 'SUPPRIMER'));
@@ -417,9 +418,13 @@ INSERT INTO role_permission(role_id,permission_id) VALUES ((SELECT id FROM role 
 INSERT INTO role_permission(role_id,permission_id) VALUES ((SELECT id FROM role WHERE nom = 'ADMINCOMPAGNIE'),(SELECT id FROM permission WHERE end_point = 'faq' AND permission = 'MODIFIER'));
 INSERT INTO role_permission(role_id,permission_id) VALUES ((SELECT id FROM role WHERE nom = 'ADMINCOMPAGNIE'),(SELECT id FROM permission WHERE end_point = 'faq' AND permission = 'SUPPRIMER'));
 
+
 INSERT INTO role_permission(role_id,permission_id) VALUES ((SELECT id FROM role WHERE nom = 'USER'),(SELECT id FROM permission WHERE end_point = 'reservation' AND permission = 'AFFICHER'));
 INSERT INTO role_permission(role_id,permission_id) VALUES ((SELECT id FROM role WHERE nom = 'USER'),(SELECT id FROM permission WHERE end_point = 'reservation' AND permission = 'AJOUT'));
 INSERT INTO role_permission(role_id,permission_id) VALUES ((SELECT id FROM role WHERE nom = 'USER'),(SELECT id FROM permission WHERE end_point = 'reservation' AND permission = 'MODIFIER'));
 INSERT INTO role_permission(role_id,permission_id) VALUES ((SELECT id FROM role WHERE nom = 'USER'),(SELECT id FROM permission WHERE end_point = 'reservation' AND permission = 'SUPPRIMER'));
+
+INSERT INTO role_permission(role_id,permission_id) VALUES ((SELECT id FROM role WHERE nom = 'USER'),(SELECT id FROM permission WHERE end_point = 'vol' AND permission = 'AFFICHER'));
+
 
 

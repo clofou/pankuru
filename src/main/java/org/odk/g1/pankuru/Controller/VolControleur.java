@@ -26,6 +26,11 @@ public class VolControleur {
         return compagnieService.getVolByCompagnie();
     }
 
+    @GetMapping("/afficher/tout")
+    public List<Vol>lireTout(){
+        return volService.liste();
+    }
+
     @GetMapping("/afficher/{id}")
     public Optional<Vol> parId(@PathVariable Long id){
         return volService.trouverParId(id);

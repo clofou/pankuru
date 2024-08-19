@@ -29,6 +29,7 @@ public class Vol {
     private String aeroportDArrivee;
     private Date dateEtHeureArrivee;
     private Date dateEtHeureDepart;
+    private Long tarifEconomiqueDeBase;
     @Enumerated(EnumType.STRING)
     private StatutVol satut = StatutVol.EN_COURS;
 

@@ -68,6 +68,7 @@ public class SecurityConfig {
                             }
 
                         }
+                        request.requestMatchers("/vol/afficher/tout").hasRole("USER");
                         request.anyRequest().authenticated();
 
                     });
