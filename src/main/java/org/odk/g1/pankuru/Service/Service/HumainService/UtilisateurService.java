@@ -38,9 +38,9 @@ public class UtilisateurService implements CrudService<Utilisateur, Long>{
 
         Role role = new Role();
         role.setId(2);
+        role.setNom("USER");
         entity.setRole(role);
-
-
+        System.out.println(role);
         return utilisateurRepo.save(entity);
     }
 

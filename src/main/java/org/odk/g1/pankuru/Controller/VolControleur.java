@@ -13,7 +13,6 @@ import java.util.Optional;
 @AllArgsConstructor
 @RequestMapping("/vol")
 @CrossOrigin("http://localhost:4200")
-
 public class VolControleur {
     private VolService volService;
     private CompagnieService compagnieService;

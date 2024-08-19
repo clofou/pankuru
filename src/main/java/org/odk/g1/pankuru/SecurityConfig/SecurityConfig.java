@@ -48,6 +48,7 @@ public class SecurityConfig {
                 .cors(Customizer.withDefaults())
                 .authorizeHttpRequests(request->
                     {
+                        request.requestMatchers("/utilisateur/**").permitAll();
                         request.requestMatchers("/personne/signin").permitAll();
                         request.requestMatchers("/utilisateur/ajout").permitAll();
                         for (RolePermissionDTO rolePermission : rolePermissions) {
@@ -65,11 +66,11 @@ public class SecurityConfig {
                                 System.out.println("/"+rolePermission.getPermissionEndpoint()+"/supprimer/** "+ rolePermission.getRoleName());
                                 request.requestMatchers("/"+rolePermission.getPermissionEndpoint()+"/supprimer/**").hasRole(rolePermission.getRoleName());
                             }
+
                         }
                         request.anyRequest().authenticated();
 
                     });
-
         http.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
 
         http.exceptionHandling(exception -> exception.authenticationEntryPoint(unauthorizedHandler));
@@ -77,7 +78,6 @@ public class SecurityConfig {
         http.headers(headers -> headers.frameOptions(HeadersConfigurer.FrameOptionsConfig::sameOrigin));
 
         http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
-
         return http.build();
     }
 
