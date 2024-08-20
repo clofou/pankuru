@@ -25,13 +25,17 @@ public class Vol {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String numeroDeVol;
-    private String aeroportDepart;
-    private String aeroportDArrivee;
+    @ManyToOne
+    private Aeroport aeroportDepart;
+    @ManyToOne
+    private Aeroport aeroportDArrivee;
     private Date dateEtHeureArrivee;
     private Date dateEtHeureDepart;
     private Long tarifEconomiqueDeBase;
     @Enumerated(EnumType.STRING)
     private StatutVol satut = StatutVol.EN_COURS;
+    @ManyToOne
+    private Avion avionDepart;
 
     @JsonIgnore
     @OneToMany(mappedBy = "vol", cascade = CascadeType.REMOVE)

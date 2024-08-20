@@ -50,8 +50,9 @@ public class SecurityConfig {
                     {
                         request.requestMatchers("/personne/signin").permitAll();
                         request.requestMatchers("/utilisateur/ajout").permitAll();
-                        for (RolePermissionDTO rolePermission : rolePermissions) {
+                        request.requestMatchers("/reservation/afficher/tout/**").permitAll();
 
+                        for (RolePermissionDTO rolePermission : rolePermissions) {
                             if (rolePermission.getPermissionPermission() == EnumPermission.AFFICHER){
                                 System.out.println("/"+rolePermission.getPermissionEndpoint()+"/afficher/** "+ rolePermission.getRoleName());
                                 request.requestMatchers("/"+rolePermission.getPermissionEndpoint()+"/afficher/**").hasRole(rolePermission.getRoleName());
@@ -66,7 +67,10 @@ public class SecurityConfig {
                                 request.requestMatchers("/"+rolePermission.getPermissionEndpoint()+"/supprimer/**").hasRole(rolePermission.getRoleName());
                             }
                         }
-                        request.requestMatchers("/vol/afficher/tout").hasRole("USER");
+
+                        request.requestMatchers("/vol/afficher/**").hasAnyRole("USER", "ADMINCOMPAGNIE");
+                        request.requestMatchers("/ville/afficher/**").hasAnyRole("USER", "ADMINCOMPAGNIE");
+
                         request.anyRequest().authenticated();
 
                     });

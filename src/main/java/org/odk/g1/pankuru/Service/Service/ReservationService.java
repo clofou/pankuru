@@ -92,4 +92,8 @@ public class ReservationService implements CrudService<Reservation,Long> {
     public void supprimer(Long id) {
         reservationRepository.deleteById(id);
     }
+
+    public List<Reservation> getReservationsByPassager(Long utilisateurId) {
+        return reservationRepository.findByutilisateurId(utilisateurId);
+    }
 }
