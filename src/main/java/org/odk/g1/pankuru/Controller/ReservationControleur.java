@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 // import org.odk.g1.pankuru.Entity.ReservationDeVol.Passager;
 import org.odk.g1.pankuru.Entity.ReservationDeVol.Reservation;
 import org.odk.g1.pankuru.Service.Service.ReservationService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -41,4 +43,9 @@ public class ReservationControleur {
         reservationService.supprimer(id);
     }
 
+    @GetMapping("/afficher/tout/{id}")
+    public ResponseEntity<List<Reservation>> getReservationsByUtilisateur(@PathVariable Long id) {
+        List<Reservation> reservations = reservationService.getReservationsByPassager(id);
+        return new ResponseEntity<>(reservations, HttpStatus.OK);
+    }
 }

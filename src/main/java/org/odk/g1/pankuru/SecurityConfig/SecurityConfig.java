@@ -50,9 +50,9 @@ public class SecurityConfig {
                     {
                         request.requestMatchers("/personne/signin").permitAll();
                         request.requestMatchers("/utilisateur/ajout").permitAll();
+                        request.requestMatchers("/reservation/afficher/tout/**").permitAll();
 
                         for (RolePermissionDTO rolePermission : rolePermissions) {
-
                             if (rolePermission.getPermissionPermission() == EnumPermission.AFFICHER){
                                 System.out.println("/"+rolePermission.getPermissionEndpoint()+"/afficher/** "+ rolePermission.getRoleName());
                                 request.requestMatchers("/"+rolePermission.getPermissionEndpoint()+"/afficher/**").hasRole(rolePermission.getRoleName());
