@@ -194,8 +194,8 @@ VALUES ('BA002', 150, 'Airbus A320', 'MAINTENANCE', (SELECT id FROM personne WHE
 
 
 INSERT INTO `siege` (`id`, `disponibilite`, `numero`, `avion_id`, `position_siege_id`) VALUES
-                                                                                           (5, 1, '25E', 1, 14),
-                                                                                           (6, 1, '26B', 1, 15);
+(5, 1, '25E', 1, 14),
+(6, 1, '26B', 1, 15);
 -- Insertion des contrats
 INSERT INTO Contrat (type, description, date_debut, date_fin, statut, cgu, commentaires, compagnie_id)
 VALUES ('Location', 'Location de matériel', '2024-01-01', '2024-12-31', 'EN_ATTENTE', 'Conditions générales', 'Aucun commentaire', (SELECT id FROM compagnie WHERE matricule = 'AF123'));
