@@ -25,12 +25,12 @@ Content-Type: application/json
 
 ###
 // Affichage des villes
-GET http://localhost:8080/ville/afficher/tout/1
+GET http://localhost:8080/ville/afficher/tout
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhbG91QGdtYWlsLmNvbSIsImlhdCI6MTcyNDE0NjU3MiwiZXhwIjoxNzI0MTQ5NTcyfQ.aDjfV-NRixS7x2rQUPi-PE_JTHMrPxG_nOiJmct_NVs
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhbG91QGdtYWlsLmNvbSIsImlhdCI6MTcyNDE2MDA2NiwiZXhwIjoxNzI0MTYzMDY2fQ.GqkEVEFaKLTZFKSGh8q-uxOBCSFGT-hivN0vNiQUKDA
 
 ###
 // Affichage des Vols
 GET http://localhost:8080/vol/afficher/tout
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhbG91QGdtYWlsLmNvbSIsImlhdCI6MTcyNDE0OTM5OSwiZXhwIjoxNzI0MTUyMzk5fQ.WnBy2nAgleWIyRFTMBPL9UfkgXOnKTXkag6k3iLIFa8
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huLnNtaXRoQGV4YW1wbGUuY29tIiwiaWF0IjoxNzI0MTQ5OTM0LCJleHAiOjE3MjQxNTI5MzR9.sGpZz5HaW3U1PRhRK4AjZ2GEemSNZc6fhVGmeaxgyDY

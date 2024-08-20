@@ -31,6 +31,11 @@ public class VolControleur {
         return volService.liste();
     }
 
+    @GetMapping("/afficher/tout/{id}")
+    public Optional<Vol> lireId(@PathVariable Long id){
+        return volService.trouverParId(id);
+    }
+
     @GetMapping("/afficher/{id}")
     public Optional<Vol> parId(@PathVariable Long id){
         return volService.trouverParId(id);
