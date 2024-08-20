@@ -19,15 +19,9 @@ public class Siege {
     private SiegeDisponible disponibilite;
 
     @ManyToOne
-    @JoinColumn(name = "positionSiege_id")
     private PositionSiege positionSiege;
-    
-    @JsonIgnore
-    @OneToMany(mappedBy = "siege")
-    private List<Passager> passagerList;
 
     @ManyToOne
-    @JoinColumn(name = "avion_id")
     private Avion avion;
 
 }

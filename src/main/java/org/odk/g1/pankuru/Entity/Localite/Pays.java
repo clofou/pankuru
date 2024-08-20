@@ -19,11 +19,6 @@ public class Pays {
     private String nom;
     private String paysImageUrl;
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "pays", cascade = CascadeType.REMOVE)
-    private List<Ville> villeList;
-
     @ManyToOne
-    @JoinColumn(name = "adminCompagnie_id")
     private AdminCompagnie adminCompagnie;
 }

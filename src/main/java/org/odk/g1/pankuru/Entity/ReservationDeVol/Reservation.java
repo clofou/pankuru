@@ -29,19 +29,9 @@ public class Reservation {
     private String raisonAnnulation;
 
     @ManyToOne
-    @JoinColumn(name = "vol_id", nullable = false)
     private Vol vol;
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "reservation", cascade = CascadeType.REMOVE)
-    private List<Passager> passagerList;
-
     @ManyToOne
-    @JoinColumn(name = "utilisateur_id")
     private Utilisateur utilisateur;
-
-    @JsonIgnore
-    @OneToOne(mappedBy = "reservation")
-    private Paiement paiement;
 
 }

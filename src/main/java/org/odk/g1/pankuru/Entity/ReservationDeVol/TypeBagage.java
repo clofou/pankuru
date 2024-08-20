@@ -18,9 +18,4 @@ public class TypeBagage {
     private Integer id;
     @Column(unique = true, nullable = false)
     private String nom;
-    
-    @JsonIgnore
-    @OneToMany(mappedBy = "typeBagage")
-    private List<Bagage> bagage;
-
 }

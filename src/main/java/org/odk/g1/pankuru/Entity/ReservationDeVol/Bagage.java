@@ -18,10 +18,8 @@ public class Bagage {
     private String dimension;
 
     @ManyToOne
-    @JoinColumn(name = "passager_id", nullable = false)
     private Passager passager;
 
     @ManyToOne
-    @JoinColumn(name = "typeBagage_id")
     private TypeBagage typeBagage;
 }

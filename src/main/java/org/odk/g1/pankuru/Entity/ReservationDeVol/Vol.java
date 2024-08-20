@@ -25,21 +25,18 @@ public class Vol {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String numeroDeVol;
-    @ManyToOne
-    private Aeroport aeroportDepart;
-    @ManyToOne
-    private Aeroport aeroportDArrivee;
     private Date dateEtHeureArrivee;
     private Date dateEtHeureDepart;
     private Long tarifEconomiqueDeBase;
     @Enumerated(EnumType.STRING)
     private StatutVol satut = StatutVol.EN_COURS;
+
+    @ManyToOne
+    private Aeroport aeroportDepart;
+    @ManyToOne
+    private Aeroport aeroportDArrivee;
     @ManyToOne
     private Avion avionDepart;
-
-    @JsonIgnore
-    @OneToMany(mappedBy = "vol", cascade = CascadeType.REMOVE)
-    private List<Reservation> reservationList;
 
     @ManyToMany
     @JoinTable(name = "vol_avion", 
@@ -54,7 +51,6 @@ public class Vol {
     private List<Aeroport> aeroportList;
 
     @ManyToOne
-    @JoinColumn(name = "adminCompagnie_id")
     private AdminCompagnie adminCompagnie;
 
 }

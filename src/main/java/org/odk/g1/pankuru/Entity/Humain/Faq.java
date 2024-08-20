@@ -15,6 +15,5 @@ public class Faq{
     private String reponse;
 
     @ManyToOne
-    @JoinColumn(name = "adminCompagnie_id")
     private AdminCompagnie adminCompagnie;
 }

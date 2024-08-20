@@ -21,11 +21,4 @@ public class Role {
     @Column(unique = true)
     private String nom;
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "role")
-    private List<Personne> personneList;
-
-    @JsonIgnore
-    @ManyToMany(mappedBy = "roleList")
-    List<Permission> permissionList;
 }

@@ -12,8 +12,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Collection;
 import java.util.Collections;
 
-
-
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 @Data
@@ -32,7 +30,6 @@ public class Personne implements UserDetails {
 
 
     @ManyToOne
-    @JoinColumn(name = "role_id")
     private Role role;
 
     @JsonIgnore

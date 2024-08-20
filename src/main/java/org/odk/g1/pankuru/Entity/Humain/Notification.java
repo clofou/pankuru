@@ -19,15 +19,12 @@ public class Notification {
     private LocalTime heure;
 
     @ManyToOne
-    @JoinColumn(name = "utilisateur_id")
     private Utilisateur utilisateur;
 
     @ManyToOne
-    @JoinColumn(name = "reservation_id")
     private Reservation reservation;
 
     @ManyToOne
-    @JoinColumn(name = "vol_id")
     private Vol vol;
 
 }

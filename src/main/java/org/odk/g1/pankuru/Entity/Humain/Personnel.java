@@ -2,7 +2,6 @@ package org.odk.g1.pankuru.Entity.Humain;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import lombok.*;
 
@@ -21,7 +20,6 @@ public class Personnel extends Personne {
     private boolean enService = false;
 
     @ManyToOne
-    @JoinColumn(name = "adminCompagnie_id")
     private AdminCompagnie adminCompagnie;
 
 

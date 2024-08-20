@@ -24,14 +24,8 @@ public class Ville {
     private String nom;
 
     @ManyToOne
-    @JoinColumn(name = "pays_id", nullable = false)
     private Pays pays;
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "ville", cascade = CascadeType.REMOVE)
-    private List<Aeroport> aeroportList;
-
     @ManyToOne
-    @JoinColumn(name = "adminCompagnie_id")
     private AdminCompagnie adminCompagnie;
 }

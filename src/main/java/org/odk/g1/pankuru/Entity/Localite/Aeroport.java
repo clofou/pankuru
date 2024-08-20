@@ -28,15 +28,9 @@ public class Aeroport {
     private double altitude;
     private int capaciteParking = 0;
     private int nombreDePistes = 0;
+
     @ManyToOne
-    @JoinColumn(name = "ville_id", nullable = false)
     private Ville ville;
-
-    @JsonIgnore
-    @ManyToMany(mappedBy = "aeroportList")
-    private List<Vol> vols;
-
     @ManyToOne
-    @JoinColumn(name = "adminCompagnie_id")
     private AdminCompagnie adminCompagnie;
 }

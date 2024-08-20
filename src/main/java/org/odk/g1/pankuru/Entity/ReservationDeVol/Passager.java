@@ -21,14 +21,8 @@ public class Passager {
     private String numeroDeVisa;
 
     @ManyToOne
-    @JoinColumn(name = "siege_id")
     private Siege siege;
 
     @ManyToOne
-    @JoinColumn(name = "reservation_id", nullable = false)
     private Reservation reservation;
-
-    @JsonIgnore
-    @OneToMany(mappedBy = "passager", cascade = CascadeType.REMOVE)
-    private List<Bagage> bagageList;
 }

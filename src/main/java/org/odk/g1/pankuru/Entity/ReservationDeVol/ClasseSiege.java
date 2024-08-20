@@ -18,8 +18,4 @@ public class ClasseSiege {
     private Integer id;
     @Column(nullable = false, unique = true)
     private String nom;
-    
-    @JsonIgnore
-    @OneToMany(mappedBy = "classeSiege")
-    private Set<PositionSiege>positionSiege;
 }

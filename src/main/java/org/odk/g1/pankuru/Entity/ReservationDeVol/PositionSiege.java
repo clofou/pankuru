@@ -20,10 +20,6 @@ public class PositionSiege {
     private double tarif;
 
     @ManyToOne
-    @JoinColumn(name = "classeSiege_id", nullable = false)
     private ClasseSiege classeSiege;
-    
-    @JsonIgnore
-    @OneToMany(mappedBy = "positionSiege")
-    private List<Siege> siege;
+
 }

@@ -1,21 +1,10 @@
 package org.odk.g1.pankuru.Entity.Humain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
-import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
 import lombok.*;
-
-import org.odk.g1.pankuru.Entity.Compagnie.Avion;
 import org.odk.g1.pankuru.Entity.Compagnie.Compagnie;
-import org.odk.g1.pankuru.Entity.Localite.Aeroport;
-import org.odk.g1.pankuru.Entity.Localite.Pays;
-import org.odk.g1.pankuru.Entity.Localite.Ville;
-import org.odk.g1.pankuru.Entity.ReservationDeVol.Vol;
-import org.odk.g1.pankuru.Utils.UtilService;
-
-import java.util.List;
 
 
 @Entity
@@ -25,7 +14,7 @@ import java.util.List;
 @NoArgsConstructor
 public class AdminCompagnie extends Personne {
 
-    private String pseudo = UtilService.generateRandomPseudo();
+    private String pseudo;
     @ManyToOne
     private Compagnie compagnie;
     @ManyToOne
