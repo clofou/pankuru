@@ -27,7 +27,12 @@ public class VilleController {
     @GetMapping("/afficher")
     public List<Ville> afficher(){
         return compagnieService.getVilleByCompagnie();
-    } 
+    }
+
+    @GetMapping("/afficher/tout")
+    public List<Ville> afficherTout(){
+        return villeService.liste();
+    }
 
     @PutMapping("/modifier/{id}")
     public Ville modifier(@PathVariable Integer id,@RequestBody Ville ville){

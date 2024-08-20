@@ -1,0 +1,31 @@
+###
+// Creation de compte utilisateur
+POST http://localhost:8080/utilisateur/ajout
+Content-Type: application/json
+
+{
+  "dateDeNaissance": "2000-10-10",
+  "nom": "Traore",
+  "prenom": "Alou",
+  "email": "alou@gmail.com",
+  "password": "1234",
+  "numeroDeTelephone": "22300000000",
+  "adresse": "Bamako Lafiabougou"
+}
+
+###
+// Connexion au compte
+POST http://localhost:8080/personne/signin
+Content-Type: application/json
+
+{
+  "username": "alou@gmail.com",
+  "password": "1234"
+}
+
+###
+// Affichage des villes
+GET http://localhost:8080/ville/afficher/tout
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhbG91QGdtYWlsLmNvbSIsImlhdCI6MTcyNDE0OTM5OSwiZXhwIjoxNzI0MTUyMzk5fQ.WnBy2nAgleWIyRFTMBPL9UfkgXOnKTXkag6k3iLIFa8
+
