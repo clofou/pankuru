@@ -24,47 +24,11 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class AdminCompagnie extends Personne {
+
     private String pseudo = UtilService.generateRandomPseudo();
-
     @ManyToOne
-    @JoinColumn(name = "compagnie_id", nullable = false)
     private Compagnie compagnie;
-
-    @JsonIgnore
-    @OneToMany(mappedBy = "adminCompagnie")
-    private List<Rapport> rapportList;
-
-    @JsonIgnore
-    @OneToMany(mappedBy = "adminCompagnie")
-    private List<Faq> faqList;
-
-    @JsonIgnore
-    @OneToMany(mappedBy = "adminCompagnie")
-    private List<Aeroport> aeroportList;
-
-
-    @JsonIgnore
-    @OneToMany(mappedBy = "adminCompagnie")
-    private List<Pays> paysList;
-
-    @JsonIgnore
-    @OneToMany(mappedBy = "adminCompagnie")
-    private List<Ville> villeList;
-
-    @JsonIgnore
-    @OneToMany(mappedBy = "adminCompagnie")
-    private List<Vol> volList;
-
-    @JsonIgnore
-    @OneToMany(mappedBy = "adminCompagnie")
-    private List<Avion> avionList;
-
-    @JsonIgnore
-    @OneToMany(mappedBy = "adminCompagnie")
-    private List<Personnel> personnelList;
-
     @ManyToOne
-    @JoinColumn(name = "superadmin_id")
     private SuperAdmin superAdmin;
 
 

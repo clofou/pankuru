@@ -26,17 +26,7 @@ public class Avion {
     @Enumerated(EnumType.STRING)
     private StatutAvion statut = StatutAvion.DISPONIBLE;
 
-    @JsonIgnore
-    @ManyToMany(mappedBy = "avionList")
-    private List<Vol> vol;
-
     @ManyToOne
-    @JoinColumn(name = "adminCompagnie_id")
     private AdminCompagnie adminCompagnie;
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "avion")
-    private List<Siege> siegeList;
-
-    
 }

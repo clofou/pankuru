@@ -40,16 +40,6 @@ public class Compagnie {
     private boolean isLocked = false;
 
     @ManyToOne
-    @JoinColumn(name = "superAdmin_id")
     private SuperAdmin superAdmin;
 
-    
-    @JsonIgnore
-    @OneToMany(mappedBy = "compagnie")
-    private List<Contrat> contratList;
-
-    
-    @JsonIgnore
-    @OneToMany(mappedBy = "compagnie")
-    private List<AdminCompagnie> adminCompagnieList;
 }
