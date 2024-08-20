@@ -44,4 +44,8 @@ public class SiegeService implements CrudService<Siege,Long> {
     public void supprimer(Long id) {
         siegeRepository.deleteById(id);
     }
+    // Méthode pour récupérer les sièges en fonction de l'ID de l'avion
+    public List<Siege> getSiegesByAvionId(Long avionId) {
+        return siegeRepository.findByAvionId(avionId);
+    }
 }
