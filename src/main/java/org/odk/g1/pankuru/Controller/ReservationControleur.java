@@ -43,9 +43,9 @@ public class ReservationControleur {
         reservationService.supprimer(id);
     }
 
-    @GetMapping("/AFFICHER/{id}")
-    public ResponseEntity<List<Reservation>> getReservationsByUtilisateur(@PathVariable Long utilisateurId) {
-        List<Reservation> reservations = reservationService.getReservationsByPassager(utilisateurId);
+    @GetMapping("/afficher/tout/{id}")
+    public ResponseEntity<List<Reservation>> getReservationsByUtilisateur(@PathVariable Long id) {
+        List<Reservation> reservations = reservationService.getReservationsByPassager(id);
         return new ResponseEntity<>(reservations, HttpStatus.OK);
     }
 }
