@@ -51,6 +51,7 @@ public class SecurityConfig {
                         request.requestMatchers("/utilisateur/**").permitAll();
                         request.requestMatchers("/personne/signin").permitAll();
                         request.requestMatchers("/utilisateur/ajout").permitAll();
+                        request.requestMatchers("/vol/afficher/{id}").permitAll();
                         for (RolePermissionDTO rolePermission : rolePermissions) {
 
                             if (rolePermission.getPermissionPermission() == EnumPermission.AFFICHER){
