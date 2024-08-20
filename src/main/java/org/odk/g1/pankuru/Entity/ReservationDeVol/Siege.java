@@ -28,6 +28,6 @@ public class Siege {
 
     @ManyToOne
     @JoinColumn(name = "avion_id")
-    private Avion avion;;
+    private Avion avion;
 
 }

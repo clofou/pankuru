@@ -5,6 +5,7 @@ import org.odk.g1.pankuru.Entity.ReservationDeVol.Siege;
 import org.odk.g1.pankuru.Service.Service.SiegeDTO.SiegeDTOService;
 import org.odk.g1.pankuru.Service.Service.SiegeService;
 import org.odk.g1.pankuru.dto.SiegeDTO;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -40,5 +41,10 @@ public class SiegeControleur {
     @DeleteMapping("/supprimer/{id}")
     public void supp(@PathVariable Long id){
         siegeService.supprimer(id);
+    }
+    // Endpoint pour récupérer les sièges en fonction de l'ID de l'avion
+    @GetMapping("/afficher/avion/{avionId}")
+    public List<Siege> getSiegesByAvionId(@PathVariable Long avionId) {
+        return siegeService.getSiegesByAvionId(avionId);
     }
 }
