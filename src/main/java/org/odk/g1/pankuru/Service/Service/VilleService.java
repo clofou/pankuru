@@ -35,13 +35,7 @@ public class VilleService implements CrudService<Ville, Integer>{
 
     @Override
     public Optional<Ville> trouverParId(Integer id) {
-        Optional<Ville> ville = villeRepository.findById(id);
-        if (ville.isPresent()) {
-            if(compagnieService.getVilleByCompagnie().contains(ville.get())){
-                return villeRepository.findById(id);
-            }
-        }
-        return Optional.empty();
+        return villeRepository.findById(id);
     }
 
     @Override
