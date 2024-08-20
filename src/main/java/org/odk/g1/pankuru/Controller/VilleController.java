@@ -1,6 +1,7 @@
 package org.odk.g1.pankuru.Controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.odk.g1.pankuru.Entity.Localite.Ville;
 import org.odk.g1.pankuru.Service.Service.CompagnieService;
@@ -32,6 +33,11 @@ public class VilleController {
     @GetMapping("/afficher/tout")
     public List<Ville> afficherTout(){
         return villeService.liste();
+    }
+
+    @GetMapping("/afficher/tout/{id}")
+    public Optional<Ville> afficherUn(@PathVariable Integer id){
+        return villeService.trouverParId(id);
     }
 
     @PutMapping("/modifier/{id}")
