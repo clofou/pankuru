@@ -2,7 +2,6 @@ package org.odk.g1.pankuru.Entity.Paiement;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-// import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -11,7 +10,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class MobileMoney extends ModePaiement{
-    @Column(nullable = false, unique = true)
+public class MobileMoney extends Paiement{
+    @Column(nullable = false)
     private String numeroDeTelephone;
 }

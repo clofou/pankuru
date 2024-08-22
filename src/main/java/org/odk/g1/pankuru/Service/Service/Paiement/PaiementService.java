@@ -1,6 +1,7 @@
 package org.odk.g1.pankuru.Service.Service.Paiement;
 // import org.odk.g1.pankuru.Entity.Paiement.CarteBancaire;
 // import org.odk.g1.pankuru.Entity.Paiement.MobileMoney;
+import org.odk.g1.pankuru.Entity.Paiement.ModePaiement;
 import org.odk.g1.pankuru.Entity.Paiement.Paiement;
 import org.odk.g1.pankuru.Repository.Paiement.PaiementRepository;
 import org.odk.g1.pankuru.Service.Interface.CrudService;
@@ -17,6 +18,8 @@ public class PaiementService implements CrudService<Paiement, Long>{
     PaiementRepository paiementRepository;
     @Override
     public Paiement ajout(Paiement paiement) {
+        ModePaiement md=new ModePaiement();
+        md.setId("ORANGE");
         return paiementRepository.save(paiement);
     }
 

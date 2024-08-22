@@ -33,7 +33,7 @@ public class VolControleur {
     }
 
     @GetMapping("/afficher/{id}")
-    public Optional<Vol> parId(@PathVariable Long id){
+    public Optional<Vol> parId(@PathVariable("id") Long id){
         return volService.trouverParId(id);
     }
 
