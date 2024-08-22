@@ -49,6 +49,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(request->
                     {
                         request.requestMatchers("/personne/signin").permitAll();
+                        request.requestMatchers("/passager/ajout").permitAll();
                         request.requestMatchers("/utilisateur/ajout").permitAll();
                         request.requestMatchers("/reservation/afficher/tout/**").permitAll();
 
