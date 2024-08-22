@@ -1,8 +1,11 @@
 package org.odk.g1.pankuru.Utils;
 
+import org.odk.g1.pankuru.dto.RolePermissionDTO;
+
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.util.Random;
+import java.util.stream.Collectors;
 
 public class UtilService {
 
@@ -16,6 +19,25 @@ public class UtilService {
         }
         Matcher matcher = pattern.matcher(email);
         return matcher.matches();
+    }
+
+    public static Map<String, String[]> extractPermissions(List<RolePermissionDTO> rolePermissionDTOList) {
+        // Création d'une Map pour stocker les rôles associés aux endpoints et permissions
+        Map<String, Set<String>> permissionsMap = new HashMap<>();
+
+        for (RolePermissionDTO dto : rolePermissionDTOList) {
+            String key = "/" + dto.getPermissionEndpoint() + "/" + dto.getPermissionPermission().toString().toLowerCase();
+            permissionsMap
+                    .computeIfAbsent(key, k -> new HashSet<>())
+                    .add(dto.getRoleName());
+        }
+
+        // Transformation de la Map pour que les rôles soient sous forme de tableau
+        return permissionsMap.entrySet().stream()
+                .collect(Collectors.toMap(
+                        Map.Entry::getKey,
+                        e -> e.getValue().toArray(new String[0])
+                ));
     }
 
     public static boolean isValidPhone(String phone) {

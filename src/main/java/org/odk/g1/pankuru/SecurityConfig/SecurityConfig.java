@@ -2,6 +2,7 @@ package org.odk.g1.pankuru.SecurityConfig;
 
 import lombok.AllArgsConstructor;
 import org.odk.g1.pankuru.Entity.Enum.EnumPermission;
+import org.odk.g1.pankuru.Utils.UtilService;
 import org.odk.g1.pankuru.jwt.AuthEntryPointJwt;
 import org.odk.g1.pankuru.jwt.AuthTokenFilter;
 import org.springframework.context.annotation.Bean;
@@ -19,7 +20,11 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+
+import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
+
 import org.odk.g1.pankuru.dto.RolePermissionDTO;
 import org.odk.g1.pankuru.Service.Service.RolePermissionService;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
@@ -44,6 +49,14 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         List<RolePermissionDTO> rolePermissions = rolePermissionService.getAllRolePermissions();
 
+        Map<String, String[]> permissionMap = UtilService.extractPermissions(rolePermissions);
+
+
+        System.out.println(permissionMap);
+        System.out.println("================================");
+
+        permissionMap.forEach((k, v) -> System.out.println(k+"/**" + "=" + Arrays.toString(v)));
+
         http.csrf(AbstractHttpConfigurer::disable)
                 .cors(Customizer.withDefaults())
                 .authorizeHttpRequests(request->
@@ -51,6 +64,7 @@ public class SecurityConfig {
                         request.requestMatchers("/utilisateur/**").permitAll();
                         request.requestMatchers("/personne/signin").permitAll();
                         request.requestMatchers("/utilisateur/ajout").permitAll();
+
                         for (RolePermissionDTO rolePermission : rolePermissions) {
                             if (rolePermission.getPermissionPermission() == EnumPermission.AFFICHER){
                                 System.out.println("/"+rolePermission.getPermissionEndpoint()+"/afficher/** "+ rolePermission.getRoleName());
@@ -70,6 +84,10 @@ public class SecurityConfig {
 
                         request.requestMatchers("/vol/afficher/**").hasAnyRole("USER", "ADMINCOMPAGNIE");
                         request.requestMatchers("/ville/afficher/**").hasAnyRole("USER", "ADMINCOMPAGNIE");
+
+                        permissionMap.forEach(
+                                (k,v) -> request.requestMatchers(k+"/**").hasAnyRole(v)
+                        );
 
                         request.anyRequest().authenticated();
 

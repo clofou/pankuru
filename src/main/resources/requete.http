@@ -19,7 +19,7 @@ POST http://localhost:8080/personne/signin
 Content-Type: application/json
 
 {
-  "username": "alou@gmail.com",
+  "username": "lol67@example.com",
   "password": "1234"
 }
 
@@ -27,7 +27,11 @@ Content-Type: application/json
 // Affichage des villes
 GET http://localhost:8080/ville/afficher/tout
 Content-Type: application/json
+<<<<<<< HEAD
 Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhbG91QGdtYWlsLmNvbSIsImlhdCI6MTcyNDE2NjY5NywiZXhwIjoxNzI0MTY5Njk3fQ.r_Z9tH7ZUpJDmPkSbxhEf4C0itLfHUb3OiurPzJxowg
+=======
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJsb2w2N0BleGFtcGxlLmNvbSIsImlhdCI6MTcyNDIzOTMzOSwiZXhwIjoxNzI0MjQyMzM5fQ.TToyDjGCnmS16N0Qdkwlm5ENlk1ncGMC80zXW-SYrbg
+>>>>>>> bc3374c21ba286c4d76e93da43c965037bc69a11
 
 ###
 // Affichage des Vols

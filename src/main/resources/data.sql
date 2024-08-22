@@ -529,6 +529,8 @@ INSERT INTO role_permission(role_id,permission_id) VALUES ((SELECT id FROM role 
 INSERT INTO role_permission(role_id,permission_id) VALUES ((SELECT id FROM role WHERE nom = 'ADMINCOMPAGNIE'),(SELECT id FROM permission WHERE end_point = 'pays' AND permission = 'SUPPRIMER'));
 
 INSERT INTO role_permission(role_id,permission_id) VALUES ((SELECT id FROM role WHERE nom = 'ADMINCOMPAGNIE'),(SELECT id FROM permission WHERE end_point = 'ville' AND permission = 'AJOUT'));
+INSERT INTO role_permission(role_id,permission_id) VALUES ((SELECT id FROM role WHERE nom = 'ADMINCOMPAGNIE'),(SELECT id FROM permission WHERE end_point = 'ville' AND permission = 'AFFICHER'));
+INSERT INTO role_permission(role_id,permission_id) VALUES ((SELECT id FROM role WHERE nom = 'USER'),(SELECT id FROM permission WHERE end_point = 'ville' AND permission = 'AFFICHER'));
 INSERT INTO role_permission(role_id,permission_id) VALUES ((SELECT id FROM role WHERE nom = 'ADMINCOMPAGNIE'),(SELECT id FROM permission WHERE end_point = 'ville' AND permission = 'MODIFIER'));
 INSERT INTO role_permission(role_id,permission_id) VALUES ((SELECT id FROM role WHERE nom = 'ADMINCOMPAGNIE'),(SELECT id FROM permission WHERE end_point = 'ville' AND permission = 'SUPPRIMER'));
 
@@ -558,6 +560,7 @@ INSERT INTO role_permission(role_id,permission_id) VALUES ((SELECT id FROM role 
 INSERT INTO role_permission(role_id,permission_id) VALUES ((SELECT id FROM role WHERE nom = 'ADMINCOMPAGNIE'),(SELECT id FROM permission WHERE end_point = 'avion' AND permission = 'SUPPRIMER'));
 
 INSERT INTO role_permission(role_id,permission_id) VALUES ((SELECT id FROM role WHERE nom = 'ADMINCOMPAGNIE'),(SELECT id FROM permission WHERE end_point = 'personne' AND permission = 'AFFICHER'));
+INSERT INTO role_permission(role_id,permission_id) VALUES ((SELECT id FROM role WHERE nom = 'USER'),(SELECT id FROM permission WHERE end_point = 'personne' AND permission = 'AFFICHER'));
 INSERT INTO role_permission(role_id,permission_id) VALUES ((SELECT id FROM role WHERE nom = 'ADMINCOMPAGNIE'),(SELECT id FROM permission WHERE end_point = 'personne' AND permission = 'AJOUT'));
 INSERT INTO role_permission(role_id,permission_id) VALUES ((SELECT id FROM role WHERE nom = 'ADMINCOMPAGNIE'),(SELECT id FROM permission WHERE end_point = 'personne' AND permission = 'MODIFIER'));
 INSERT INTO role_permission(role_id,permission_id) VALUES ((SELECT id FROM role WHERE nom = 'ADMINCOMPAGNIE'),(SELECT id FROM permission WHERE end_point = 'personne' AND permission = 'SUPPRIMER'));
@@ -599,7 +602,6 @@ INSERT INTO role_permission(role_id,permission_id) VALUES ((SELECT id FROM role 
 INSERT INTO role_permission(role_id,permission_id) VALUES ((SELECT id FROM role WHERE nom = 'ADMINCOMPAGNIE'),(SELECT id FROM permission WHERE end_point = 'faq' AND permission = 'AJOUT'));
 INSERT INTO role_permission(role_id,permission_id) VALUES ((SELECT id FROM role WHERE nom = 'ADMINCOMPAGNIE'),(SELECT id FROM permission WHERE end_point = 'faq' AND permission = 'MODIFIER'));
 INSERT INTO role_permission(role_id,permission_id) VALUES ((SELECT id FROM role WHERE nom = 'ADMINCOMPAGNIE'),(SELECT id FROM permission WHERE end_point = 'faq' AND permission = 'SUPPRIMER'));
-
 
 INSERT INTO role_permission(role_id,permission_id) VALUES ((SELECT id FROM role WHERE nom = 'USER'),(SELECT id FROM permission WHERE end_point = 'reservation' AND permission = 'AFFICHER'));
 INSERT INTO role_permission(role_id,permission_id) VALUES ((SELECT id FROM role WHERE nom = 'USER'),(SELECT id FROM permission WHERE end_point = 'reservation' AND permission = 'AJOUT'));
