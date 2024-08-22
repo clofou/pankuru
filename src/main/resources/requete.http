@@ -27,7 +27,7 @@ Content-Type: application/json
 // Affichage des villes
 GET http://localhost:8080/ville/afficher/tout
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhbG91QGdtYWlsLmNvbSIsImlhdCI6MTcyNDE0OTM5OSwiZXhwIjoxNzI0MTUyMzk5fQ.WnBy2nAgleWIyRFTMBPL9UfkgXOnKTXkag6k3iLIFa8
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhbG91QGdtYWlsLmNvbSIsImlhdCI6MTcyNDE2Mzg2NSwiZXhwIjoxNzI0MTY2ODY1fQ.WwvTz_I2OFIpO5pYOvhlv1pnXqQnjnmeQIN7-jxzX0U
 
 ###
 // Affichage des Vols
