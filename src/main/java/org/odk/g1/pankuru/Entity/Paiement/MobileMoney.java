@@ -10,7 +10,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class MobileMoney extends ModePaiement{
-    @Column(nullable = false, unique = true)
+public class MobileMoney extends Paiement{
+    @Column(nullable = false)
     private String numeroDeTelephone;
 }

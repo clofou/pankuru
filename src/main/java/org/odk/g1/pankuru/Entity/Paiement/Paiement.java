@@ -8,6 +8,7 @@ import java.time.LocalDate;
 
 @Entity
 @Data
+@Inheritance(strategy = InheritanceType.JOINED)
 public class Paiement {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,7 +21,4 @@ public class Paiement {
     @JoinColumn(name = "reservation_id")
     private Reservation reservation;
 
-    @ManyToOne
-    @JoinColumn(name = "modePaiement_id", nullable = false)
-    private ModePaiement modePaiement;
 }
