@@ -19,7 +19,7 @@ public class Paiement {
     @OneToOne
     @JoinColumn(name = "reservation_id")
     private Reservation reservation;
-    
+
     @ManyToOne
     @JoinColumn(name = "modePaiement_id", nullable = false)
     private ModePaiement modePaiement;
