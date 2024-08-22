@@ -79,7 +79,7 @@ INSERT INTO classe_siege(nom) VALUES ('ECONOMIQUE');
 INSERT INTO classe_siege(nom) VALUES ('AFFAIRE');
 INSERT INTO classe_siege(nom) VALUES ('BUISSNESS');
 
-INSERT INTO `position_siege` (`id`, `nom`, `tarif`, `classe_siege_id`) VALUES
+/*INSERT INTO `position_siege` (`id`, `nom`, `tarif`, `classe_siege_id`) VALUES
 (14, 'MILIEU', 2000, 1),
 (15, 'HUBLOT', 5000, 2),
 (16, 'COULOIR', 2000, 1),
@@ -178,6 +178,8 @@ INSERT INTO `position_siege` (`id`, `nom`, `tarif`, `classe_siege_id`) VALUES
 (109, 'COULOIR', 55000, 2),
 (110, 'COULOIR', 55000, 2);
 
+ */
+
 
 -- Insertion des a
 INSERT INTO vol(aeroportdarrivee_id, aeroport_depart_id, date_et_heure_arrivee, tarif_economique_de_base, date_et_heure_depart, numero_de_vol, satut, admin_compagnie_id) VALUES ((select id from aeroport where codeiata='CDG'), (select id from aeroport where codeiata='LHR'), '2024-11-12', 8000, '2024-11-11', 'b500', 'EN_COURS', (SELECT id FROM personne WHERE nom = 'Lead'));
@@ -192,7 +194,7 @@ VALUES ('AF001', 200, 'Boeing 777', 'DISPONIBLE', (SELECT id FROM personne WHERE
 INSERT INTO Avion (matricule, capacite_totale, nom, statut, admin_compagnie_id)
 VALUES ('BA002', 150, 'Airbus A320', 'MAINTENANCE', (SELECT id FROM personne WHERE nom = 'Lead'));
 
-
+/*
 INSERT INTO `siege` (`id`, `disponibilite`, `numero`, `avion_id`, `position_siege_id`) VALUES
                                                                                            (5, 1, '25E', 1, 14),
                                                                                            (6, 1, '26B', 1, 15),
@@ -290,6 +292,8 @@ INSERT INTO `siege` (`id`, `disponibilite`, `numero`, `avion_id`, `position_sieg
                                                                                            (98, 0, '11H', 1, 108),
                                                                                            (99, 0, '11I', 1, 109),
                                                                                            (100, 0, '11J', 1, 110);
+
+ */
 -- Insertion des contrats
 INSERT INTO Contrat (type, description, date_debut, date_fin, statut, cgu, commentaires, compagnie_id)
 VALUES ('Location', 'Location de matériel', '2024-01-01', '2024-12-31', 'EN_ATTENTE', 'Conditions générales', 'Aucun commentaire', (SELECT id FROM compagnie WHERE matricule = 'AF123'));
@@ -310,12 +314,14 @@ INSERT INTO reservation(date_reservation, nombre_depassager, statut, utilisateur
 -- Insertion de reservation
 INSERT INTO reservation(date_reservation, nombre_depassager, statut, utilisateur_id, vol_id) VALUES ('2024-12-4', 3, 'EN_ATTENTE',(select id from utilisateur where numero_de_passport='P1234567'), (select id from vol where numero_de_vol='b501'));
 
-
+/*
 -- Insertion des Passagers
 INSERT INTO passager (nom, numero_de_pass_port, numero_de_visa, prenom, reservation_id, siege_id) VALUES ('TRAORE', 'TRGGE65', 'ERR33', 'FAKORO', 1, (select id from siege where numero='25E'));
 INSERT INTO passager (nom, numero_de_pass_port, numero_de_visa, prenom, reservation_id, siege_id) VALUES ('DEMBELE', 'TRGGE667', 'ERR3390', 'MAMADOU', 2, (select id from siege where numero='26B'));
 INSERT INTO passager (nom, numero_de_pass_port, numero_de_visa, prenom, reservation_id, siege_id) VALUES ('DIARRE', 'TRGGEUI65', 'ERRNH33', 'ISSA', 2, (select id from siege where numero='27D'));
 INSERT INTO passager (nom, numero_de_pass_port, numero_de_visa, prenom, reservation_id, siege_id) VALUES ('DIAKITE', 'TRGGE65B200', 'ERR33HH', 'IBRAHIM', 2, (select id from siege where numero='28E'));
+
+ */
 
 
 -- Insertion des personnels

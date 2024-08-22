@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Avion Vue de Dessus</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #e0e0e0;
+            margin: 0;
+        }
+
+        .airplane {
+            width: 300px;
+            height: 600px;
+            background-color: #ccc;
+            border-radius: 150px 150px 0 0;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 50px;
+        }
+
+        .row {
+            display: flex;
+            justify-content: space-between;
+            width: 80%;
+            margin-bottom: 20px;
+        }
+
+        .chair {
+            width: 30px;
+            height: 40px;
+            background-color: #0b7d85;
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .chair::before {
+            content: '';
+            width: 80%;
+            height: 20%;
+            background-color: #04959f;
+            position: absolute;
+            top: 10%;
+            left: 10%;
+            border-radius: 10px 10px 0 0;
+        }
+
+        .seat {
+            width: 80%;
+            height: 50%;
+            background-color: #04BBC7;
+            position: absolute;
+            top: 30%;
+            left: 10%;
+            border-radius: 10px;
+        }
+
+        .headrest {
+            width: 80%;
+            height: 20%;
+            background-color: #04959f;
+            position: absolute;
+            top: 0;
+            left: 10%;
+            border-radius: 10px 10px 0 0;
+        }
+
+        .footrest {
+            width: 80%;
+            height: 20%;
+            background-color: #04959f;
+            position: absolute;
+            bottom: 0;
+            left: 10%;
+            border-radius: 0 0 10px 10px;
+        }
+
+
+        .window {
+            width: 100%;
+            height: 80px;
+            border-radius: 150px 150px 0 0;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="airplane">
+        <div class="window"></div>
+        <!-- Rangée 1 -->
+        <div class="row">
+            <div class="chair">
+                <div class="headrest"></div>
+                <div class="seat"></div>
+                <div class="footrest"></div>
+            </div>
+            <div class="chair">
+                <div class="headrest"></div>
+                <div class="seat"></div>
+                <div class="footrest"></div>
+            </div>
+            <div class="chair">
+                <div class="headrest"></div>
+                <div class="seat"></div>
+                <div class="footrest"></div>
+            </div>
+        </div>
+        <!-- Rangée 2 -->
+        <div class="row">
+            <div class="chair">
+                <div class="headrest"></div>
+                <div class="seat"></div>
+                <div class="footrest"></div>
+            </div>
+            <div class="chair">
+                <div class="headrest"></div>
+                <div class="seat"></div>
+                <div class="footrest"></div>
+            </div>
+            <div class="chair">
+                <div class="headrest"></div>
+                <div class="seat"></div>
+                <div class="footrest"></div>
+            </div>
+        </div>
+        <!-- Rangée 3 -->
+        <div class="row">
+            <div class="chair">
+                <div class="headrest"></div>
+                <div class="seat"></div>
+                <div class="footrest"></div>
+            </div>
+            <div class="chair">
+                <div class="headrest"></div>
+                <div class="seat"></div>
+                <div class="footrest"></div>
+            </div>
+            <div class="chair">
+                <div class="headrest"></div>
+                <div class="seat"></div>
+                <div class="footrest"></div>
+            </div>
+        </div>
+        <!-- Rangée 4 -->
+        <div class="row">
+            <div class="chair">
+                <div class="headrest"></div>
+                <div class="seat"></div>
+                <div class="footrest"></div>
+            </div>
+            <div class="chair">
+                <div class="headrest"></div>
+                <div class="seat"></div>
+                <div class="footrest"></div>
+            </div>
+            <div class="chair">
+                <div class="headrest"></div>
+                <div class="seat"></div>
+                <div class="footrest"></div>
+            </div>
+        </div>
+        <!-- Rangée 5 -->
+        <div class="row">
+            <div class="chair">
+                <div class="headrest"></div>
+                <div class="seat"></div>
+                <div class="footrest"></div>
+            </div>
+            <div class="chair">
+                <div class="headrest"></div>
+                <div class="seat"></div>
+                <div class="footrest"></div>
+            </div>
+            <div class="chair">
+                <div class="headrest"></div>
+                <div class="seat"></div>
+                <div class="footrest"></div>
+            </div>
+        </div>
+        <!-- Rangée 6 -->
+        <div class="row">
+            <div class="chair">
+                <div class="headrest"></div>
+                <div class="seat"></div>
+                <div class="footrest"></div>
+            </div>
+            <div class="chair">
+                <div class="headrest"></div>
+                <div class="seat"></div>
+                <div class="footrest"></div>
+            </div>
+            <div class="chair">
+                <div class="headrest"></div>
+                <div class="seat"></div>
+                <div class="footrest"></div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
