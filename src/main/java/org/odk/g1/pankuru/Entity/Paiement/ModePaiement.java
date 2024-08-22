@@ -14,6 +14,5 @@ public class ModePaiement {
     @Id
     private String id;
 
-    @OneToMany(mappedBy = "modePaiement")
-    private List<Paiement> paiementList;
+
 }
