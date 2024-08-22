@@ -18,7 +18,7 @@ public class Siege {
     private String numero;
     private SiegeDisponible disponibilite;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "positionSiege_id")
     private PositionSiege positionSiege;
     
