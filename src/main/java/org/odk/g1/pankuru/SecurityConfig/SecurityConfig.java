@@ -61,29 +61,8 @@ public class SecurityConfig {
                 .cors(Customizer.withDefaults())
                 .authorizeHttpRequests(request->
                     {
-                        request.requestMatchers("/utilisateur/**").permitAll();
                         request.requestMatchers("/personne/signin").permitAll();
                         request.requestMatchers("/utilisateur/ajout").permitAll();
-
-                        for (RolePermissionDTO rolePermission : rolePermissions) {
-                            if (rolePermission.getPermissionPermission() == EnumPermission.AFFICHER){
-                                System.out.println("/"+rolePermission.getPermissionEndpoint()+"/afficher/** "+ rolePermission.getRoleName());
-                                request.requestMatchers("/"+rolePermission.getPermissionEndpoint()+"/afficher/**").hasRole(rolePermission.getRoleName());
-                            }else if (rolePermission.getPermissionPermission() == EnumPermission.AJOUT){
-                                System.out.println("/"+rolePermission.getPermissionEndpoint()+"/ajout/** "+ rolePermission.getRoleName());
-                                request.requestMatchers("/"+rolePermission.getPermissionEndpoint()+"/ajout").hasRole(rolePermission.getRoleName());
-                            }else if (rolePermission.getPermissionPermission() == EnumPermission.MODIFIER){
-                                System.out.println("/"+rolePermission.getPermissionEndpoint()+"/modifier/** "+ rolePermission.getRoleName());
-                                request.requestMatchers("/"+rolePermission.getPermissionEndpoint()+"/modifier/**").hasRole(rolePermission.getRoleName());
-                            }else if (rolePermission.getPermissionPermission() == EnumPermission.SUPPRIMER){
-                                System.out.println("/"+rolePermission.getPermissionEndpoint()+"/supprimer/** "+ rolePermission.getRoleName());
-                                request.requestMatchers("/"+rolePermission.getPermissionEndpoint()+"/supprimer/**").hasRole(rolePermission.getRoleName());
-                            }
-
-                        }
-
-                        request.requestMatchers("/vol/afficher/**").hasAnyRole("USER", "ADMINCOMPAGNIE");
-                        request.requestMatchers("/ville/afficher/**").hasAnyRole("USER", "ADMINCOMPAGNIE");
 
                         permissionMap.forEach(
                                 (k,v) -> request.requestMatchers(k+"/**").hasAnyRole(v)
