@@ -40,11 +40,11 @@ public class MobileMoneyService implements CrudService<MobileMoney, String> {
                 !Objects.equals(newInfoMobileMoney.getNumeroDeTelephone(), mobileMoneyBD.getNumeroDeTelephone())) {
             mobileMoneyBD.setNumeroDeTelephone(newInfoMobileMoney.getNumeroDeTelephone());
         }
-        if (newInfoMobileMoney.getPaiementList() != null &&
-                !newInfoMobileMoney.getPaiementList().isEmpty() &&
-                !Objects.equals(newInfoMobileMoney.getPaiementList(), mobileMoneyBD.getPaiementList())) {
-            mobileMoneyBD.setPaiementList(newInfoMobileMoney.getPaiementList());
-        }
+       // if (newInfoMobileMoney.getPaiementList() != null &&
+         //       !newInfoMobileMoney.getPaiementList().isEmpty() &&
+           //     !Objects.equals(newInfoMobileMoney.getPaiementList(), mobileMoneyBD.getPaiementList())) {
+            //mobileMoneyBD.setPaiementList(newInfoMobileMoney.getPaiementList());
+        //}
         return null;
     }
 

@@ -18,6 +18,7 @@ public class MobileMoneyController {
 
     @PostMapping("/ajout")
     public ResponseEntity<MobileMoney> ajouterMobileMoney(@RequestBody MobileMoney mobileMoney) {
+
         MobileMoney savedMobileMoney = mobileMoneyService.ajout(mobileMoney);
         return ResponseEntity.ok(savedMobileMoney);
     }

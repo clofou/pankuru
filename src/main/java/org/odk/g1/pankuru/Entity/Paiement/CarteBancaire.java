@@ -10,7 +10,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class CarteBancaire extends ModePaiement{
+public class CarteBancaire extends Paiement{
     @Column(unique=true, nullable = false)
     private String numeroDeCarte;
     @Column(nullable = false)

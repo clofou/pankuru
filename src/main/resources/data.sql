@@ -12,10 +12,10 @@ INSERT INTO Personne (nom, prenom, email, password, numero_de_telephone, adresse
 VALUES ('Traore', 'Papou', 'papaou1.dupont@example.com', '$2a$12$vDyegFIXdomnwp.zcE3fOOpOz0c585DC5vg/LWfpzDp0uBrymhnra', '0123456789', 'Hamdallaye ACI 2000', (SELECT id FROM Role WHERE nom = 'PERSONNEL'));
 INSERT INTO Personne (nom, prenom, email, password, numero_de_telephone, adresse, role_id)
 VALUES ('Smith', 'John', 'john.smith@example.com', '$2a$12$vDyegFIXdomnwp.zcE3fOOpOz0c585DC5vg/LWfpzDp0uBrymhnra', '0987654321', '2 Heathrow Road', (SELECT id FROM Role WHERE nom = 'USER'));
-INSERT INTO Personne (nom, prenom, email, password, numero_de_telephone, adresse, role_id)
-VALUES ('Issa', 'Liam', 'lol@example.com', '$2a$12$vDyegFIXdomnwp.zcE3fOOpOz0c585DC5vg/LWfpzDp0uBrymhnra', '0987654321', 'Bamako Lafiabougou', (SELECT id FROM Role WHERE nom = 'USER'));
-INSERT INTO Personne (nom, prenom, email, password, numero_de_telephone, adresse, role_id)
-VALUES ('Mamadou', 'Thiam', 'lol1@example.com', '$2a$12$vDyegFIXdomnwp.zcE3fOOpOz0c585DC5vg/LWfpzDp0uBrymhnra', '0987654321', 'Hamdallaye ACI', (SELECT id FROM Role WHERE nom = 'USER'));
+INSERT INTO Personne (nom, prenom, email, date_de_naissance,password, numero_de_telephone, adresse, role_id)
+VALUES ('Issa', 'Liam', 'lol@example.com', '1990-01-01','$2a$12$vDyegFIXdomnwp.zcE3fOOpOz0c585DC5vg/LWfpzDp0uBrymhnra', '0987654321', 'Bamako Lafiabougou', (SELECT id FROM Role WHERE nom = 'USER'));
+INSERT INTO Personne (nom, prenom, email, date_de_naissance,password, numero_de_telephone, adresse, role_id)
+VALUES ('Mamadou', 'Thiam', 'lol1@example.com', '1997-05-05','$2a$12$vDyegFIXdomnwp.zcE3fOOpOz0c585DC5vg/LWfpzDp0uBrymhnra', '0987654321', 'Hamdallaye ACI', (SELECT id FROM Role WHERE nom = 'USER'));
 INSERT INTO Personne (nom, prenom, email, password, numero_de_telephone, adresse, role_id)
 VALUES ('Tienou', 'Ali', 'lol2@example.com', '$2a$12$vDyegFIXdomnwp.zcE3fOOpOz0c585DC5vg/LWfpzDp0uBrymhnra', '0987654321', 'Banconi', (SELECT id FROM Role WHERE nom = 'PERSONNEL'));
 INSERT INTO Personne (nom, prenom, email, password, numero_de_telephone, adresse, role_id)
@@ -303,11 +303,11 @@ VALUES ('Maintenance', 'Maintenance des avions', '2024-02-01', '2024-11-30', 'CO
 
 
 -- Insertion des utilisateurs
-INSERT INTO Utilisateur (id, point_de_fideliter, date_de_naissance, numero_de_passport, numero_de_visa)
-VALUES ((SELECT id FROM personne WHERE nom = 'Issa'), 100, '1990-01-01', 'P9876543', 'V9876543');
+INSERT INTO Utilisateur (id, point_de_fideliter, numero_de_passport, numero_de_visa)
+VALUES ((SELECT id FROM personne WHERE nom = 'Issa'), 100, 'P9876543', 'V9876543');
 
-INSERT INTO Utilisateur (id, point_de_fideliter, date_de_naissance, numero_de_passport, numero_de_visa)
-VALUES ((SELECT id FROM personne WHERE nom = 'Mamadou'), 50, '1985-05-05', 'P1234567', 'V1234567');
+INSERT INTO Utilisateur (id, point_de_fideliter, numero_de_passport, numero_de_visa)
+VALUES ((SELECT id FROM personne WHERE nom = 'Mamadou'), 50, 'P1234567', 'V1234567');
 
 -- Insertion de reservation
 INSERT INTO reservation(date_reservation, nombre_depassager, statut, utilisateur_id, vol_id) VALUES ('2024-11-1', 1, 'EN_ATTENTE',(select id from utilisateur where numero_de_passport='P9876543'), (select id from vol where numero_de_vol='b500'));
@@ -527,7 +527,6 @@ INSERT INTO role_permission(role_id,permission_id) VALUES ((SELECT id FROM role 
 INSERT INTO role_permission(role_id,permission_id) VALUES ((SELECT id FROM role WHERE nom = 'ADMINCOMPAGNIE'),(SELECT id FROM permission WHERE end_point = 'pays' AND permission = 'AJOUT'));
 INSERT INTO role_permission(role_id,permission_id) VALUES ((SELECT id FROM role WHERE nom = 'ADMINCOMPAGNIE'),(SELECT id FROM permission WHERE end_point = 'pays' AND permission = 'MODIFIER'));
 INSERT INTO role_permission(role_id,permission_id) VALUES ((SELECT id FROM role WHERE nom = 'ADMINCOMPAGNIE'),(SELECT id FROM permission WHERE end_point = 'pays' AND permission = 'SUPPRIMER'));
-
 INSERT INTO role_permission(role_id,permission_id) VALUES ((SELECT id FROM role WHERE nom = 'ADMINCOMPAGNIE'),(SELECT id FROM permission WHERE end_point = 'ville' AND permission = 'AJOUT'));
 INSERT INTO role_permission(role_id,permission_id) VALUES ((SELECT id FROM role WHERE nom = 'ADMINCOMPAGNIE'),(SELECT id FROM permission WHERE end_point = 'ville' AND permission = 'AFFICHER'));
 INSERT INTO role_permission(role_id,permission_id) VALUES ((SELECT id FROM role WHERE nom = 'USER'),(SELECT id FROM permission WHERE end_point = 'ville' AND permission = 'AFFICHER'));
@@ -607,6 +606,7 @@ INSERT INTO role_permission(role_id,permission_id) VALUES ((SELECT id FROM role 
 INSERT INTO role_permission(role_id,permission_id) VALUES ((SELECT id FROM role WHERE nom = 'USER'),(SELECT id FROM permission WHERE end_point = 'reservation' AND permission = 'AJOUT'));
 INSERT INTO role_permission(role_id,permission_id) VALUES ((SELECT id FROM role WHERE nom = 'USER'),(SELECT id FROM permission WHERE end_point = 'reservation' AND permission = 'MODIFIER'));
 INSERT INTO role_permission(role_id,permission_id) VALUES ((SELECT id FROM role WHERE nom = 'USER'),(SELECT id FROM permission WHERE end_point = 'reservation' AND permission = 'SUPPRIMER'));
+
 
 
 

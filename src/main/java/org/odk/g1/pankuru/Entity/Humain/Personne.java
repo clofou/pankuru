@@ -11,7 +11,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 import java.util.Collections;
-
+import java.util.Date;
 
 
 @Entity
@@ -27,6 +27,7 @@ public class Personne implements UserDetails {
     @Column(unique = true)
     private String email;
     private String password;
+    private Date dateDeNaissance;
     private String numeroDeTelephone;
     private String adresse;
 
