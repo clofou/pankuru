@@ -34,3 +34,16 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJsb2w2N0BleGFtcGxlLmNvbSIsI
 GET http://localhost:8080/vol/afficher/tout
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhbG91QGdtYWlsLmNvbSIsImlhdCI6MTcyNDE0OTM5OSwiZXhwIjoxNzI0MTUyMzk5fQ.WnBy2nAgleWIyRFTMBPL9UfkgXOnKTXkag6k3iLIFa8
+
+###
+POST http://localhost:8080/siege/ajout
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJsb2w2N0BleGFtcGxlLmNvbSIsImlhdCI6MTcyNDMyMzI3NCwiZXhwIjoxNzI0MzI2Mjc0fQ.HzhpjUDUGZk-VSsxLIsmJaYL6ty0UEOGrUocYCSNU_U
+
+{
+  "numeroSiege": "1A",
+  "classeSiege": "ECONOMIQUE",
+  "positionSiege": "KK",
+  "tarif": 2000,
+  "avion": {"id": 1}
+}
