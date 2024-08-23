@@ -24,6 +24,7 @@ public class VolControleur {
     }
     @GetMapping("/afficher")
     public List<Vol>lire(){
+        System.out.println("HELLO");
         return compagnieService.getVolByCompagnie();
     }
 
