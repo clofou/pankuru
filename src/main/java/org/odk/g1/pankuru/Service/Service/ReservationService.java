@@ -31,6 +31,7 @@ public class ReservationService implements CrudService<Reservation,Long> {
     @Override
     public Reservation ajout(Reservation reservation) {
         Long userId = userService.getCurrentUsernameId();
+        System.out.println("HI");
 
         Utilisateur u = new Utilisateur();
         u.setId(userId);
