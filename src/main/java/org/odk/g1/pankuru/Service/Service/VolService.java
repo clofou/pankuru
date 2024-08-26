@@ -34,13 +34,7 @@ public class VolService implements CrudService<Vol,Long> {
 
     @Override
     public Optional<Vol> trouverParId(Long id) {
-        Optional<Vol> vol = volRepository.findById(id);
-        if (vol.isPresent()) {
-            if(compagnieService.getVolByCompagnie().contains(vol.get().getId())){
-                return volRepository.findById(id);
-            }
-        }
-        return Optional.empty();
+        return volRepository.findById(id);
     }
 
     @Override
