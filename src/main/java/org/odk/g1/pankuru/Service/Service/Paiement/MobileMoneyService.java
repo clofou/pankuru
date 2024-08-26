@@ -3,7 +3,9 @@ package org.odk.g1.pankuru.Service.Service.Paiement;
 // import org.odk.g1.pankuru.Entity.Paiement.CarteBancaire;
 import lombok.AllArgsConstructor;
 import org.odk.g1.pankuru.Entity.Paiement.MobileMoney;
+import org.odk.g1.pankuru.Entity.ReservationDeVol.Reservation;
 import org.odk.g1.pankuru.Repository.Paiement.MobileMoneyRepository;
+import org.odk.g1.pankuru.Repository.ReservationRepository;
 import org.odk.g1.pankuru.Service.Interface.CrudService;
 import org.springframework.stereotype.Service;
 
@@ -15,9 +17,13 @@ import java.util.Optional;
 @AllArgsConstructor
 public class MobileMoneyService implements CrudService<MobileMoney, Long> {
     MobileMoneyRepository mobileMoneyRepository;
-    
+    private ReservationRepository reservationRepository;
+
     @Override
     public MobileMoney ajout(MobileMoney mobileMoney) {
+        Reservation r=new Reservation();
+        r.setId(reservationRepository.findLastInsertedId());
+        mobileMoney.setReservation(r);
         return mobileMoneyRepository.save(mobileMoney);
     }
 

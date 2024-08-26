@@ -22,4 +22,7 @@ public interface ReservationRepository extends JpaRepository<Reservation,Long> {
 
     List<Reservation> findReservationByUtilisateurId(Long userId);
 
+    @Query(value = "SELECT MAX(id) FROM reservation", nativeQuery = true)
+    Long findLastInsertedId();
+
 }

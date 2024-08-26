@@ -3,7 +3,9 @@ package org.odk.g1.pankuru.Service.Service.Paiement;
 // import org.odk.g1.pankuru.Entity.Paiement.MobileMoney;
 import org.odk.g1.pankuru.Entity.Paiement.ModePaiement;
 import org.odk.g1.pankuru.Entity.Paiement.Paiement;
+import org.odk.g1.pankuru.Entity.ReservationDeVol.Reservation;
 import org.odk.g1.pankuru.Repository.Paiement.PaiementRepository;
+import org.odk.g1.pankuru.Repository.ReservationRepository;
 import org.odk.g1.pankuru.Service.Interface.CrudService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,6 +15,7 @@ import java.util.Optional;
 
 @Service
 public class PaiementService implements CrudService<Paiement, Long>{
+    private ReservationRepository reservationRepository;
 
     @Autowired
     PaiementRepository paiementRepository;
@@ -20,6 +23,8 @@ public class PaiementService implements CrudService<Paiement, Long>{
     public Paiement ajout(Paiement paiement) {
         ModePaiement md=new ModePaiement();
         md.setId("ORANGE");
+        Reservation r=new Reservation();
+        r.setId(reservationRepository.findLastInsertedId());
         return paiementRepository.save(paiement);
     }
 
@@ -42,7 +47,7 @@ public class PaiementService implements CrudService<Paiement, Long>{
         paiementBD.setReservation(newInfoPaiement.getReservation());
         return paiementBD;
     }
-    
+
     @Override
     public void supprimer(Long paiementId) {
         paiementRepository.deleteById(paiementId);

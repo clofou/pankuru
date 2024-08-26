@@ -2,7 +2,9 @@ package org.odk.g1.pankuru.Service.Service;
 
 import lombok.AllArgsConstructor;
 import org.odk.g1.pankuru.Entity.ReservationDeVol.Passager;
+import org.odk.g1.pankuru.Entity.ReservationDeVol.Reservation;
 import org.odk.g1.pankuru.Repository.PassagerRepository;
+import org.odk.g1.pankuru.Repository.ReservationRepository;
 import org.odk.g1.pankuru.Service.Interface.CrudService;
 import org.springframework.stereotype.Service;
 
@@ -13,8 +15,12 @@ import java.util.Optional;
 @AllArgsConstructor
 public class PassagerService implements CrudService<Passager,Long> {
     private PassagerRepository passagerRepository;
+    private ReservationRepository reservationRepository;
     @Override
     public Passager ajout(Passager passager) {
+        Reservation r=new Reservation();
+        r.setId(reservationRepository.findLastInsertedId());
+        passager.setReservation(r);
         return passagerRepository.save(passager);
     }
 
