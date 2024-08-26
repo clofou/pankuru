@@ -79,7 +79,7 @@ INSERT INTO classe_siege(nom) VALUES ('ECONOMIQUE');
 INSERT INTO classe_siege(nom) VALUES ('AFFAIRE');
 INSERT INTO classe_siege(nom) VALUES ('BUISSNESS');
 
-/*INSERT INTO `position_siege` (`id`, `nom`, `tarif`, `classe_siege_id`) VALUES
+INSERT INTO `position_siege` (`id`, `nom`, `tarif`, `classe_siege_id`) VALUES
 (14, 'MILIEU', 2000, 1),
 (15, 'HUBLOT', 5000, 2),
 (16, 'COULOIR', 2000, 1),
@@ -178,7 +178,7 @@ INSERT INTO classe_siege(nom) VALUES ('BUISSNESS');
 (109, 'COULOIR', 55000, 2),
 (110, 'COULOIR', 55000, 2);
 
- */
+ 
 
 
 -- Insertion des a
@@ -194,106 +194,27 @@ VALUES ('AF001', 200, 'Boeing 777', 'DISPONIBLE', (SELECT id FROM personne WHERE
 INSERT INTO Avion (matricule, capacite_totale, nom, statut, admin_compagnie_id)
 VALUES ('BA002', 150, 'Airbus A320', 'MAINTENANCE', (SELECT id FROM personne WHERE nom = 'Lead'));
 
-/*
-INSERT INTO `siege` (`id`, `disponibilite`, `numero`, `avion_id`, `position_siege_id`) VALUES
-                                                                                           (5, 1, '25E', 1, 14),
-                                                                                           (6, 1, '26B', 1, 15),
-                                                                                           (7, 0, '27D', 1, 16),
-                                                                                           (8, 0, '28E', 1, 17),
-                                                                                           (9, 0, '98L', 1, 19),
-                                                                                           (10, 0, '98L', 1, 20),
-                                                                                           (11, 1, '95A', 1, 21),
-                                                                                           (12, 0, '95B', 1, 22),
-                                                                                           (13, 0, '95C', 1, 23),
-                                                                                           (14, 1, '95D', 1, 24),
-                                                                                           (15, 0, '95E', 1, 25),
-                                                                                           (16, 0, '95F', 1, 26),
-                                                                                           (17, 0, '95G', 1, 27),
-                                                                                           (18, 0, '95H', 1, 28),
-                                                                                           (19, 0, '95I', 1, 29),
-                                                                                           (20, 0, '95J', 1, 30),
-                                                                                           (21, 0, '95K', 1, 31),
-                                                                                           (22, 0, '95L', 1, 32),
-                                                                                           (23, 0, '95M', 1, 33),
-                                                                                           (24, 0, '10A', 1, 34),
-                                                                                           (25, 0, '10B', 1, 35),
-                                                                                           (26, 0, '10C', 1, 36),
-                                                                                           (27, 0, '10D', 1, 37),
-                                                                                           (28, 0, '10E', 1, 38),
-                                                                                           (29, 0, '10F', 1, 39),
-                                                                                           (30, 0, '10G', 1, 40),
-                                                                                           (31, 0, '10H', 1, 41),
-                                                                                           (32, 0, '10I', 1, 42),
-                                                                                           (33, 0, '11A', 1, 43),
-                                                                                           (34, 0, '11B', 1, 44),
-                                                                                           (35, 0, '11C', 1, 45),
-                                                                                           (36, 0, '11D', 1, 46),
-                                                                                           (37, 0, '11E', 1, 47),
-                                                                                           (38, 0, '11F', 1, 48),
-                                                                                           (39, 0, '11G', 1, 49),
-                                                                                           (40, 0, '11H', 1, 50),
-                                                                                           (41, 0, '11I', 1, 51),
-                                                                                           (42, 0, '11J', 1, 52),
-                                                                                           (43, 0, '11K', 1, 53),
-                                                                                           (44, 0, '10J', 1, 54),
-                                                                                           (45, 0, '10K', 1, 55),
-                                                                                           (46, 0, '1A', 2, 56),
-                                                                                           (47, 0, '15A', 1, 57),
-                                                                                           (48, 0, '15B', 1, 58),
-                                                                                           (49, 0, '15C', 1, 59),
-                                                                                           (50, 0, '15D', 1, 60),
-                                                                                           (51, 0, '15E', 1, 61),
-                                                                                           (52, 0, '15F', 1, 62),
-                                                                                           (53, 0, '15G', 1, 63),
-                                                                                           (54, 0, '15H', 1, 64),
-                                                                                           (55, 0, '15I', 1, 65),
-                                                                                           (56, 0, '15J', 1, 66),
-                                                                                           (57, 0, '15K', 1, 67),
-                                                                                           (58, 0, '16A', 1, 68),
-                                                                                           (59, 0, '16B', 1, 69),
-                                                                                           (60, 0, '16C', 1, 70),
-                                                                                           (61, 0, '16D', 1, 71),
-                                                                                           (62, 0, '16E', 1, 72),
-                                                                                           (63, 0, '16F', 1, 73),
-                                                                                           (64, 0, '16G', 1, 74),
-                                                                                           (65, 0, '16H', 1, 75),
-                                                                                           (66, 0, '16I', 1, 76),
-                                                                                           (67, 0, '16J', 1, 77),
-                                                                                           (68, 0, '78J', 1, 78),
-                                                                                           (69, 0, '95I', 1, 79),
-                                                                                           (70, 0, '95J', 1, 80),
-                                                                                           (71, 0, '11L', 1, 81),
-                                                                                           (72, 0, '11M', 1, 82),
-                                                                                           (73, 0, '11N', 1, 83),
-                                                                                           (74, 0, '11O', 1, 84),
-                                                                                           (75, 0, '11P', 1, 85),
-                                                                                           (76, 0, '11Q', 1, 86),
-                                                                                           (77, 0, '11R', 1, 87),
-                                                                                           (78, 0, '11S', 1, 88),
-                                                                                           (79, 0, '11R', 1, 89),
-                                                                                           (80, 0, '11T', 1, 90),
-                                                                                           (81, 0, '11U', 1, 91),
-                                                                                           (82, 0, '11V', 1, 92),
-                                                                                           (83, 0, '11A', 1, 93),
-                                                                                           (84, 0, '11B', 1, 94),
-                                                                                           (85, 0, '11C', 1, 95),
-                                                                                           (86, 0, '11D', 1, 96),
-                                                                                           (87, 0, '11E', 1, 97),
-                                                                                           (88, 0, '11F', 1, 98),
-                                                                                           (89, 0, '11G', 1, 99),
-                                                                                           (90, 0, '13A', 1, 100),
-                                                                                           (91, 0, '13B', 1, 101),
-                                                                                           (92, 0, '13C', 1, 102),
-                                                                                           (93, 0, '13D', 1, 103),
-                                                                                           (94, 0, '13E', 1, 104),
-                                                                                           (95, 0, '13F', 1, 105),
-                                                                                           (96, 0, '13G', 1, 106),
-                                                                                           (97, 0, '13H', 1, 107),
-                                                                                           (98, 0, '11H', 1, 108),
-                                                                                           (99, 0, '11I', 1, 109),
-                                                                                           (100, 0, '11J', 1, 110);
 
- */
+INSERT INTO `siege` (`id`, `disponibilite`, `numero`, `avion_id`, `position_siege_id`) VALUES
+                                                                                           (5, 1, 'A25', 1, 14),
+                                                                                           (6, 1, 'A26', 1, 15),
+                                                                                           (7, 0, 'B27', 1, 16),
+                                                                                           (8, 0, 'C28', 1, 17),
+                                                                                           (9, 0, 'C98', 1, 19),
+                                                                                           (10, 0, 'D98', 1, 20),
+                                                                                           (11, 1, 'E5', 1, 21),
+                                                                                           (12, 0, 'A5', 1, 22),
+                                                                                           (13, 0, 'B51', 1, 23),
+                                                                                           (14, 1, 'B52', 1, 24),
+                                                                                           (15, 0, 'B54', 1, 25),
+                                                                                           (16, 0, 'C4', 1, 26),
+                                                                                           (17, 0, 'D6', 1, 27),
+                                                                                           (18, 0, 'F7', 1, 28),
+                                                                                           (19, 0, 'G8', 1, 29),
+                                                                                           (20, 0, 'I10', 1, 30)
+                                                                                         ;
+
+ 
 -- Insertion des contrats
 INSERT INTO Contrat (type, description, date_debut, date_fin, statut, cgu, commentaires, compagnie_id)
 VALUES ('Location', 'Location de matériel', '2024-01-01', '2024-12-31', 'EN_ATTENTE', 'Conditions générales', 'Aucun commentaire', (SELECT id FROM compagnie WHERE matricule = 'AF123'));
@@ -314,14 +235,14 @@ INSERT INTO reservation(date_reservation, nombre_depassager, statut, utilisateur
 -- Insertion de reservation
 INSERT INTO reservation(date_reservation, nombre_depassager, statut, utilisateur_id, vol_id) VALUES ('2024-12-4', 3, 'EN_ATTENTE',(select id from utilisateur where numero_de_passport='P1234567'), (select id from vol where numero_de_vol='b501'));
 
-/*
--- Insertion des Passagers
-INSERT INTO passager (nom, numero_de_pass_port, numero_de_visa, prenom, reservation_id, siege_id) VALUES ('TRAORE', 'TRGGE65', 'ERR33', 'FAKORO', 1, (select id from siege where numero='25E'));
-INSERT INTO passager (nom, numero_de_pass_port, numero_de_visa, prenom, reservation_id, siege_id) VALUES ('DEMBELE', 'TRGGE667', 'ERR3390', 'MAMADOU', 2, (select id from siege where numero='26B'));
-INSERT INTO passager (nom, numero_de_pass_port, numero_de_visa, prenom, reservation_id, siege_id) VALUES ('DIARRE', 'TRGGEUI65', 'ERRNH33', 'ISSA', 2, (select id from siege where numero='27D'));
-INSERT INTO passager (nom, numero_de_pass_port, numero_de_visa, prenom, reservation_id, siege_id) VALUES ('DIAKITE', 'TRGGE65B200', 'ERR33HH', 'IBRAHIM', 2, (select id from siege where numero='28E'));
 
- */
+-- Insertion des Passagers
+INSERT INTO passager (nom, numero_de_pass_port, numero_de_visa, prenom, reservation_id, siege_id) VALUES ('TRAORE', 'TRGGE65', 'ERR33', 'FAKORO', 1, (select id from siege where numero='A25'));
+INSERT INTO passager (nom, numero_de_pass_port, numero_de_visa, prenom, reservation_id, siege_id) VALUES ('DEMBELE', 'TRGGE667', 'ERR3390', 'MAMADOU', 2, (select id from siege where numero='A26'));
+INSERT INTO passager (nom, numero_de_pass_port, numero_de_visa, prenom, reservation_id, siege_id) VALUES ('DIARRE', 'TRGGEUI65', 'ERRNH33', 'ISSA', 2, (select id from siege where numero='C4'));
+INSERT INTO passager (nom, numero_de_pass_port, numero_de_visa, prenom, reservation_id, siege_id) VALUES ('DIAKITE', 'TRGGE65B200', 'ERR33HH', 'IBRAHIM', 2, (select id from siege where numero='D6'));
+
+ 
 
 
 -- Insertion des personnels

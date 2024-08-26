@@ -1,7 +1,6 @@
 package org.odk.g1.pankuru.SecurityConfig;
 
 import lombok.AllArgsConstructor;
-import org.odk.g1.pankuru.Entity.Enum.EnumPermission;
 import org.odk.g1.pankuru.Utils.UtilService;
 import org.odk.g1.pankuru.jwt.AuthEntryPointJwt;
 import org.odk.g1.pankuru.jwt.AuthTokenFilter;

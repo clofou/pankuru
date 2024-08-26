@@ -5,7 +5,6 @@ import jakarta.mail.internet.MimeMessage;
 
 import org.odk.g1.pankuru.dto.MailStructure;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
