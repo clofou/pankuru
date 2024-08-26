@@ -12,7 +12,7 @@ import java.util.Objects;
 import java.util.Optional;
 
 @Service
-public class CarteBancaireService implements CrudService<CarteBancaire, String> {
+public class CarteBancaireService implements CrudService<CarteBancaire, Long> {
     @Autowired
     CarteBancaireRepository carteBancaireRepository;
 
@@ -27,12 +27,12 @@ public class CarteBancaireService implements CrudService<CarteBancaire, String> 
     }
 
     @Override
-    public Optional<CarteBancaire> trouverParId(String carteBancaireId) {
+    public Optional<CarteBancaire> trouverParId(Long carteBancaireId) {
         return carteBancaireRepository.findById(carteBancaireId);
     }
 
     @Override
-    public CarteBancaire misAJour(CarteBancaire newInfoCarteBancaire, String Id) {
+    public CarteBancaire misAJour(CarteBancaire newInfoCarteBancaire, Long Id) {
         CarteBancaire carteBancaireBD = carteBancaireRepository.getReferenceById(Id);
 
         if (newInfoCarteBancaire.getNumeroDeCarte() != null &&
@@ -69,7 +69,7 @@ public class CarteBancaireService implements CrudService<CarteBancaire, String> 
     }
 
     @Override
-    public void supprimer(String carteBancaireId) {
+    public void supprimer(Long carteBancaireId) {
         CarteBancaire carteBancaire =carteBancaireRepository
                 .getReferenceById(carteBancaireId);
         carteBancaireRepository.delete(carteBancaire);

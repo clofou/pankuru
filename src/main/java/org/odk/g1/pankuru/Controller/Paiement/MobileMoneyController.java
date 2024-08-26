@@ -24,7 +24,7 @@ public class MobileMoneyController {
     }
 
     @DeleteMapping("/supprimer/{id}")
-    public ResponseEntity<String> supprimerMobileMoney(@PathVariable String id) {
+    public ResponseEntity<String> supprimerMobileMoney(@PathVariable Long id) {
         mobileMoneyService.supprimer(id);
         return ResponseEntity.ok("Paiement supprimer avec succes !!!");
     }
@@ -35,7 +35,7 @@ public class MobileMoneyController {
     }
 
     @GetMapping("/afficher/{id}")
-    public ResponseEntity<MobileMoney> afficherUnMobileMoney(@PathVariable String id) {
+    public ResponseEntity<MobileMoney> afficherUnMobileMoney(@PathVariable Long id) {
         Optional<MobileMoney> mobileMoney = mobileMoneyService.trouverParId(id);
         return mobileMoney.map(ResponseEntity::ok)
                 .orElseGet(() -> ResponseEntity.notFound().build());

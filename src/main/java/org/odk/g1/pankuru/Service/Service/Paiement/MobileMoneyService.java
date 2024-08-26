@@ -13,7 +13,7 @@ import java.util.Optional;
 
 @Service
 @AllArgsConstructor
-public class MobileMoneyService implements CrudService<MobileMoney, String> {
+public class MobileMoneyService implements CrudService<MobileMoney, Long> {
     MobileMoneyRepository mobileMoneyRepository;
     
     @Override
@@ -27,12 +27,12 @@ public class MobileMoneyService implements CrudService<MobileMoney, String> {
     }
 
     @Override
-    public Optional<MobileMoney> trouverParId(String mobileMoneyId) {
+    public Optional<MobileMoney> trouverParId(Long mobileMoneyId) {
         return mobileMoneyRepository.findById(mobileMoneyId);
     }
 
     @Override
-    public MobileMoney misAJour(MobileMoney newInfoMobileMoney, String Id) {
+    public MobileMoney misAJour(MobileMoney newInfoMobileMoney, Long Id) {
         MobileMoney mobileMoneyBD = mobileMoneyRepository.getReferenceById(Id);
 
         if (newInfoMobileMoney.getNumeroDeTelephone() != null &&
@@ -49,7 +49,7 @@ public class MobileMoneyService implements CrudService<MobileMoney, String> {
     }
 
     @Override
-    public void supprimer(String mobileMoneyId) {
+    public void supprimer(Long mobileMoneyId) {
         MobileMoney mobileMoney =mobileMoneyRepository
                 .getReferenceById(mobileMoneyId);
         mobileMoneyRepository.delete(mobileMoney);

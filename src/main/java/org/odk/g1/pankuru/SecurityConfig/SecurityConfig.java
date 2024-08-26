@@ -1,7 +1,6 @@
 package org.odk.g1.pankuru.SecurityConfig;
 
 import lombok.AllArgsConstructor;
-import org.odk.g1.pankuru.Entity.Enum.EnumPermission;
 import org.odk.g1.pankuru.Utils.UtilService;
 import org.odk.g1.pankuru.jwt.AuthEntryPointJwt;
 import org.odk.g1.pankuru.jwt.AuthTokenFilter;
@@ -51,11 +50,7 @@ public class SecurityConfig {
 
         Map<String, String[]> permissionMap = UtilService.extractPermissions(rolePermissions);
 
-
-        System.out.println(permissionMap);
         System.out.println("================================");
-
-        permissionMap.forEach((k, v) -> System.out.println(k+"/**" + "=" + Arrays.toString(v)));
 
         http.csrf(AbstractHttpConfigurer::disable)
                 .cors(Customizer.withDefaults())
@@ -66,7 +61,10 @@ public class SecurityConfig {
                         request.requestMatchers("/reservation/ajout").permitAll();
 
                         permissionMap.forEach(
-                                (k,v) -> request.requestMatchers(k+"/**").hasAnyRole(v)
+                                (k,v) -> {
+                                    request.requestMatchers(k+"/**").hasAnyRole(v);
+                                    System.out.println(k+"/**" + " = " + Arrays.toString(v));
+                                }
                         );
 
                         request.anyRequest().authenticated();

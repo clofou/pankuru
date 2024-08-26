@@ -79,6 +79,7 @@ public class PersonnelService implements CrudService<Personnel, Long>{
         personnelExistant.setNom(entity.getNom());
         personnelExistant.setPrenom(entity.getPrenom());
         personnelExistant.setEmail(entity.getEmail());
+        personnelExistant.setDateDeNaissance(entity.getDateDeNaissance());
         personnelExistant.setPassword(entity.getPassword());
         personnelExistant.setNumeroDeTelephone(entity.getNumeroDeTelephone());
         personnelExistant.setDateEmbauche(entity.getDateEmbauche());

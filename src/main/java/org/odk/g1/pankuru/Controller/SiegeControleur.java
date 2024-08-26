@@ -5,7 +5,6 @@ import org.odk.g1.pankuru.Entity.ReservationDeVol.Siege;
 import org.odk.g1.pankuru.Service.Service.SiegeDTO.SiegeDTOService;
 import org.odk.g1.pankuru.Service.Service.SiegeService;
 import org.odk.g1.pankuru.dto.SiegeDTO;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

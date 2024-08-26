@@ -1,6 +1,5 @@
 package org.odk.g1.pankuru.Service.Service.HumainService;
 
-import org.odk.g1.pankuru.Entity.Humain.Faq;
 import org.odk.g1.pankuru.Entity.Humain.Notification;
 import org.odk.g1.pankuru.Repository.NotificationRepository;
 import org.springframework.beans.factory.annotation.Autowired;

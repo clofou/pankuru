@@ -25,7 +25,7 @@ public class CarteBancaireController {
     }
 
     @DeleteMapping("/supprimer/{id}")
-    public ResponseEntity<String> supprimerCarteBancaire(@PathVariable String id) {
+    public ResponseEntity<String> supprimerCarteBancaire(@PathVariable Long id) {
         carteBancaireService.supprimer(id);
         return ResponseEntity.ok("Paiement supprimer avec succes !!!");
     }
@@ -36,7 +36,7 @@ public class CarteBancaireController {
     }
 
     @GetMapping("/afficher/{id}")
-    public ResponseEntity<CarteBancaire> afficherUneCarteBancaire(@PathVariable String id) {
+    public ResponseEntity<CarteBancaire> afficherUneCarteBancaire(@PathVariable Long id) {
         Optional<CarteBancaire> carteBancaire = carteBancaireService.trouverParId(id);
 
         return carteBancaire.map(ResponseEntity::ok)

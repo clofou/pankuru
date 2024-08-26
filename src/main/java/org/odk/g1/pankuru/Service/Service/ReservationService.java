@@ -19,7 +19,6 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 @Service
 @AllArgsConstructor
@@ -34,6 +33,7 @@ public class ReservationService implements CrudService<Reservation,Long> {
     @Override
     public Reservation ajout(Reservation reservation) {
         Long userId = userService.getCurrentUsernameId();
+        System.out.println("HI");
 
         // Vérifier si l'utilisateur existe
         Utilisateur utilisateur = utilisateurRepo.findById(userId)

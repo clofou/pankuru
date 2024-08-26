@@ -6,7 +6,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
 import lombok.*;
 import org.odk.g1.pankuru.Entity.ReservationDeVol.Reservation;
-import java.util.Date;
 import java.util.List;
 
 @Entity
