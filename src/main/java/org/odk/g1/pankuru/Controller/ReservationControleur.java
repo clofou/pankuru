@@ -13,14 +13,24 @@ import java.util.Optional;
 
 @RestController
 @AllArgsConstructor
+@CrossOrigin("http://localhost:8100")
 @RequestMapping("/reservation")
-@CrossOrigin("http://localhost:4200")
+
 public class ReservationControleur {
     private ReservationService reservationService;
+
+    // Endpoint pour ajouter une nouvelle réservation
     @PostMapping("/ajout")
+    public ResponseEntity<Reservation> ajouter(@RequestBody Reservation reservation) {
+        System.out.println("ajouter reservation");
+        Reservation nouvelleReservation = reservationService.ajout(reservation);
+        return ResponseEntity.ok(nouvelleReservation);
+    }
+
+    /*@PostMapping("/afficher/ajouter")
     public Reservation ajouter(@RequestBody Reservation reservation){
         return reservationService.ajout(reservation);
-    }
+    }*/
 
     @GetMapping("/afficher")
     public List<Reservation> lire(){
@@ -46,5 +56,11 @@ public class ReservationControleur {
     public ResponseEntity<List<Reservation>> getReservationsByUtilisateur(@PathVariable Long id) {
         List<Reservation> reservations = reservationService.getReservationsByPassager(id);
         return new ResponseEntity<>(reservations, HttpStatus.OK);
+    }
+
+    @PostMapping("/afficher/annuler/{id}")
+    public ResponseEntity<Void> annulerReservation(@PathVariable Long id) {
+        reservationService.annulerReservation(id);
+        return ResponseEntity.ok().build();
     }
 }

@@ -58,6 +58,7 @@ public class SecurityConfig {
                     {
                         request.requestMatchers("/personne/signin").permitAll();
                         request.requestMatchers("/utilisateur/ajout").permitAll();
+                        request.requestMatchers("/reservation/ajout").permitAll();
 
                         permissionMap.forEach(
                                 (k,v) -> {
