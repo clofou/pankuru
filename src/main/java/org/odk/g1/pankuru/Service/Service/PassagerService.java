@@ -1,10 +1,13 @@
 package org.odk.g1.pankuru.Service.Service;
 
 import lombok.AllArgsConstructor;
+import org.odk.g1.pankuru.Entity.Enum.SiegeDisponible;
 import org.odk.g1.pankuru.Entity.ReservationDeVol.Passager;
 import org.odk.g1.pankuru.Entity.ReservationDeVol.Reservation;
+import org.odk.g1.pankuru.Entity.ReservationDeVol.Siege;
 import org.odk.g1.pankuru.Repository.PassagerRepository;
 import org.odk.g1.pankuru.Repository.ReservationRepository;
+import org.odk.g1.pankuru.Repository.SiegeRepository;
 import org.odk.g1.pankuru.Service.Interface.CrudService;
 import org.springframework.stereotype.Service;
 
@@ -16,8 +19,14 @@ import java.util.Optional;
 public class PassagerService implements CrudService<Passager,Long> {
     private PassagerRepository passagerRepository;
     private ReservationRepository reservationRepository;
+    private SiegeRepository siegeRepository;
     @Override
     public Passager ajout(Passager passager) {
+        Long siegeId = passager.getSiege().getId();
+        Optional<Siege> siege = siegeRepository.findById(siegeId);
+        if (siege.isPresent()) {
+            siege.get().setDisponibilite(SiegeDisponible.NON);
+        }
         Reservation r=new Reservation();
         r.setId(reservationRepository.findLastInsertedId());
         passager.setReservation(r);
