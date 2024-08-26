@@ -44,6 +44,8 @@ public class CompagnieService implements CrudService<Compagnie, Integer>{
         List<Aeroport> aeroports = new ArrayList<>();
         Compagnie compagnie = compagnieRepository.findById(compagnieId).orElse(null);
 
+    
+
         if (compagnie != null) {
             for (AdminCompagnie adminCompagnie : compagnie.getAdminCompagnieList()) {
                 aeroports.addAll(aeroportRepository.findByAdminCompagnieId(adminCompagnie.getId()));
@@ -207,6 +209,7 @@ public class CompagnieService implements CrudService<Compagnie, Integer>{
         if (compagnieExistant.isPresent()){
             Compagnie compagnie = compagnieExistant.get();
             compagnie.setLocked(!compagnie.isLocked());
+            compagnieRepository.save(compagnie);
         }
     }
     
